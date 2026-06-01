@@ -1,0 +1,6247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Bulgaria · AoS Worlds 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f5f4f1;color:#1a1916;min-height:100vh}
+.header{background:#fff;border-bottom:1px solid #e0ddd6;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:50}
+.logo{font-size:17px;font-weight:600}
+.logo span{color:#2563eb}
+.rounds{display:flex;gap:5px;flex-wrap:wrap}
+.rbtn{padding:5px 12px;font-size:12px;font-weight:500;border:1px solid #d0cdc6;border-radius:20px;cursor:pointer;background:transparent;color:#6b6860}
+.rbtn:hover{background:#f0efe9}
+.rbtn.on{background:#1a1916;color:#fff;border-color:#1a1916}
+.page{max-width:1400px;margin:0 auto;padding:16px}
+.mapbar{background:#fff;border:1px solid #e0ddd6;border-radius:10px;padding:10px 16px;margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.mapbar label{font-size:11px;font-weight:600;color:#6b6860;text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+.mchip{font-size:11px;color:#6b6860;padding:3px 10px;background:#f5f4f1;border:1px solid #e0ddd6;border-radius:8px}
+.tabs{display:flex;gap:4px;margin-bottom:16px}
+.tab{padding:8px 18px;font-size:13px;font-weight:500;border:1px solid #d0cdc6;border-radius:8px;cursor:pointer;background:transparent;color:#6b6860}
+.tab:hover{color:#1a1916}
+.tab.on{background:#1a1916;color:#fff;border-color:#1a1916}
+.sec{display:none}.sec.on{display:block}
+.topbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.topbar label{font-size:13px;color:#6b6860}
+.nsel{padding:8px 12px;font-size:14px;border:1px solid #d0cdc6;border-radius:8px;background:#fff;color:#1a1916;flex:1;min-width:160px;max-width:280px}
+.dbtn{padding:8px 16px;font-size:12px;font-weight:600;border:1px solid #d0cdc6;border-radius:8px;cursor:pointer;background:transparent;color:#6b6860}
+.dbtn.on{background:#dcfce7;color:#14532d;border-color:#16a34a}
+.leg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.li{display:flex;align-items:center;gap:4px;font-size:11px;color:#6b6860}
+.ls{width:22px;height:13px;border-radius:3px;border:1px solid}
+.card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.tscroll{overflow-x:auto}
+table{border-collapse:collapse;font-size:12px;width:100%}
+table th{padding:7px 6px;font-weight:600;color:#6b6860;border-bottom:1px solid #e0ddd6;background:#fff;font-size:11px;white-space:nowrap;text-align:center}
+th.corner{min-width:145px;text-align:left;padding-left:14px;position:sticky;left:0;z-index:5;background:#fff;border-right:1px solid #e0ddd6}
+.oh{cursor:pointer;border-left:1px solid #f0efe9}
+.oh:hover{background:#f5f4f1}
+.abar{height:3px;border-radius:2px;margin:0 auto 4px;width:30px}
+.on1{font-size:11px;font-weight:600;color:#1a1916;display:block}
+.on2{font-size:10px;color:#9e9b94;display:block}
+tbody tr:hover{background:#fafaf8}
+tbody td{padding:3px 4px;border-bottom:1px solid #f0efe9;border-left:1px solid #f0efe9;text-align:center;vertical-align:middle}
+td.bgr{position:sticky;left:0;background:#fff;border-right:1px solid #e0ddd6;border-left:none;padding:7px 10px 7px 14px;text-align:left;z-index:2}
+.bn{font-size:13px;font-weight:600;color:#1a1916}
+.ba{font-size:10px;color:#9e9b94;margin-top:2px;display:flex;align-items:center;gap:3px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%}
+.cb{width:54px;height:30px;border:1px solid #e0ddd6;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;background:transparent;color:#9e9b94;transition:transform .1s}
+.cb:hover{transform:scale(1.1)}
+.cb:active{transform:scale(.93)}
+.cb.BW{background:#dcfce7;color:#14532d;border-color:#16a34a}
+.cb.SW{background:#d1fae5;color:#064e3b;border-color:#059669}
+.cb.D{background:#f1f0eb;color:#3d3b34;border-color:#9e9b94}
+.cb.SL{background:#fef3c7;color:#78350f;border-color:#d97706}
+.cb.BL{background:#fee2e2;color:#7f1d1d;border-color:#dc2626}
+.cb.R{background:#ede9fe;color:#2e1065;border-color:#7c3aed}
+/* panel */
+.pnl{background:#fff;border:1px solid #e0ddd6;border-radius:12px;margin-top:16px;overflow:hidden;display:none}
+.pnl.open{display:block}
+.phd{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 16px;background:#f5f4f1;border-bottom:1px solid #e0ddd6}
+.pname{font-size:15px;font-weight:600;color:#1a1916}
+.psub{font-size:12px;color:#6b6860;margin-top:3px}
+.pcls{background:none;border:none;cursor:pointer;font-size:22px;color:#6b6860;line-height:1}
+.pbody{padding:16px}
+.ptag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9e9b94;margin:14px 0 6px}
+.pdesc{font-size:13px;color:#1a1916;line-height:1.7}
+.pu{font-size:12px;padding:7px 10px;background:#f5f4f1;border-radius:8px;margin-bottom:4px;line-height:1.5}
+.pu strong{font-weight:600}
+.wl{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#6b6860;text-decoration:none;border:1px solid #e0ddd6;border-radius:8px;padding:5px 12px;margin-top:8px}
+.wl:hover{border-color:#9e9b94;color:#1a1916}
+.lb{background:#f5f4f1;border:1px solid #e0ddd6;border-radius:8px;padding:12px;font-size:11px;font-family:monospace;white-space:pre-wrap;line-height:1.7;max-height:340px;overflow-y:auto;margin-top:10px;color:#1a1916}
+/* draw */
+.ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:7px;margin-bottom:18px}
+.nc{background:#fff;border:1px solid #e0ddd6;border-radius:10px;padding:11px 13px;cursor:pointer}
+.nc:hover{border-color:#9e9b94}
+.nc.drn{border-color:#16a34a;background:#f0fdf4}
+.ncn{font-size:13px;font-weight:600;color:#1a1916}
+.nbg{font-size:9px;font-weight:700;padding:1px 6px;border-radius:8px;background:#dcfce7;color:#14532d;border:1px solid #16a34a;margin-left:4px;vertical-align:middle}
+.ncs{font-size:10px;color:#9e9b94;margin-top:4px;line-height:1.5}
+.dcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-top:10px}
+.dcard{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:15px}
+.dch{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.dcn{font-size:15px;font-weight:600;color:#1a1916}
+.dsc{font-size:20px;font-weight:700}
+.pos{color:#16a34a}.neg{color:#dc2626}.neu{color:#9e9b94}
+.chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:7px}
+.chip{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;border:1px solid #e0ddd6;color:#6b6860;background:#f5f4f1}
+.chip.BW{background:#dcfce7;color:#14532d;border-color:#16a34a}
+.chip.SW{background:#d1fae5;color:#064e3b;border-color:#059669}
+.chip.D{background:#f1f0eb;color:#3d3b34;border-color:#9e9b94}
+.chip.SL{background:#fef3c7;color:#78350f;border-color:#d97706}
+.chip.BL{background:#fee2e2;color:#7f1d1d;border-color:#dc2626}
+.chip.R{background:#ede9fe;color:#2e1065;border-color:#7c3aed}
+.dlink{font-size:11px;color:#2563eb;background:none;border:none;cursor:pointer;padding:4px 0;margin-top:4px;display:block}
+/* summary */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.scard{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:20px;text-align:center}
+.sn{font-size:14px;font-weight:600;color:#1a1916;margin-bottom:8px}
+.ss{font-size:36px;font-weight:700;line-height:1}
+.ssb{font-size:11px;color:#9e9b94;margin-top:5px}
+.grand{background:#1a1916;color:#fff;border-radius:12px;padding:24px;text-align:center;grid-column:1/-1}
+.gl{font-size:12px;opacity:.6;margin-bottom:8px}
+.gs{font-size:52px;font-weight:700;line-height:1}
+.gs.pos{color:#86efac}.gs.neg{color:#fca5a5}.gs.neu{color:rgba(255,255,255,.4)}
+.scale{font-size:12px;color:#9e9b94;margin-top:16px;text-align:center}
+.empty{text-align:center;padding:48px;color:#9e9b94;font-size:14px}
+@media(max-width:640px){.logo{font-size:14px}.cb{width:44px;height:28px;font-size:10px}th.corner{min-width:120px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Team <span>Bulgaria</span> · AoS Worlds 2026</div>
+  <div class="rounds" id="rpills"></div>
+</div>
+
+<div class="page">
+  <div class="mapbar" id="mapbar"></div>
+
+  <div class="tabs">
+    <button class="tab on" onclick="showTab('matrix')">Matrix</button>
+    <button class="tab" onclick="showTab('draw')">Draw</button>
+    <button class="tab" onclick="showTab('summary')">Summary</button>
+  </div>
+
+  <div id="sec-matrix" class="sec on">
+    <div class="topbar">
+      <label>Opponent nation:</label>
+      <select class="nsel" id="npick" onchange="renderMatrix()"></select>
+      <button class="dbtn" id="dbtn" onclick="toggleDraw()">+ Add to draw</button>
+    </div>
+    <div class="leg">
+      <div class="li"><div class="ls" style="background:#dcfce7;border-color:#16a34a"></div>BW 40+ win</div>
+      <div class="li"><div class="ls" style="background:#d1fae5;border-color:#059669"></div>SW win</div>
+      <div class="li"><div class="ls" style="background:#f1f0eb;border-color:#9e9b94"></div>Draw</div>
+      <div class="li"><div class="ls" style="background:#fef3c7;border-color:#d97706"></div>SL loss</div>
+      <div class="li"><div class="ls" style="background:#fee2e2;border-color:#dc2626"></div>BL 40+</div>
+      <div class="li"><div class="ls" style="background:#ede9fe;border-color:#7c3aed"></div>Risky</div>
+      <span style="font-size:11px;color:#9e9b94;margin-left:auto">tap opponent header for army intel + list</span>
+    </div>
+    <div class="card"><div class="tscroll" id="mwrap"></div></div>
+    <div class="pnl" id="pnl">
+      <div class="phd">
+        <div><div class="pname" id="pname"></div><div class="psub" id="psub"></div></div>
+        <button class="pcls" onclick="closePnl()">×</button>
+      </div>
+      <div class="pbody" id="pbody"></div>
+    </div>
+  </div>
+
+  <div id="sec-draw" class="sec">
+    <p style="font-size:13px;color:#6b6860;margin-bottom:12px">Select up to 6 nations you face at Worlds. They appear in summary.</p>
+    <input type="text" placeholder="Search nation…" style="width:100%;max-width:300px;margin-bottom:12px;padding:8px 12px;border:1px solid #d0cdc6;border-radius:8px;font-size:14px" oninput="renderDG(this.value)">
+    <div class="ngrid" id="dgrid"></div>
+    <div id="dsums"></div>
+  </div>
+
+  <div id="sec-summary" class="sec"><div id="sinner"></div></div>
+</div>
+
+<script>
+const AC={"Daughters of Khaine":"#d4537e","Sylvaneth":"#639922","Stormcast Eternals":"#ca8a04","Seraphon":"#2563eb","Slaves to Darkness":"#6b7280","Disciples of Tzeentch":"#7c3aed","Blades of Khorne":"#dc2626","Soulblight Gravelords":"#4f46e5","Ogor Mawtribes":"#92400e","Lumineth Realm-lords":"#0284c7","Lumineth Realm-Lords":"#0284c7","Ironjawz":"#16a34a","Maggotkin of Nurgle":"#4d7c0f","Ossiarch Bonereapers":"#78716c","Flesh-eater Courts":"#9333ea","Idoneth Deepkin":"#0891b2","Kharadron Overlords":"#475569","Sons of Behemat":"#b45309","Nighthaunt":"#6366f1","Skaven":"#84796a","Cities of Sigmar":"#b45309","Hedonites of Slaanesh":"#db2777","Kruleboyz":"#65a30d","Gloomspite Gitz":"#854d0e","Helsmiths of Hashut":"#57534e"};
+const ac=a=>AC[a]||"#9ca3af";
+
+const AI={"Daughters of Khaine":{s:"Elite snake-aelf melee army built around Morathi. Extremely high damage output, fight-back abilities. Weak to shooting and ranged magic pressure.",k:["Morathi-Khaine — near-unkillable 2-part centerpiece","Blood Sisters — elite melee with mortal wounds on 6s","Khinerai — fast flying harassers","Cauldron of Blood — prayer support +1 attack aura","Krethusa / Hag Queens — secondary hero support"],u:"https://wahapedia.ru/aos4/factions/daughters-of-khaine/"},"Sylvaneth":{s:"Objective-controlling tree army using teleport via Wyldwoods. Strong magic, good board control. Struggles against fast armies that deny teleport.",k:["Alarielle — massive combat+magic monster","Kurnoth Hunters — elite ranged+melee battleline","Drycha — high-damage ambush piece","Spiterider Lancers — fast cavalry flankers","Warsong Revenant — spell+prayer support"],u:"https://wahapedia.ru/aos4/factions/sylvaneth/"},"Stormcast Eternals":{s:"Durable warriors with teleport-in deployment, strong shooting and utility. Multiple viable builds from shooting to melee bricks.",k:["Vanguard-Raptors — long-range precision shooting","Annihilators — teleporting melee elite hammers","Lord-Aquilor / Bastian — fast commander options","Vanguard-Palladors — mobile cavalry screens","Questor Soulsworn — durable combat heroes"],u:"https://wahapedia.ru/aos4/factions/stormcast-eternals/"},"Seraphon":{s:"Disciplined lizard army with excellent magic and durable battleline. Lord Kroak is one of the strongest wizards.",k:["Lord Kroak — arcane anchor, army-wide buffs","Bastiladon — ranged mortal damage + durable sponge","Saurus Oldblood on Carnosaur — combat centerpiece","Kroxigor — elite multi-damage melee","Raptadon Chargers — fast cavalry screens"],u:"https://wahapedia.ru/aos4/factions/seraphon/"},"Slaves to Darkness":{s:"Chaos Warriors built around Be'lakor or mortal warbands. Flexible, tough, excellent aura stacking.",k:["Be'lakor — aura of debuffs, very hard to kill","Chaos Chosen — elite melee hammer unit","Chaos Warriors — tough battleline anvil","Varanguard — fast heavy cavalry","Eternus — cavalry support hero"],u:"https://wahapedia.ru/aos4/factions/slaves-to-darkness/"},"Disciples of Tzeentch":{s:"Magic and destiny-manipulation faction. Excellent at denying with fate-dice. Tzaangor lists add melee threat.",k:["Lord of Change / Kairos — dominant wizard general","Tzaangor Enlightened — fast elite melee","Pink Horrors — split when destroyed","Flamers — mortal wound shooting","Curseling — spell-stealing hero"],u:"https://wahapedia.ru/aos4/factions/disciples-of-tzeentch/"},"Blades of Khorne":{s:"Aggressive melee army built around denying magic and piling mortal wounds. Bloodthirsters are powerful flyers.",k:["Wrath of Khorne Bloodthirster — fast flying monster","Bloodletters — endless daemonic infantry","Blood Warriors — tough mortal infantry","Skull Altar — prayer support terrain","Skulltaker — elite duelist hero"],u:"https://wahapedia.ru/aos4/factions/blades-of-khorne/"},"Soulblight Gravelords":{s:"Undead army with Vampire centerpieces. Prince Vhordrai and Mannfred are dominant threats. Blood Knights for speed.",k:["Prince Vhordrai — strongest vampire combat piece","Mannfred von Carstein — magic+combat general","Blood Knights — fast elite cavalry","Askurgan Trueblades — elite melee infantry","Barrow Guard — undead support infantry"],u:"https://wahapedia.ru/aos4/factions/soulblight-gravelords/"},"Ogor Mawtribes":{s:"Big bruiser army. Ironguts and Gluttons punch hard, Stonehorns are monstrous. Slow but hits like a train.",k:["Frostlord on Stonehorn — heavy cavalry monster","Ironguts — elite melee infantry","Ogor Gluttons — large melee battleline","Gnoblar Scraplauncher — mortar support","Butcher/Slaughtermaster — spell+prayer support"],u:"https://wahapedia.ru/aos4/factions/ogor-mawtribes/"},"Lumineth Realm-lords":{s:"High-aelf shooting and magic supremacy army. Sevireth and Eltharion are independent hero threats.",k:["Sevireth — mobile mortal wound machine","The Light of Eltharion — unkillable duelist hero","Lyrior Uthralle — magic+combat general","Vanari Dawnriders — fast cavalry hammers","Ellania and Ellathor — dual wizard/fighter"],u:"https://wahapedia.ru/aos4/factions/lumineth-realm-lords/"},"Ironjawz":{s:"Brutal orc melee army. Very fast with charge bonuses. Kragnos adds devastating impact hits.",k:["Kragnos — monstrous cavalry general","Brutes — elite melee infantry","Gore-gruntas — fast pig-riding cavalry","Zoggrok Anvilsmasha — repair+support","Tuskboss on Maw-grunta — heavy cavalry hero"],u:"https://wahapedia.ru/aos4/factions/ironjawz/"},"Maggotkin of Nurgle":{s:"Diseased attrition army. Extremely hard to kill. Rotigus and Glottkin are massive threats. Rotswords create unstoppable tide.",k:["Rotigus / Glottkin — massive daemon general","Rotswords — plague infantry hammers","Belga the Cystwitch — prayer+disease support","Harbinger of Decay — aura debuff hero","Plaguebearers — durable battleline"],u:"https://wahapedia.ru/aos4/factions/maggotkin-of-nurgle/"},"Ossiarch Bonereapers":{s:"Disciplined undead cavalry army. Kavalos Deathriders are fast and durable. Strong objective control.",k:["Arch-Kavalos Zandtos — fast cavalry general","Kavalos Deathriders — elite cavalry battleline","Liege-Kavalos — cavalry support hero","Mortek Triaxes — heavy siege equipment","Teratic Cohort — construct support unit"],u:"https://wahapedia.ru/aos4/factions/ossiarch-bonereapers/"},"Flesh-eater Courts":{s:"Delusional ghouls with monstrous flying centerpieces. Multiple Terrorgheists create extreme rend pressure.",k:["Ushoran — recursion-enabling general","Terrorgheist — death scream mortal wounds","Royal Zombie Dragon — heavy flyer","Abhorrant Ghoul King — hero support","Crypt Horrors — tough elite infantry"],u:"https://wahapedia.ru/aos4/factions/flesh-eater-courts/"},"Idoneth Deepkin":{s:"Aelf sea-cavalry with powerful tidal-phase mechanic. Morrsarr Guard are outstanding in combat. Best in turn 3.",k:["Akhelian Morrsarr Guard — elite eel cavalry","Akhelian Allopex — shark cavalry flankers","Eidolon of Mathlann — powerful magic+combat hero","Volturnos — cavalry support general","Mathaela — oracle support hero"],u:"https://wahapedia.ru/aos4/factions/idoneth-deepkin/"},"Kharadron Overlords":{s:"Aerial duardin gunboat faction. Ironclads and Frigates deploy troops deep. Strong alpha-strike potential.",k:["Arkanaut Ironclad — massive transport gunboat","Arkanaut Frigate — medium gunship","Skywardens — fast melee infantry","Brokk Grungsson — fast hero general","Arkanaut Company — embarked gunfighters"],u:"https://wahapedia.ru/aos4/factions/kharadron-overlords/"},"Sons of Behemat":{s:"Four mega-gargants. Enormous wounds, terrifying combat damage, very hard to shift off objectives.",k:["King Brodd — general with prayer support","Warstomper — agile gargant","Gatebreaker — defensive stomper","Beast-smasher — aggressive hybrid","Kragnos — optional monstrous ally"],u:"https://wahapedia.ru/aos4/factions/sons-of-behemat/"},"Nighthaunt":{s:"Fast ghostly spirits with ignore-terrain movement. High volume mortal wounds, good alpha potential.",k:["Lady Olynder — powerful debuff caster","Pyregheists — fast mortal wound hammers","Kurdoss Valentian — command denial hero","Krulghast Cruciator — fight-back buffer","Myrmourn Banshees — spell-eaters"],u:"https://wahapedia.ru/aos4/factions/nighthaunt/"},"Skaven":{s:"Horde of rats with powerful war machines and plague. Screaming Bell provides magic. Explosive but unreliable.",k:["Grey Seer on Screaming Bell — mobile magic engine","Rat Ogors — elite shock infantry","Plague Priest on Plague Furnace — plague support","Stormfiends — elite multi-weapon options","Brood Terror — large monster piece"],u:"https://wahapedia.ru/aos4/factions/skaven/"},"Cities of Sigmar":{s:"Mixed human+duardin+aelf forces with cavalry focus. Freeguild Cavaliers are fast and hit hard. Cannon support.",k:["Freeguild Cavaliers — fast melee cavalry","Tahlia Vedra — cavalry buff general","Ironweld Great Cannon — long-range shooting","Fusil-Major on Ogor Warhulk — combat+shooting hybrid","Freeguild Fusiliers — ranged infantry"],u:"https://wahapedia.ru/aos4/factions/cities-of-sigmar/"},"Hedonites of Slaanesh":{s:"Fast pursuit-focused chaos army. Strikes first in combat. Glutos anchors the list.",k:["Glutos Orscollion — powerful spellcaster general","Myrmidesh Painbringers — precision melee elite","Blissbarb Archers — mobile shooting","Sigvald — fast duelist hero","Symbaresh Twinsouls — fight-back infantry"],u:"https://wahapedia.ru/aos4/factions/hedonites-of-slaanesh/"},"Kruleboyz":{s:"Sneaky swamp orc army with poisoned weapons. Gutrippaz core, fast Killaboss. Monsta-killaz for counter-monster.",k:["Killaboss on Great Gnashtoof — fast mounted hero","Gutrippaz — poisoned blade battleline","Kruleboyz Monsta-killaz — anti-large unit","Man-skewer Boltboyz — ranged support","Swampcalla Shaman — debuff caster"],u:"https://wahapedia.ru/aos4/factions/kruleboyz/"},"Gloomspite Gitz":{s:"Massive goblin horde with moon-powered buffs. Loonsmasha Fanatics are devastating surprise units.",k:["Skragrott the Loonking — moon-buff wizard","Loonsmasha Fanatics — surprise ball-and-chain","Moonclan Shootas — large ranged battleline","Droggz Da Sunchompa — troll hero","Fellwater Troggoths — regenerating trolls"],u:"https://wahapedia.ru/aos4/factions/gloomspite-gitz/"},"Helsmiths of Hashut":{s:"New Chaos Duardin faction. Artillery focus with Deathshrieker Rockets and Bombards.",k:["Urak Taar — unique daemonsmith general","Infernal Cohort — mixed melee infantry","Dominator Engine — combat construct","Deathshrieker Rocket Battery — long-range artillery","War Despot — overseer support hero"],u:"https://wahapedia.ru/aos4/factions/helsmiths-of-hashut/"}};
+
+const PL={
+  "mitch bugg": `1990/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10)
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactic Cards: Intercept and Recover, Restless
+Energy
+General's Regiment
+Butcher (150)
+• General
+• Mage Swallower
+• Gruesome Trophies
+• Great Gutlord
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Ogor Gluttons (440)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Regiment 1
+Slaughtermaster (150)
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Ironblaster (Scourge of Ghyran) (160)
+Mawpit`,
+  "jacob strachan": `Archaon: "stop aura farming start fighting"
+Be'lakor: "Son...I got more money than you got family
+members. You ain't seen money like this. You ain't seen
+power like this. Bloodletters in a white Toyota, quarter
+tank of gas, one pistol, orange soda. My minions do well
+for me, they show me where the money's at. This is
+Be'lakor's money long, pockets deep, T-posing with the
+wings cause the hands are counting bills, fingers up your
+ass, size 14 boot (Patent Pending)”
+2000/2000 pts
+Slaves to Darkness | Legion of the First Prince
+Army of Renown
+Spell Lore - Legion of the First Prince Spell Lore
+Manifestation Lore - Twilit Sorceries
+Battle Tactic Cards: Wrathful Cycles, Attuned to Ghyran
+General's `,
+  "jasper rowley": `Cankowicie
+oryginalna lista 2000/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of Prismatic Resonance (10 Points)
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Master The Paths, Restless Energy
+General's Regiment
+Sevireth, Lord of the Seventh Wind (340)
+• General
+Regiment 1
+Ellania and Ellathor, Eclipsian Warsages (290)
+The Light of Eltharion (300)
+Regiment 2
+Lyrior Uthralle, Warden of Ymetrica (250)
+Vanari Lord Regent (110)
+• Phoenix Stone
+Ydrilan Riverblades (140)
+Ydrilan Riverblades (140)
+Regiment 3
+Scinari Calligrave (130)
+• Acolyte of the Runes
+Regiments of Renown
+Saviours of Cinderfall (290)
+Call`,
+  "tom rands": `Mannfriend did nothing wrong 2000/2000 pts
+Soulblight Gravelords
+Deathmarch
+Spell Lore - Lore of Undeath
+Manifestation Lore - Manifestations of the Grave
+Battle Tactic Cards: Scouting Force, Attuned to Ghyran
+General's Regiment
+Mannfred von Carstein, Mortarch of Night (430)
+• General
+Barrow Guard (260)
+• Reinforced
+Askurgan Trueblades (140)
+Barrow Knights (200)
+Regiment 1
+Necromancer (120)
+• Amulet of Graves
+• Lash of the Sire (20)
+Barrow Guard (260)
+• Reinforced
+Deathrattle Skeletons (180)
+• Reinforced
+Deathrattle Skeletons (90)
+Regiment 2
+Wight King (80)
+Deathrattle Skeletons (90)
+Regiment 3
+Radukar the Wolf (130)
+Cursed Sepulchre`,
+  "zak rockman": `Durthu and His 5 Emotional Support Twinks
+2000/2000 pts
+Grand Alliance Order | Sylvaneth | Wargrove of the
+Burgeoning
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Intercept and Recover, Scouting Force
+General's Regiment
+Alarielle the Everqueen (600)
+• General
+The Twistweald (120)
+• 1x Warden’s Bow
+The Twistweald (120)
+• 1x Warden’s Bow
+The Twistweald (120)
+• 1x Warden’s Bow
+The Twistweald (120)
+• 1x Warden’s Bow
+Regiment 1
+Spirit of Durthu (320)
+• Realmroot Guide
+• Glamourweave
+Spite-Revenants (80)
+The Twistweald (120)
+• 1x Warden`,
+  "james panek": `City WoK takeaorderPrea
+2000/2000 pts
+Blades of Khorne | The Baleful Lords
+Army of Renown
+General's Handbook 2025-26
+Manifestation Lore - Krondspine Incarnate
+Battle Tactic Cards: Intercept and Recover, Restless
+Energy
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Unrivalled Battlelust
+Bloodthirster of Insensate Rage (410)
+Regiment 1
+Wrath of Khorne Bloodthirster (400)
+• Crown of the Slaughterborn
+Bloodthirster of Unfettered Fury (390)
+Regiment 2
+Wrath of Khorne Bloodthirster (400)
+Skull Altar`,
+  "stuart mccowan": `Governor Gimprott's Grand Gooning Garrison
+2000/2000 pts
+Gloomspite Gitz
+Gloomspite Horde
+Spell Lore - Lore of Frazzlegit
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactic Cards: Attuned to Ghyran, Master The Paths
+General's Regiment
+Skragrott, the Loonking (200)
+• General
+Gobbapalooza (150)
+Scourge of Ghyran Loonsmasha Fanatics (220)
+• Reinforced
+Scourge of Ghyran Loonsmasha Fanatics (110)
+Sneaky Snufflers (90)
+Regiment 1
+Loonboss (80)
+• The Clammy Hand
+• Backstabber's Blade
+Moonclan Shootas (240)
+• Reinforced
+Moonclan Stabbas (220)
+• Reinforced
+Sporesplatta Fanatics (90)
+Regiment 2
+Droggz Da Sunchompa (150)
+Fellwater Troggoths (1`,
+  "jordan rees": `Step 1: Lose Morathi turn 1
+Step 2: Get Tabled
+Step 3: Revive Morathi
+Step 4: ???
+Step 5: Win Game
+2000/2000 pts
+Daughters of Khaine
+Fervent Ritualists
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Master The Paths, Wrathful Cycles
+General's Regiment
+Morathi-Khaine (730)
+• General
+The Shadow Queen (0)
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (200)
+• Reinforced
+Regiment 1
+Slaughter Queen on Cauldron of Blood (280)
+• Hand of Khaine
+Sisters of Slaughter (110)
+Regiment 2
+Hag Queen on Cauldron of Blood (280)
+• Witchbrew
+Shrine`,
+  "vincent postel": `fredl fohrt auf world 1990/2000 pts
+Soulblight Gravelords
+Bacchanal of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Manifestations of the Grave
+Battle Tactic Cards: Attuned to Ghyran, Restless Energy
+General's Regiment
+Mannfred von Carstein, Mortarch of Night (430)
+• General
+Barrow Knights (400)
+• Reinforced
+Fell Bats (80)
+Fell Bats (80)
+Wight Lord on Skeletal Steed (110)
+• Immortal Ego
+• Amulet of Graves
+Regiment 1
+Radukar the Beast (250)
+Kosargi Nightguard (110)
+Revenant Draconith (190)
+Regiment 2
+Wight King (80)
+Barrow Guard (260)
+• Reinforced
+Cursed Sepulchre
+Created with Warhammer Age of Sigmar: The App
+App: 1`,
+  "bernhard horner": `Ein Bäumchen kommt selten allein 1980/2000 pts
+-----
+Grand Alliance Order | Sylvaneth | Wargrove of Everdusk
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactics Cards: Master The Paths and Scouting Force
+-----
+General's Regiment
+Alarielle the Everqueen (600)
+* General
+---
+Regiment 1
+Grove Guardian (220)
+* Seed of Rebirth
+* Realmroot Guide
+The Twistweald (120)
+* 1 Warden’s Bow
+The Twistweald (120)
+* 1 Warden’s Bow
+The Twistweald (120)
+* 1 Warden’s Bow
+---
+Regiment 2
+Warsong Revenant (150)
+The Twistweald (120)
+* 1 Warden’s Bow
+The Twistweald (120)
+* 1 Warden’s Bow
+---
+Regiment 3
+Dr`,
+  "lars wychodil": `Ich reite dich in die Scheiße 1990/2000 pts
+-----
+Grand Alliance Death | Ossiarch Bonereapers | Remorseless
+Conquerors
+General's Handbook 2025-26
+Spell Lore - Lore of Ossian Sorcery
+Manifestation Lore - Horrors of the Necropolis
+Battle Tactics Cards: Attuned to Ghyran and Scouting Force
+-----
+General's Regiment
+Arkhan the Black, Mortarch of Sacrament (440)
+* General
+Mortis Reapers (90)
+Teratic Cohort (90)
+---
+Regiment 1
+Liege-Kavalos (180)
+* Amulet of Gnosis
+* Imperious Will
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+---
+Regiment 2
+Liege-Kavalos (180)
+Immortis Guard (170)
+Mortek Guard (110)
+Mortek Triaxes (280)
+* Reinforced
+-----
+Bone-tithe Nexus
+-----
+Crea`,
+  "benjamin salomon": `Wir haben dicke Beidl
+1990/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Wounds: 124
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Intercept and Recover, Restless
+Energy
+General's Regiment
+Lyrior Uthralle, Warden of Ymetrica (250)
+• General
+The Light of Eltharion (300)
+Vanari Auralan Sentinels (280)
+• Reinforced
+Vanari Dawnriders (360)
+• Reinforced
+Vanari Dawnriders (360)
+• Reinforced
+Regiment 1
+Hurakan Windmage (140)
+• Silver Wand
+• Acolyte of the Runes
+Hurakan Windchargers (160)
+Ydrilan Riverblades (140)
+Shrine Luminor
+Created with Sigdex: sigdex.io
+App `,
+  "manuel schoppler": `Get DoK'd 1990/2000 pts
+Daughters of Khaine
+Coven of Blood
+General's Handbook 2025-26
+Wounds: 122
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Master the Paths, Intercept and
+Recover
+General's Regiment
+Morathi-Khaine (730)
+* General
+The Shadow Queen
+Blood Sisters (280)
+* Reinforced
+Khinerai Lifetakers (100)
+Khinerai Heartrenders (100)
+Regiment 1
+Slaughter Queen on Cauldron of Blood (280)
+* Witchbrew
+* Hand of Khaine
+Witch Aelves (240)
+* Reinforced
+Sisters of Slaughter (110)
+Khainite Shadowstalkers (130)
+Shrine of Dark Tribute (20)
+Created with Sigdex: sigdex.io
+App Version: 20.0.0
+Server Version: 3.`,
+  "dominik hirsch": `Who could have guessed that a Maggot Lord would show up at
+Worlds 2000/2000 pts
+-----
+Grand Alliance Chaos | Maggotkin of Nurgle | Tallyband of
+Nurgle
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactics Cards: Attuned to Ghyran and Wrathful
+Cycles
+-----
+General's Regiment
+The Glottkin (470)
+* General
+Lord of Plagues (100)
+* Gift of Febrile Frenzy
+* Rustfang
+Pox-Wretches (100)
+Rotswords (400)
+* Reinforced
+Sloven Knights (180)
+---
+Regiment 1
+Belga the Cystwitch (130)
+Plaguebearers (260)
+* Reinforced
+---
+Regiment 2
+Rotbringer Sorcerer (100)
+---
+Regiment 3
+Bloab Rotspawned (260)
+-----
+Fecul`,
+  "alexander sluka": `
+2000/2000 pts
+Ogor Mawtribes
+Beast Handlers
+General's Handbook 2025-26
+Wounds: 108
+Prayer Lore - Everwinter Prayers
+Spell Lore - None
+Manifestation Lore - None
+Battle Tactic Cards: Restless Energy, Wrathful Cycles
+General's Regiment
+Frostlord on Stonehorn (320)
+• General
+• The Fang of Ghur
+• Great Gutlord
+Huskard on Stonehorn (290)
+• Harpoon Launcher
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Ironblaster (Scourge of Ghyran) (160)
+Regiment 1
+Frostlord on Stonehorn (320)
+• Mage-Swallower
+Huskard on Stonehorn (290)
+• Harpoon Launcher
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Stonehorn Bea`,
+  "benedict rich": `Standard Issue Personal Space Invasion 1970/2000 pts
+Stormcast Eternals
+Thunderhead Host
+General's Handbook 2025-26
+Wounds: 114
+Spell Lore - Lore of the Storm
+Prayer Lore - Prayers of the Stormhosts
+Manifestation Lore - None
+Battle Tactic Cards: Master the Paths, Intercept and
+Recover
+General's Regiment
+Lord-Imperatant (110)
+• General
+Gardus Steel Soul (160)
+Annihilators with Meteoric Grandhammers (360)
+• Reinforced
+Annihilators with Meteoric Grandhammers (360)
+• Reinforced
+Vigilors (140)
+Regiment 1
+Lord-Veritant (110)
+• Beacon of Azyr
+• Envoy of the Heavens (20)
+Questor Soulsworn (210)
+Vanquishers (180)
+• Reinforced
+Prosecutors (300)
+•`,
+  "spyros kemekenidis": `Team Belgium - Spyros "Spy" Kemekenidis - Daughter of
+Khaine
+Dirge of Cerberus 1990/2000 pts
+Daughters of Khaine
+Coven of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Wrathful Cycles, Master The Paths
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Hags (280)
+• Reinforced
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (100)
+The Shadow Queen (0)
+Regiment 1
+Scourge of Ghyran Krethusa the Croneseer (260)
+Blood Hags (280)
+• Reinforced
+Sisters of Slaughter (110)
+Regiment 2
+Hag Queen (110)
+• Witchbrew
+• Shadow-Blooded
+Shrine`,
+  "sev kemekenidis": `Team Belgium - Sevastos "Sev" Kemekenidis - Stormcast
+Eternal 1980/2000 pts
+Stormcast Eternals
+Sentinels of the Bleak Citadels
+General's Handbook 2025-26
+Wounds: 96
+Spell Lore - Lore of the Storm
+Prayer Lore - Prayers of the Stormhosts
+Battle Tactic Cards: Wrathful Cycles, Scouting Force
+General's Regiment
+Lord-Commander Bastian Carthalos (190)
+• General
+Vanguard-Raptors with Longstrike Crossbows (200)
+Vanguard-Raptors with Longstrike Crossbows (200)
+Prosecutors (300)
+• Reinforced
+Reclusians (280)
+• Reinforced
+Regiment 1
+Iridan the Witness (Scourge of Ghyran) (320)
+Regiment 2
+Knight-Relictor (120)
+• Beacon of Azyr
+• Legendary Tenacity
+Questor Soulsworn`,
+  "maiky bon": `J'ai failli jouer scout, merci Sev 2000/2000 pts
+Blades of Khorne
+Tournament of Skulls
+General's Handbook 2025-26
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactic Cards: Wrathful Cycles, Restless Energy
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Mighty Skullcrushers (400)
+• Reinforced
+Mighty Skullcrushers (200)
+Regiments of Renown
+The Curse-Steel Battery (380)
+Daemonsmith
+Deathshrieker Rocket Battery
+Tormentor Bombard
+Skull Altar
+`,
+  "maxence blondiau": `2000/2000 pts
+-----
+Grand Alliance Chaos | Maggotkin of Nurgle | Tallyband of
+Nurgle
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Morbid Conjuration (20 Points)
+Battle Tactics Cards: Attuned to Ghyran and Restless
+Energy
+-----
+General's Regiment
+Rotigus (420)
+• General
+Plague Drones (150)
+Plaguebearers (260)
+• Reinforced
+Plaguebearers (130)
+Poxbringer, Herald of Nurgle (90)
+---
+Regiment 1
+Belga the Cystwitch (130)
+---
+Regiment 2
+Great Unclean One (400)
+---
+Regiment 3
+Harbinger of Decay (140)
+-----
+Regiments of Renown
+Godmarked Ascendant (260)
+Daemon Prince
+• Wings
+• Corpulent Avalanche
+(c`,
+  "robin van wetering": `2000/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Scouting Force, Master The Paths
+General's Regiment
+Warsong Revenant (150)
+• General
+• Seed of Rebirth
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+Spiterider Lancers (440)
+• Reinforced
+The Twistweald (120)
+Regiment 1
+Branchwych (100)
+• Spellsinger
+Spite-Revenants (80)
+Spite-Revenants (80)
+Regiment 2
+Drycha Hamadreth (250)
+Awakened Wyldwood`,
+  "thibault rigolet": `J'ai failli jouer Abraxia 1990/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Manifestation Lore - Krondspine Incarnate
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Butcher (150)
+• General
+• Gruesome Trophies
+Ironguts (420)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+Regiment 1
+Slaughtermaster (150)
+• Booming Roar
+• Mage-swallower
+Ogor Gluttons (440)
+• Reinforced
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Mawpit`,
+  "paul dam": `Team Belgium - Paul - Lumineth Realm Lords
+2000/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Master The Paths, Intercept and
+Recover
+General's Regiment
+Lyrior Uthralle, Warden of Ymetrica (250)
+• General
+Vanari Auralan Sentinels (280)
+• Reinforced
+Vanari Dawnriders (360)
+• Reinforced
+Regiment 1
+The Light of Eltharion (300)
+Regiment 2
+Sevireth, Lord of the Seventh Wind (340)
+Regiment 3
+Ellania and Ellathor, Eclipsian Warsages (290)
+Regiment 4
+Scinari Enlightener (180)
+• Silver Wand
+• Masterful Tactician
+Shrine Luminor
+`,
+  "antoine dumont": `Team Belgium - Antoine Dumont - Disciple of Tzeentch
+And for my next trick... 2000/2000 pts
+Disciples of Tzeentch
+Mutants and Mad Things
+General's Handbook 2025-26
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Intercept and Recover, Scouting Force
+General's Regiment
+Kairos Fateweaver (400)
+• General
+Exalted Flamer of Tzeentch (110)
+Flamers of Tzeentch (130)
+Flamers of Tzeentch (130)
+Tzaangor Enlightened (400)
+• Reinforced
+Regiment 1
+Lord of Change (380)
+• Kairic Tome
+Blue Horrors and Brimstone Horrors (120)
+Chaos Spawn of Tzeentch (60)
+Chaos Spawn of Tzeentch (60)
+Regiment 2
+Curseling, Eye of Tzeentch (150)
+• `,
+  "michael sabetti": `Jurassic Park if Everyone Had Rabies
+1980/2000 pts
+Flesh-eater Courts
+Royal Menagerie
+General's Handbook 2025-26
+Spell Lore - Lore of Madness
+Prayer Lore - Rites of Delusion
+Manifestation Lore - Manifested Insanity
+Battle Tactic Cards: Intercept and Recover, Restless
+Energy
+General's Regiment
+Abhorrant Ghoul King on Royal Terrorgheist (380)
+• General
+• Charnel Vestments (30)
+• Stronger in Madness (10)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Regiment 1
+Abhorrant Ghoul King on Royal Zombie Dragon (380)
+• Revered Monstrosity (10)
+Royal Zombie Dragon (250)`,
+  "matthias krushel": `I WILL roll three 3+s on Sevireth's rampage, I WILL say
+sorry.
+I WILL roll 12/14 4++ ward saves on Light of Eltharion, I
+WILL say SORRY!
+I WILL survive on 1 wound with the twins then teleport to
+safety, I WILL say SoRrY.
+I WILL proceed to shit my pants after such a turn, I will
+NOT say sorry.
+1990/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Master the Paths, Restless Energy
+General's Regiment
+Ellania and Ellathor, Eclipsian Warsages (290)
+• General
+Regiment 1
+Sevireth, Lord of the Seventh Wind (340)
+Regiment 2
+Hurakan Windmage (140)
+• Silve`,
+  "justin lapointe": `carson is perfectly inspiring as is, he doesn't have to do
+a speech if he doesn't want to
+1990/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Master the Paths, Wrathful Cycles
+General's Regiment
+Branchwych (100)
+• General
+• Spellsinger
+Spite-Revenants (80)
+Regiment 1
+Drycha Hamadreth (250)
+Regiment 2
+Warsong Revenant (150)
+Spiterider Lancers (440)
+• Reinforced
+Kurnoth Hunters with Kurnoth Scythes (380)
+• Reinforced
+Regiment 3
+Spirit of Durthu (320)
+• Glamourweave
+Dryads (90)
+Dryads (9`,
+  "john zoshak": `Where will *you* be when diarrhea strikes?
+2000/2000 pts
+Maggotkin of Nurgle
+Plague Cyst
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Benedictions of Sickness
+Manifestation Lore - Krondspine Incarnate
+Battle Tactic Cards: Attuned to Ghyran, Wrathful Cycles
+General's Regiment
+Harbinger of Decay (140)
+• General
+• The Carrion Dirge
+Pox-Wretches (100)
+Pox-Wretches (100)
+Pox-Wretches (100)
+Lord of Plagues (100)
+• Gift of Febrile Frenzy
+Regiment 1
+Poxbringer, Herald of Nurgle (90)
+Plaguebearers (260)
+• Reinforced
+Regiment 2
+Belga the Cystwitch (130)
+Rotswords (400)
+• Reinforced
+Rotswords (400)
+• Reinforced
+Sloven Knights (`,
+  "fabien barbusse": `Fuck off Fred
+2000/2000 pts
+Disciples of Tzeentch
+Fated Blades
+General's Handbook 2025-26
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Intercept and Recover, Scouting Force
+General's Regiment
+Curseling, Eye of Tzeentch (150)
+• General
+• Kairic Tome
+• Silver Summoner
+Chaos Spawn of Tzeentch (60)
+Tzaangor Enlightened (400)
+• Reinforced
+Tzaangors (340)
+• Reinforced
+Kairic Acolytes (90)
+Regiment 1
+Curseling, Eye of Tzeentch (150)
+Chaos Spawn of Tzeentch (60)
+Kairic Acolytes (90)
+Kairic Acolytes (90)
+Regiment 2
+Ogroid Thaumaturge (Scourge of Ghyran) (140)
+Kairic Acolytes (90)
+Tzaangors (340)
+• Rein`,
+  "devin courtman": `As much as it pains me to say it I agree to Fabien's list
+name, for once he is right
+2000/2000 pts
+Soulblight Gravelords
+Deathmarch
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactic Cards: Master the Paths, Scouting Force
+General's Regiment
+Mannfred von Carstein, Mortarch of Night (430)
+• General
+Deadwalker Zombies (130)
+Deadwalker Zombies (130)
+Barrow Guard (260)
+• Reinforced
+Barrow Guard (260)
+• Reinforced
+Regiment 1
+Necromancer (120)
+• Amulet of Graves
+• A Wastrel and a Vagabond
+Askurgan Trueblades (140)
+Askurgan Trueblades (140)
+Deathrattle Skeletons (180)
+• Reinforced
+Regim`,
+  "connor mitchell": `King Carson's Speech
+2000/2000 pts
+Ossiarch Bonereapers
+Hekatos Drillmasters
+General's Handbook 2025-26
+Spell Lore - Lore of Necrotheurgy
+Manifestation Lore - Horrors of the Necropolis
+Battle Tactic Cards: Scouting Force, Attuned to Ghyran
+General's Regiment
+Vokmortian, Master of the Bone-tithe (140)
+• General
+Teratic Cohort (90)
+Teratic Cohort (90)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Regiment 1
+Liege-Mortek (120)
+• Shard of the Necris
+• Imperious Will
+Mortek Triaxes (280)
+• Reinforced
+Morghast Harbingers (500)
+• Reinforced
+Mortek Guards (110)
+Regiment 2
+Mortisan Boneshaper (Scourge of Ghyran) (100)
+Mortis Reapers (90)
+Mortis Reapers (9`,
+  "carson whitlock": `If you ask me to make a speech, just know that I'm 5
+cheesedogs deep at any given moment. Consider that a
+threat.
+2000/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Twilit Sorceries
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Butcher (150)
+• General
+• Gruesome Trophies
+• Touched by the Everwinter (20)
+• Mage-Swallower
+Ironguts (420)
+• Reinforced
+Ironguts (210)
+Ogor Gluttons (440)
+• Reinforced
+Ironblaster (Scourge of Ghyran) (160)
+Regiment 1
+Slaughtermaster (150)
+Ogor Gluttons (220)
+Ogor Gluttons (220)`,
+  "yuwei": `Yuwei 2000/2000 pts
+Disciples of Tzeentch
+Malevolent Schemers
+General's Handbook 2025-26
+Wounds: 121
+Spell Lore - Lore of Fate
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Master the Paths, Wrathful Cycles
+General's Regiment
+Lord of Change (380)
+• General
+• Fate Slicer (10)
+Blue Horrors and Brimstone Horrors (240)
+• Reinforced
+Burning Chariot of Tzeentch (120)
+Burning Chariot of Tzeentch (120)
+Burning Chariot of Tzeentch (120)
+Regiment 1
+Fateskimmer, Herald of Tzeentch on Burning Chariot (140)
+Burning Chariot of Tzeentch (120)
+Regiment 2
+Magister on Disc of Tzeentch (150)
+Jade Obelisk (100)
+• 4x Antithete Bow
+Kairic Acolytes (Scourge of`,
+  "phi-alix nguyen": `The Golden Path 2000/2000 pts
+Stormcast Eternals
+Thunderhead Host
+General's Handbook 2025-26
+Spell Lore - Lore of the Storm
+Prayer Lore - Prayers of the Stormhosts
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactic Cards: Scouting Force, Restless Energy
+General's Regiment
+Lord-Commander Bastian Carthalos (190)
+• General
+Questor Soulsworn (210)
+Stormcoven (210)
+Vanguard-Palladors with Starstrike Javelins (500)
+• Reinforced
+Vanguard-Raptors with Longstrike Crossbows (400)
+• Reinforced
+Regiment 1
+Knight-Relictor (120)
+• Beacon of Azyr
+• Legendary Tenacity
+Questor Soulsworn (210)
+Vigilors (140)
+Stormreach Portal (20 Points)
+Created with Warhammer`,
+  "martin bergson lemire": `WTC 2000/2000 pts
+Cities of Sigmar
+Veteran Cannoneers (30 Points)
+General's Handbook 2025-26
+Spell Lore - Spells of the Collegiate Arcane
+Prayer Lore - Scriptures of Sigmar
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactic Cards: Intercept and Recover, Master The
+Paths
+General's Regiment
+Tahlia Vedra, Lioness of the Parch (260)
+• General
+Freeguild Cavalier-Marshal (110)
+• Sacred Tome
+• Draw Steel!
+Freeguild Cavaliers (280)
+• Reinforced
+Freeguild Cavaliers (280)
+• Reinforced
+Regiment 1
+Fusil-Major on Ogor Warhulk (150)
+Ironweld Great Cannon (110)
+Ironweld Great Cannon (110)
+Ironweld Great Cannon (110)
+Regiment 2
+Alchemite Warforger (120)
+Re`,
+  "yanxue pang": `nnnn
+1990/2000 pts
+Blades of Khorne
+Murderhost
+General's Handbook 2025-26
+Wounds: 204
+Prayer Lore - Blood Blessings of Khorne
+Manifestation Lore - Judgements of Khorne
+Battle Tactic Cards: Restless Energy, Scouting Force
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Ar'gath, the King of Blades
+Bloodletters (150)
+Bloodletters (150)
+Bloodcrushers (Scourge of Ghyran) (150)
+Skulltaker (120)
+Regiment 1
+Bloodmaster, Herald of Khorne (120)
+• Frenzied Taskmaster
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Skull Altar
+Created with Sigdex: sigdex.io
+App Version: 20.0.3
+Server Versio`,
+  "louis dussoullier": `Louis 2000/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Wounds: 107
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Master the Paths, Wrathful Cycles
+General's Regiment
+The Light of Eltharion (300)
+• General
+Hurakan Spirit of the Wind (270)
+Vanari Auralan Sentinels (280)
+• Reinforced
+Regiment 1
+Scinari Enlightener (180)
+• Silver Wand
+• Acolyte of the Runes
+Vanari Auralan Wardens (240)
+• Reinforced
+Vanari Auralan Wardens (120)
+Regiment 2
+Lyrior Uthralle, Warden of Ymetrica (250)
+Vanari Dawnriders (360)
+• Reinforced
+Shrine Luminor
+Created with Sigdex: sigdex.`,
+  "lewis bayman": `Lewis 2000/2000 pts
+Slaves to Darkness
+Godswrath Warband
+General's Handbook 2025-26
+Wounds: 123
+Spell Lore - Lore of the Damned
+Manifestation Lore - Primal Energy (10)
+Battle Tactic Cards: Intercept and Recover, Wrathful
+Cycles
+General's Regiment
+Be'lakor, the Dark Master (450)
+• General
+Chaos Chosen (540)
+• Reinforced
+Chaos Knights (500)
+• Reinforced
+• The Dread Banner
+Eternus, Blade of the First Prince (180)
+Ogroid Theridons (320)
+• Reinforced
+Nexus Chaotica
+Created with Sigdex: sigdex.io
+App Version: 20.0.3
+Server Version: 3.0.17
+Data Version: v46`,
+  "james jiang": `OBR James Jiang TEAM CHINA 2000/2000 pts
+Ossiarch Bonereapers
+Hekatos Drillmasters
+General's Handbook 2025-26
+Wounds: 148
+Spell Lore - Lore of Necrotheurgy
+Manifestation Lore - Horrors of the Necropolis
+Battle Tactic Cards: Scouting Force, Attuned to Ghyran
+General's Regiment
+Liege-Kavalos (180)
+• General
+• Amulet of Gnosis
+• Imperious Will
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (300)
+• Reinforced
+Regiment 1
+Vokmortian, Master of the Bone-tithe (140)
+Arch-Kavalos Zandtos (220)
+Teratic Cohort (90)
+Regiment 2
+Liege-Mortek (120)
+Mortek Triaxes (280)
+• Reinforced
+Mortek Guard (110)
+Mortek Guard (11`,
+  "matt thomas": `Captains chat dissed my brutes... and I took that
+personally. 2000/2000 pts
+Ironjawz
+Ironjawz Brawl
+General's Handbook 2025-26
+Wounds: 129
+Spell Lore - Lore of the Weird
+Prayer Lore - Warbeats
+Manifestation Lore - Manifestations of Gorkamorka
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Kragnos, the End of Empires (580)
+• General
+Brutes (320)
+• Reinforced
+• 2x Gore-choppa
+Brutes (320)
+• Reinforced
+• 2x Gore-choppa
+Zoggrok Anvilsmasha (160)
+• Grunta-tongs
+Tuskboss on Maw-grunta (250)
+• Amberbone Whetstone
+• Hulking Brute
+• Big 'Un
+Regiment 1
+Weirdnob Shaman (110)
+Gore-gruntas (Scourge of `,
+  "marc knudsen": `Marc Knudsen 2000/2000 pts
+-----
+Grand Alliance Order | Daughters of Khaine | Coven of
+blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactics Cards: Master The Paths and Restless Energy
+-----
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+The Shadow Queen
+---
+Regiment 1
+Hag Queen (110)
+• Shadow-Blooded
+• Witchbrew
+---
+Regiment 2
+Krethusa the Croneseer (220)
+Doomfire Warlocks (150)
+Sisters of Slaughter (110)
+-----
+Shrine of Dark Tribute (20)
+Created`,
+  "alexander hansen": `Alexander Hansen
+The Boys are back in town
+2000/2000 pts`,
+  "rasmus albech nielsen": `Rasmus Albech Nielsen
+Kragnos Delivery Service
+1990/2000 pts`,
+  "rasmus olsen": `Rasmus Olsen
+My butcher ate Runes enhancements 2000/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Krondspine Incarnate
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Butcher (170)
+• General
+• Mage-swallower
+• Gruesome Trophies
+• Touched by the Everwinter - (20) Points
+Ironguts (420)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+Regiment 1
+Slaughtermaster (150)
+Ironguts (210)
+Ogor Gluttons (220)
+Scourge of Ghyran Gnoblar S`,
+  "martin m": `Martin M 2000/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Master The Paths, Scouting Force
+General's Regiment
+Warsong Revenant (150)
+• General
+Spite-Revenants (160)
+• Reinforced
+Spite-Revenants (160)
+• Reinforced
+Spite-Revenants (80)
+Spite-Revenants (80)
+Regiment 1
+Drycha Hamadreth (250)
+Regiment 2
+Grove Guardian (220)
+Spite-Revenants (80)
+Regiment 3
+Spirit of Durthu (320)
+• Realmroot Guide
+• Glamourweave
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+Regiment 4
+Branch`,
+  "christoffer karlsmose": `Christoffer Karlsmose
+32 horses and a dream 1980/2000 pts
+-----
+Grand Alliance Death | Ossiarch Bonereapers | Remorseless
+Conquerors
+General's Handbook 2025-26
+Spell Lore - Lore of Necrotheurgy
+Manifestation Lore - Horrors of the Necropolis
+Battle Tactics Cards: Attuned to Ghyran and Scouting Force
+-----
+General's Regiment
+Arch-Kavalos Zandtos (220)
+• General
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Teratic Cohort (90)
+---
+Regiment 1
+Liege-Kavalos (180)
+• Amulet of Gnosis
+• Imperious Will
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+---
+Regiment 2
+Mortisan Ossifector (110)
+Mortek Crawler (250)
+Morti`,
+  "rune holse": `Rune Holse
+Eltharion spent the last 40p on a bigger cape 1960/2000
+pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Intercept and Recover, Master The
+Paths
+General's Regiment
+Lyrior Uthralle, Warden of Ymetrica (250)
+• General
+Vanari Auralan Sentinels (280)
+• Reinforced
+Vanari Dawnriders (360)
+• Reinforced
+Ydrilan Riverblades (140)
+Regiment 1
+Ellania and Ellathor, Eclipsian Warsages (290)
+Regiment 2
+Sevireth, Lord of the Seventh Wind (340)
+The Light of Eltharion (300)
+Shrine Luminor
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | `,
+  "casper torres karlsmose": `Casper Torres Karlsmose
+I wish I had magnetized that head and not insisted that I
+only play Krondys
+2000/2000 pts
+-----
+Grand Alliance Order | Stormcast Eternals | Thunderhead
+Host
+General's Handbook 2025-26
+Prayer Lore - Prayers of the Stormhosts
+Battle Tactics Cards: Scouting Force and Wrathful Cycles
+-----
+General's Regiment
+Karazai the Scarred (440)
+• General
+Liberators (90)
+• 1 Grandhammer
+Praetors (120)
+Vanguard-Palladors with Starstrike Javelins (500)
+• Reinforced
+Vigilors (140)
+---
+Regiment 1
+Knight-Relictor (120)
+• Beacon of Azyr
+• Legendary Tenacity
+Questor Soulsworn (210)
+Vanquishers (180)
+• Reinforced
+Vanquishers (180)
+• Rei`,
+  "stephen follows": `Grand Alliance Death | Soulblight Gravelords | Bacchanal
+of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactics Cards: Scouting Force and Wrathful Cycles
+-----
+General's Regiment
+Prince Vhordrai (470)
+* General
+Askurgan Trueblades (140)
+Askurgan Trueblades (140)
+Blood Knights (220)
+Blood Knights (220)
+---
+Regiment 1
+Vengorian Lord (220)
+* Shard of Night
+* Immortal Ego
+Askurgan Trueblades (140)
+Askurgan Trueblades (140)
+---
+Regiment 2
+Scourge of Ghyran Sekhar, Fang of Nulahmia (190)
+Vargheists (120)
+-----
+Cursed Sepulchre
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.31.0 (1) | Data: v422`,
+  "alex bruce": `Grand Alliance Order | Lumineth Realm-lords | Warhost of
+Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactics Cards: Intercept and Recover and Master The
+Paths
+-----
+General's Regiment
+Sevireth, Lord of the Seventh Wind (340)
+* General
+The Light of Eltharion (300)
+---
+Regiment 1
+Ellania and Ellathor, Eclipsian Warsages (290)
+Vanari Auralan Wardens (120)
+Ydrilan Riverblades (140)
+Ydrilan Riverblades (140)
+---
+Regiment 2
+Lyrior Uthralle, Warden of Ymetrica (250)
+---
+Regiment 3
+Scinari Cathallar (130)
+* Silver Wand
+* Acolyte of the Runes
+-----
+Regiments of Renown
+Saviours of Cinderfall (290)
+Callis and Toll
+Toll's`,
+  "tom marshall": `Grand Alliance Death | Flesh-eater Courts | Royal
+Menagerie
+General's Handbook 2025-26
+Spell Lore - Lore of Madness
+Prayer Lore - Rites of Delusion
+Manifestation Lore - Manifested Insanity
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Ushoran, Mortarch of Delusion (450)
+* General
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+---
+Regiment 1
+Abhorrant Ghoul King on Royal Terrorgheist (430)
+* Revered Monstrosity
+* Stronger in Madness
+* Charnel Vestments
+Varghulf Courtier (100)
+Varghulf Courtier (100)
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.31.0 (1) | Data: v422
+`,
+  "max barton": `Grand Alliance Chaos | Maggotkin of Nurgle | Plague Cyst
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Twilit Sorceries
+Battle Tactics Cards: Attuned to Ghyran and Wrathful
+Cycles
+-----
+General's Regiment
+Belga the Cystwitch (130)
+* General
+Lord of Plagues (100)
+* Gift of Febrile Frenzy
+* The Carrion Dirge
+Rotswords (400)
+* Reinforced
+Rotswords (400)
+* Reinforced
+Rotswords (400)
+* Reinforced
+---
+Regiment 1
+Poxbringer, Herald of Nurgle (90)
+Plaguebearers (130)
+Plaguebearers (130)
+---
+Regiment 2
+Poxbringer, Herald of Nurgle (90)
+Plaguebearers (130)
+-----
+Feculent Gnarlmaw
+-----
+Created with Warhammer Age of Sigmar: The App`,
+  "freddie leggett": `Grand Alliance Order | Seraphon | Sunclaw Starhost
+General's Handbook 2025-26
+Spell Lore - Lore of Celestial Manipulation (20 Points)
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactics Cards: Attuned to Ghyran and Wrathful
+Cycles
+-----
+General's Regiment
+Slann Starmaster (260)
+* General
+* Child of the Stars
+Kroxigor (400)
+* Reinforced
+Kroxigor (400)
+* Reinforced
+Kroxigor (200)
+Saurus Astrolith Bearer (120)
+---
+Regiment 1
+Sunblood Pack (150)
+* Bloodrage Pendant
+Saurus Warriors (140)
+Saurus Warriors (140)
+Saurus Warriors (140)
+-----
+Realmshaper Engine
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.31.0 (1) | Data: v422`,
+  "ritchie mcalley": `Grand Alliance Order | Sylvaneth | Wargrove of the
+Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactics Cards: Restless Energy and Scouting Force
+-----
+General's Regiment
+Alarielle the Everqueen (600)
+* General
+---
+Regiment 1
+Warsong Revenant (150)
+---
+Regiment 2
+Drycha Hamadreth (250)
+Spite-Revenants (80)
+---
+Regiment 3
+Belthanos, First Thorn of Kurnoth (290)
+The Twistweald (120)
+* 1 Warden’s Bow
+The Twistweald (120)
+* 1 Warden’s Bow
+The Twistweald (120)
+* 1 Warden’s Bow
+---
+Regiment 4
+Warsong Revenant (150)
+* Seed of Rebirth
+* Realmroot Guide
+The Twistweald (120)
+* 1 `,
+  "dan bradshaw": `Grand Alliance Order | Daughters of Khaine | Coven of
+Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactics Cards: Attuned to Ghyran and Scouting Force
+-----
+General's Regiment
+Morathi-Khaine (730)
+* General
+Blood Sisters (280)
+* Reinforced
+Khinerai Heartrenders (100)
+The Shadow Queen
+---
+Regiment 1
+Hag Queen (110)
+* Witchbrew
+* Murderous Duellist
+Blood Hags (280)
+* Reinforced
+---
+Regiment 2
+Krethusa the Croneseer (220)
+Khainite Shadowstalkers (130)
+Khainite Shadowstalkers (130)
+-----
+Shrine of Dark Tribute (20)
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.31.0 (1) |`,
+  "benjamin savva": `Grand Alliance Order | Stormcast Eternals | Thunderhead
+Host
+General's Handbook 2025-26
+Spell Lore - Lore of the Storm
+Prayer Lore - Prayers of the Stormhosts
+Manifestation Lore - Primal Energy (10 Points)
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Karazai the Scarred (440)
+* General
+Dracothian Guard Desolators (340)
+* Reinforced
+Knight-Vexillor (100)
+Praetors (120)
+Questor Soulsworn (210)
+---
+Regiment 1
+Knight-Relictor (120)
+* Beacon of Azyr
+* Legendary Tenacity
+Questor Soulsworn (210)
+Questor Soulsworn (210)
+Stormcoven (210)
+-----
+Stormreach Portal (20)
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.31.0 (1) | Data: v422`,
+  "tuomas ivakko": `2000/2000 pts
+Slaves to Darkness | Legion of the First Prince
+Army of Renown
+General's Handbook 2025-26
+Spell Lore - Legion of the First Prince Spell Lore
+Manifestation Lore - Aetherworks Machinery
+Battle Tactics Cards: Attuned to Ghyran, Wrathful Cycles
+General's Regiment
+Be'lakor, the Dark Master (450)
+• General
+Legion of the First Prince Bloodletters (340)
+• Reinforced
+Legion of the First Prince Bloodletters (340)
+• Reinforced
+Legion of the First Prince Bloodletters (170)
+Legion of the First Prince Bloodletters (170)
+Regiment 1
+Centaurion Marshal (120)
+• Dread Marshal
+• Black Ritual Dagger
+Legion of the First Prince Bloodcrushers (150)
+Legion of the`,
+  "ted ekegren": `2000/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Twilit Sorceries
+Battle Tactic Cards: Restless Energy, Master The Paths
+General's Regiment
+Frostlord on Stonehorn (340)
+• General
+• Mage-swallower
+• Gruesome Trophies
+• Touched by the Everwinter - (20) Points
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+Regiment 1
+Butcher (150)
+Ironguts (420)
+• Reinforced
+Ogor Gluttons (440)
+• Reinforced
+Scourge of Ghy`,
+  "pietari jukarainen": `2000/2000 pts
+Sylvaneth
+Wargrove of Everdusk
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Restless Energy, Master The Paths
+General's Regiment
+Alarielle the Everqueen (600)
+• General
+Spite-Revenants (80)
+Spite-Revenants (80)
+The Twistweald (120)
+The Twistweald (120)
+Regiment 1
+Belthanos, First Thorn of Kurnoth (290)
+Regiment 2
+Drycha Hamadreth (250)
+Regiment 3
+Grove Guardian (220)
+Regiment 4
+Warsong Revenant (150)
+• Realmroot Guide
+• Amberglade Nectar
+Dryads (90)
+Awakened Wyldwood
+`,
+  "ben murphy": `2000/2000 pts
+Soulblight Gravelords
+Bacchanal of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Manifestations of the Grave
+Battle Tactic Cards: Scouting Force, Wrathful Cycles
+Regiment 1
+Necromancer (140)
+• Lash of the Sire - (20) Points
+Barrow Guard (260)
+• Reinforced
+Deathrattle Skeletons (90)
+Regiment 2
+Prince Vhordrai (470)
+Barrow Knights (200)
+Blood Knights (220)
+General's Regiment
+Vengorian Lord (220)
+• General
+• Shard of Night
+Askurgan Trueblades (140)
+Askurgan Trueblades (140)
+Vargheists (120)
+Cursed Sepulchre`,
+  "aasa timonen": `1950/2000 pts
+Idoneth Deepkin | The First Phalanx of Ionrach
+Army of Renown
+General's Handbook 2025-26
+Wounds: 135
+Battle Tactic Cards: Intercept and Recover, Scouting Force
+General's Regiment
+Volturnos, High King of the Deep (210)
+• General
+Akhelian Morrsarr Guard (320)
+• Reinforced
+• Deep Connection
+Akhelian Morrsarr Guard (320)
+• Reinforced
+Akhelian Morrsarr Guard (320)
+• Reinforced
+Akhelian Morrsarr Guard (160)
+Regiment 1
+Akhelian King (140)
+• Crest of the Ionrach
+• Prodigy of the Asydrazor
+Akhelian Morrsarr Guard (160)
+Akhelian Morrsarr Guard (160)
+Akhelian Morrsarr Guard (160)
+Gloomtide Shipwreck`,
+  "hanna leppanen": `1990/2000 pts
+Disciples of Tzeentch
+Fated Blades
+General's Handbook 2025-26
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Master The Paths, Scouting Force
+General's Regiment
+Kairos Fateweaver (400)
+• General
+Chaos Spawn of Tzeentch (60)
+Chaos Spawn of Tzeentch (60)
+Tzaangor Enlightened (400)
+• Reinforced
+Regiment 1
+Scourge of Ghyran Ogroid Thaumaturge (140)
+Jade Obelisk (100)
+• 4x Antithete Bow
+Tzaangor Skyfires (160)
+Tzaangors (340)
+• Reinforced
+Regiment 2
+Curseling, Eye of Tzeentch (150)
+• Silver Summoner
+• Kairic Tome
+Kairic Acolytes (90)
+Kairic Acolytes (90)
+Argent Shard`,
+  "janne tiihonen": `2000/2000 pts
+Maggotkin of Nurgle
+Tallyband of Nurgle
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Krondspine Incarnate
+Battle Tactic Cards: Wrathful Cycles, Attuned to Ghyran
+General's Regiment
+Rotbringer Sorcerer (100)
+• General
+Lord of Plagues (100)
+• Gift of Febrile Frenzy
+Rotswords (400)
+• Reinforced
+Rotswords (400)
+• Reinforced
+Regiment 1
+Harbinger of Decay (140)
+• Rustfang
+Lord of Plagues (100)
+Rotswords (400)
+• Reinforced
+Regiment 2
+Rotbringer Sorcerer (100)
+Regiment 3
+Belga the Cystwitch (130)
+Plaguebearers (130)
+Feculent Gnarlmaw
+`,
+  "anttu": `2000/2000 pts
+Grand Alliance Order | Lumineth Realm-lords | Aelementor
+Guardians (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Hysh, Lore of the Awakened Realms and
+Lore of Prismatic Resonance (10 Points)
+Manifestation Lore - Manifestations of Hysh
+Battle Tactics Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Archmage Teclis and Celennar, Spirit of Hysh (640)
+• General
+Alarith Stoneguard (260)
+• Reinforced
+Vanari Auralan Wardens (240)
+• Reinforced
+Vanari Lord Regent (110)
+• Acolyte of the Runes
+Regiment 1
+Ellania and Ellathor, Eclipsian Warsages (290)
+The Light of Eltharion (300)
+Regiment 2
+Vanari Bannerblade (140)
+• Pho`,
+  "gregoire elinck": `Disciples of Tzeentch | Fated Blades
+Battle Tactics: Wrathful Cycles / Restless Energy
+Spell Lore: Lore of Change
+Manifestation Lore: Manifestations of Tzeentch
+-----
+General's Regiment
+Lord of Change (380)
+• General
+• Kairic Tome
+20x Blue Horrors and Brimstone Horrors (240)
+• Reinforced
+20x Blue Horrors and Brimstone Horrors (240)
+• Reinforced
+6x Tzaangor Enlightened (400)
+• Reinforced
+3x Screamers of Tzeentch (90)
+---
+Regiment 1
+Curseling, Eye of Tzeentch (150)
+• Silver Summoner
+Chaos Spawn of Tzeentch (60)
+10x Kairic Acolytes (90)
+---
+Regiment 2
+Magister (140)
+---
+Regiment 3
+Fatemaster (150)
+Chaos Spawn of Tzeentch (60)`,
+  "antoine picart": `Soulblight Gravelords
+Bacchanal of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Manifestations of the Grave
+Battle Tactic Cards: Scouting Force, Wrathful Cycles
+General's Regiment
+Mannfred von Carstein, Mortarch of Night (430)
+• General
+Barrow Guard (260)
+• Reinforced
+Barrow Knights (400)
+• Reinforced
+Deathrattle Skeletons (180)
+• Reinforced
+Wight Lord on Skeletal Steed (110)
+Regiment 1
+Necromancer (140)
+• Lash of the Sire - (20) Points
+• Amulet of Graves
+Barrow Guard (260)
+• Reinforced
+Deathrattle Skeletons (90)
+Vargheists (120)
+Cursed Sepulchre`,
+  "clement miscopein": `Sylvaneth | Wargrove of the Burgeoning
+Battle Tactics: Scouting Force / Master the Paths
+Spell Lore: Lore of the Deepwood
+Prayer Lore: Lore of the Spirit-song
+Manifestation Lore: Manifestations of the Deepwood
+-----
+General's Regiment
+Belthanos, First Thorn of Kurnoth (290)
+• General
+6x Kurnoth Hunters with Kurnoth Greatswords (400)
+• Reinforced
+6x Kurnoth Hunters with Kurnoth Scythes (380)
+• Reinforced
+5x Spite-Revenants (80)
+5x Spite-Revenants (80)
+---
+Regiment 1
+Warsong Revenant (150)
+• Ranu's Lamentiri
+---
+Regiment 2
+Warsong Revenant (150)
+• Realmroot Guide
+---
+Regiment 3
+Branchwych (100)
+8x The Twistweald (120)
+Options: 1x Warden's Bow and Twistro`,
+  "jorin kamper": `Daughters of Khaine
+Fervent Ritualists
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Intercept and Recover, Master The
+Paths
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (100)
+The Shadow Queen (0)
+Regiment 1
+Hag Queen (110)
+• Witchbrew
+• Shadow-Blooded
+Blood Hags (140)
+Blood Hags (280)
+• Reinforced
+Witch Aelves (240)
+• Reinforced
+Shrine of Dark Tribute (20 Points)`,
+  "martin feingold": `Ironjawz | Ironjawz Brawl
+Battle Tactics: Scouting Force / Attuned to Ghyran
+Spell Lore: Lore of the Weird
+Prayer Lore: Warbeats
+Manifestation Lore: Forbidden Power (20 pts)
+-----
+General's Regiment
+Weirdnob Shaman (110)
+• General
+10x Brutes (320)
+• Reinforced
+Options: 2x Gore-choppa
+10x Brutes (320)
+• Reinforced
+Options: 2x Gore-choppa
+10x Brutes (320)
+• Reinforced
+Options: 2x Gore-choppa
+10x Brutes (320)
+• Reinforced
+Options: 2x Gore-choppa
+---
+Regiment 1
+Zoggrok Anvilsmasha (160)
+• Weapons: 1x Grunta-tongs
+3x Brute Ragerz (100)
+3x Brute Ragerz (100)
+---
+Regiment 2
+Warchanter (110)
+• An Eye For Da Fight
+---
+Regiment 3
+Warchanter (110)`,
+  "hugo jonquiere": `Ogor Mawtribes | Mawpath Menaces
+Battle Tactics: Master the Paths / Restless Energy
+Spell Lore: Lore of Maw-magic
+Prayer Lore: Everwinter Prayers
+Manifestation Lore: Krondspine Incarnate
+-----
+General's Regiment
+Butcher (150)
+• General
+• Booming Roar
+• Gruesome Trophies
+SoG Gnoblar Scraplauncher (120)
+12x Ogor Gluttons (440)
+• Reinforced
+8x Ironguts (420)
+• Reinforced
+SoG Ironblaster (160)
+---
+Regiment 1
+Slaughtermaster (150)
+• Mage-Swallower
+SoG Gnoblar Scraplauncher (120)
+4x Ironguts (210)
+6x Ogor Gluttons (220)`,
+  "thomas floquet": `Kharadron Overlords | Endrineers Guild Expeditionary Force
+Battle Tactics: Intercept and Recover / Wrathful Cycles
+Manifestation Lore: Twilit Sorceries
+-----
+General's Regiment
+Brokk Grungsson, Lord-Magnate of Barak-Nar (260)
+• General
+Null Khemist (120)
+• Combat Grafter
+• Celestium Burst Grenade (10 pts)
+Arkanaut Ironclad (450)
+Arkanaut Frigate (300)
+• Gruksson Wide-Bore Cylinders
+6x Skywardens (260)
+• Reinforced
+---
+Regiment 1
+Arkanaut Admiral (130)
+Endrinmaster with Endrinharness (150)
+20x Arkanaut Company (160)
+• Reinforced
+- Options: 4x Privateer Heavy Weapon 2x Skypike
+5x Vongrim Harpoon Crew (120)
+`,
+  "nicolas tassone": `Lumineth Realm-lords | Warhost of Duality
+Battle Tactics: Intercept and Recover / Restless Energy
+Spell Lore: Lore of the Awakened Realms
+Manifestation Lore: Manifestations of Hysh
+-----
+General's Regiment
+Sevireth, Lord of the Seventh Wind (340)
+• General
+The Light of Eltharion (300)
+Hurakan Spirit of the Wind (270)
+---
+Regiment 1
+Ellania and Ellathor, Eclipsian Warsages (290)
+Vanari Lord Regent (110)
+---
+Regiment 2
+Scinari Cathallar (130)
+20x Vanari Auralan Wardens (240)
+• Reinforced
+10x Ydrilan Riverblades (140)
+---
+Regiment 3
+Scinari Enlightener (180)
+• Acolyte of the Runes
+• Silver Wand`,
+  "david demmel": `Launching some Stonehorns 2000/2000 pts
+-----
+Grand Alliance Destruction | Ogor Mawtribes | Beast
+Handlers
+General's Handbook 2025-26
+Prayer Lore - Everwinter Prayers
+Battle Tactics Cards: Restless Energy and Master the Paths
+-----
+General's Regiment
+Frostlord on Stonehorn (320)
+• General
+• The Fang of Ghur
+• Great Gutlord
+Huskard on Stonehorn (290)
+• 1 Harpoon Launcher
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+---
+Regiment 1
+Frostlord on Stonehorn (320)
+• Mage-swallower
+Huskard on Stonehorn (290)
+• 1 Harpoon Launcher
+Scourge of Ghyran Gnoblar Scraplauncher (1`,
+  "tobias schwarz": `Last chariot standing...
+Disciples of Tzeentch | Malevolent Schemers
+Battle Tactics: Master the Paths / Scouting Force
+Spell Lore: Lore of Fate
+Manifestation Lore: Manifestations of Tzeentch
+-----
+General's Regiment
+Lord of Change (380)
+• General
+• Fate Slicer (10 pts)
+Chaos Spawn of Tzeentch (60)
+The Changeling (170)
+20x Tzaangors (340)
+• Reinforced
+3x Screamers of Tzeentch (90)
+---
+Regiment 1
+Fateskimmer, Herald of Tzeentch on Burning Chariot (140)
+• Silver Summoner
+Exalted Flamer of Tzeentch (110)
+3x Flamers of Tzeentch (130)
+3x Flamers of Tzeentch (130)
+---
+Regiment 2
+Curseling, Eye of Tzeentch (150)
+10x Kairic Acolytes (90)
+10x Kairic Acolytes (90)
+10x Ja`,
+  "pascal weimar": `12 Kurnoths V4 2000/2000 pts
+-----
+Grand Alliance Order | Sylvaneth | Wargrove of the
+Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactics Cards: Scouting Force and Wrathful Cycles
+-----
+General's Regiment
+Drycha Hamadreth (250)
+• General
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+---
+Regiment 1
+Warsong Revenant (150)
+Spite-Revenants (80)
+Spite-Revenants (80)
+---
+Regiment 2
+Branchwych (100)
+• Spellsinger
+The Twistweald (120)
+---
+Regiment 3
+Warsong Revenant (150)
+• Ranu'`,
+  "tristan paffenholz": `Stormcast Eternals
+Thunderhead Host
+[Master the Paths]
+[Intercept and Recover]
+[Prayers of the Stormhosts]
+Lord-Commander Bastian Carthalos (210)
+[General]
+- 6 x Vanguard-Palladors with Starstrike Javelins (500)
+- 6 x Vanguard-Raptors with Longstrike Crossbows (400)
+- 10 x Vanquishers (200)
+- 6 x Questor Soulsworn (200)
+Knight-Relictor (120)
+[Beacon of Azyr]
+[Legendary Tenacity]
+- 6 x Questor Soulsworn (200)
+- 5 x Vigilors (140)
+Stormreach Portal (20pts)
+1990/2000pts
+2 drops`,
+  "daniel pommer": `1960/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Wrathful Cycles, Intercept and
+Recover
+General's Regiment
+Ellania and Ellathor, Eclipsian Warsages (290)
+• General
+Vanari Auralan Sentinels (280)
+• Reinforced
+Vanari Auralan Wardens (240)
+• Reinforced
+Vanari Auralan Wardens (240)
+• Reinforced
+Vanari Lord Regent (110)
+Regiment 1
+Scinari Enlightener (180)
+• Flawless Commander (SoG)
+• Silver Wand
+Regiment 2
+The Light of Eltharion (300)
+Vanari Dawnriders (180)
+Ydrilan Riverblades (140)
+Shrine Luminor`,
+  "alexander sporl": `Skaven main 2000/2000 pts
+Skaven
+Fleshmeld Menagerie
+General's Handbook 2025-26
+Wounds: 148
+Spell Lore - Lore of Ruin
+Prayer Lore - Noxious Prayers
+Manifestation Lore - Manifestations of Doom
+Battle Tactic Cards: Scouting Force, Restless Energy
+General's Regiment
+Grey Seer on Screaming Bell (Scourge of Ghyran) (330)
+* General
+* Devious Underling
+Rat Ogors (280)
+* Reinforced
+* 2x Warpfire Gun
+Rat Ogors (280)
+* Reinforced
+* 2x Warpfire Gun
+Stormfiends (240)
+* Grinderfists
+* Warpfire Projectors and Clubbing Blows
+* Doomflayer Gauntlets
+Brood Terror (Scourge of Ghyran) (240)
+Regiment 1
+Plague Priest on Plague Furnace (350)
+* Warpstone Charm
+Plague Monks (140)
+Plague Monks (140)
+Gnawhole`,
+  "timo wiebel": `1960/2000 pts
+-----
+Grand Alliance Chaos | Hedonites of Slaanesh | Invaders
+(10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Extravagance
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Glutos Orscollion, Lord of Gluttony (440)
+• General
+Blissbarb Archers (300)
+• Reinforced
+Lord of Hubris (100)
+• Threnody Voicebox
+Scourge of Ghyran Slaangor Fiendbloods (150)
+Symbaresh Twinsouls (260)
+• Reinforced
+---
+Regiment 1
+Sigvald, Prince of Slaanesh (190)
+Lord of Pain (110)
+• Celebrity Warlord
+Myrmidesh Painbringers (200)
+• Reinforced
+Myrmidesh Painbringers `,
+  "max baumann": `Snake it till you make it 2000/2000 pts
+Daughters of Khaine
+Coven of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Attuned to Ghyran, Wrathful Cycles
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+The Shadow Queen (0)
+Regiment 1
+Scourge of Ghyran Bloodwrack Shrine (250)
+• Witchbrew
+• Shadow-Blooded
+Khainite Shadowstalkers (130)
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (100)
+Regiment 2
+Hag Queen (110)
+Shrine of Dark Tribute (20 Points)`,
+  "lukas kaluza": `Lukas Kaluza
+Clownshow 2000/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Primal Energy (10 Points)
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+Regiment 1
+Butcher (150)
+• Mage-swallower
+• Gruesome Trophies
+• Great Gutlord
+Ironguts (420)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Ogor Gluttons (440)
+• Reinforced
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Regiment 2
+Slaughtermaster (150)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+Mawpit`,
+  "dominik ceyhun": `Dominik Ceyhun
+DoS - too much choices 2000/2000 pts
+Daughters of Khaine
+Coven of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+The Shadow Queen (0)
+Regiment 1
+Scourge of Ghyran Bloodwrack Shrine (250)
+• Witchbrew
+• Shadow-Blooded
+Khainite Shadowstalkers (130)
+Khinerai Lifetakers (100)
+Regiment 2
+Hag Queen (110)
+Shrine of Dark Tribute (20 Points)
+Cre`,
+  "stylianos mamagkakis": `Stylianos Mamagkakis
+Range 1990/2000 pts
+Stormcast Eternals
+Vanguard Wing
+General's Handbook 2025-26
+Prayer Lore - Prayers of the Stormhosts
+Battle Tactic Cards: Master The Paths, Intercept and
+Recover
+General's Regiment
+Yndrasta, the Celestial Spear (270)
+• General
+Aetherwings (80)
+Prosecutors (300)
+• Reinforced
+Vanguard-Palladors with Starstrike Javelins (500)
+• Reinforced
+Vanguard-Raptors with Longstrike Crossbows (400)
+• Reinforced
+Regiment 1
+Knight-Relictor (120)
+• Beacon of Azyr
+• Legendary Tenacity
+Questor Soulsworn (210)
+Vindictors (90)
+Stormreach Portal (20 Points)
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422
+`,
+  "dimitrios tzineris": `Belakor 1970/2000 pts
+-----
+Slaves to Darkness | Legion of the First Prince
+Army of Renown
+General's Handbook 2025-26
+Spell Lore - Legion of the First Prince Spell Lore
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactics Cards: Scouting Force and Wrathful Cycles
+-----
+General's Regiment
+Be'lakor, the Dark Master (450)
+• General
+Legion of the First Prince Bloodcrushers (150)
+Legion of the First Prince Bloodcrushers (150)
+Legion of the First Prince Bloodletters (340)
+• Reinforced
+Legion of the First Prince Bloodletters (340)
+• Reinforced
+---
+Regiment 1
+Eternus, Blade of the First Prince (180)
+Chaos Furies (120)
+Chaos Furies (120)
+Chaos Furies (120)
+-----
+Nexus`,
+  "robert bock": `Robert
+0 How about a second pile-in? (Team) 1990/2000 pts
+Blades of Khorne
+Tournament of Skulls
+General's Handbook 2025-26
+Prayer Lore - Blood Blesssings of Khorne
+Manifestation Lore - Judgements of Khorne
+Battle Tactic Cards: Restless Energy, Wrathful Cycles
+Roster Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodletters (150)
+Bloodletters (150)
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Roster Regiment
+Slaughterpriest (130)
+Blood Warriors (180)
+Blood Warriors (180)
+Mighty Skullcrushers (200)
+Skull Altar
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data:`,
+  "vasileios poriotis": `Vasileios Marios Papapetros Poriotis
+You can run but you can’t hide 2000/2000 pts
+-----
+Grand Alliance Order | Cities of Sigmar | Veteran
+Cannoneers (30 Points)
+General's Handbook 2025-26
+Spell Lore - Spells of the Collegiate Arcane
+Prayer Lore - Scriptures of Sigmar
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactics Cards: Attuned to Ghyran and Scouting Force
+-----
+General's Regiment
+Fusil-Major on Ogor Warhulk (150)
+• General
+• Sacred Tome
+Freeguild Cavaliers (140)
+Freeguild Cavaliers (140)
+Ironweld Great Cannon (110)
+Ironweld Great Cannon (110)
+---
+Regiment 1
+Freeguild Marshal and Relic Envoy (100)
+Freeguild Marshal and Relic Envoy (100)
+---
+Regiment 2
+Battlem`,
+  "demetre petouris": `One, two, tree! 2000/2000 pts
+-----
+Grand Alliance Order | Sylvaneth | Glade Defenders
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactics Cards: Attuned to Ghyran and Scouting Force
+-----
+General's Regiment
+Drycha Hamadreth (250)
+• General
+Gossamid Archers (120)
+Gossamid Archers (120)
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+---
+Regiment 1
+Grove Guardian (220)
+• Spirit of the Dark Forest
+• Amberglade Nectar
+Spite-Revenants (160)
+• Reinforced
+Spite-Revenants (160)
+• Reinforced
+Spite-Revenants (160)
+• Reinforced
+-`,
+  "spyridon michail": `Spyridon Michail
+Minoan kings 1960/2000 pts
+Flesh-eater Courts
+Royal Menagerie
+General's Handbook 2025-26
+Spell Lore - Lore of Madness
+Prayer Lore - Rites of Delusion
+Manifestation Lore - Manifested Insanity
+Battle Tactic Cards: Master The Paths, Wrathful Cycles
+General's Regiment
+Abhorrant Ghoul King on Royal Terrorgheist (420)
+• General
+• Stronger in Madness - (10) Points
+• Charnel Vestments - (30) Points
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Regiment 1
+Abhorrant Ghoul King on Royal Zombie Dragon (390)
+• Revered Monstrosity - (10) Points
+Royal Terrorgheist (230)
+Created with Warhammer Age of Sigma`,
+  "lorenzo baccifava": `Sbgl vampire 1980/2000 pts
+Soulblight Gravelords
+Bacchanal of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Manifestations of the Grave
+Battle Tactic Cards: Scouting Force, Intercept and Recover
+General's Regiment
+Prince Vhordrai (470)
+• General
+Askurgan Trueblades (140)
+Askurgan Trueblades (140)
+Blood Knights (220)
+Blood Knights (220)
+Regiment 1
+Vengorian Lord (220)
+• Shard of Night
+• Immortal Ego
+Deathrattle Skeletons (90)
+Regiment 2
+Radukar the Beast (250)
+Kosargi Nightguard (110)
+Vargheists (120)
+Cursed Sepulchre
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422`,
+  "pier giorgio miceli": `.Fec Mostri (Copy) 2000/2000 pts
+-----
+Grand Alliance Death | Flesh-eater Courts | Knightly
+Echelon
+General's Handbook 2025-26
+Spell Lore - Lore of Madness
+Prayer Lore - Rites of Delusion
+Manifestation Lore - Manifested Insanity
+Battle Tactics Cards: Master The Paths and Restless Energy
+-----
+General's Regiment
+Abhorrant Ghoul King on Royal Terrorgheist (390)
+• General
+• Stronger in Madness (10)
+• Horribly Resilient
+Crypt Horrors (320)
+• Reinforced
+Crypt Horrors (320)
+• Reinforced
+Royal Terrorgheist (230)
+Royal Zombie Dragon (250)
+---
+Regiment 1
+Abhorrant Cardinal (130)
+Marrowscroll Herald (130)
+• Charnel Vestments (30)
+Royal Beastflayers (110)`,
+  "simone sassi": `Fantasmi
+2000/2000 pts
+Nighthaunt
+Death Stalkers
+General's Handbook 2025-26
+Spell Lore - Lore of the Underworlds
+Manifestation Lore - Primal Energy (10 Points)
+Battle Tactic Cards: Scouting Force, Attuned to Ghyran
+General's Regiment
+Lady Olynder, Mortarch of Grief (320)
+• General
+Pyregheists (180)
+Pyregheists (180)
+Pyregheists (180)
+Regiment 1
+Krulghast Cruciator (170)
+• Brazier of Nagashizzar
+• Ruler of the Spectral Hosts - (20) Points
+Pyregheists (180)
+Pyregheists (180)
+Pyregheists (180)
+Regiment 2
+Lord Vitriolic (120)
+Chainrasps (100)
+Craventhrone Guard (100)
+Myrmourn Banshees (100)
+Nexus of Grief
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 4`,
+  "lorenzo tosi": `Lollo 2000/2000 pts
+-----
+Grand Alliance Chaos | Skaven | Fleshmeld Menagerie
+General's Handbook 2025-26
+Spell Lore - Lore of Ruin
+Prayer Lore - Noxious Prayers
+Manifestation Lore - Manifestations of Doom
+Battle Tactics Cards: Restless Energy and Scouting Force
+-----
+General's Regiment
+Scourge of Ghyran Grey Seer on Screaming Bell (330)
+• General
+• Fleshmeddler
+Rat Ogors (280)
+• Reinforced
+Rat Ogors (280)
+• Reinforced
+Scourge of Ghyran Brood Terror (240)
+Stormfiends (240)
+• 1 Grinderfists
+• 1 Doomflayer Gauntlets
+• 1 Clubbing Blows and Warpfire Projectors
+---
+Regiment 1
+Plague Priest on Plague Furnace (350)
+• Warpstone Charm
+Pla`,
+  "guglielmo famiani": `The Epis shuffle con le Bombarde 2000/2000 pts
+Blades of Khorne
+Murderhost
+General's Handbook 2025-26
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactic Cards: Master The Paths, Restless Energy
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Regiments of Renown
+The Curse-Steel Battery (380)
+Daemonsmith
+Deathshrieker Rocket Battery
+Tormentor Bombard
+Skull Altar
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422`,
+  "alessio reinotti": `1_100% warscrolls, no skills 2000/2000 pts
+-----
+Slaves to Darkness | Legion of the First Prince
+Army of Renown
+General's Handbook 2025-26
+Spell Lore - Legion of the First Prince Spell Lore
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactics Cards: Attuned to Ghyran and Wrathful
+Cycles
+-----
+General's Regiment
+Be'lakor, the Dark Master (450)
+• General
+Legion of the First Prince Bloodletters (340)
+• Reinforced
+Legion of the First Prince Bloodletters (340)
+• Reinforced
+Legion of the First Prince Bloodletters (340)
+• Reinforced
+Legion of the First Prince Bloodletters (170)
+---
+Regiment 1
+Centaurion Marshal (120)
+• Dread Marshal
+• Black R`,
+  "alessandro hagi": `SOB BRODD 1930/2000 pts
+-----
+Sons of Behemat | King Brodd's Stomp
+Army of Renown
+General's Handbook 2025-26
+Prayer Lore - King Brodd's Stomp Prayer Lore
+Battle Tactics Cards: Intercept and Recover and Wrathful
+Cycles
+-----
+General's Regiment
+King Brodd (520)
+• General
+Gatebreaker Mega-Gargant (490)
+• I Can Do That Better
+---
+Regiment 1
+Beast-smasher Mega-Gargant (470)
+• Lucky Shiny Hat
+Warstomper Mega-Gargant (450)
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.31.0 (1) | Data: v422
+`,
+  "francesco xella": `Sharktism.
+1960/2000 pts
+-----
+Grand Alliance Order | Idoneth Deepkin | Ethersea
+Predators (20 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of the Deeps
+Manifestation Lore - Lore of the Abyss
+Battle Tactics Cards: Intercept and Recover and Master The
+Paths
+-----
+General's Regiment
+Eidolon of Mathlann, Aspect of the Storm (300)
+• General
+• Form of the Fangmora(20)
+• Lifekelp Pod
+Akhelian Allopex (170)
+• 1 Razorshell Harpoon
+Akhelian Allopex (170)
+• 1 Razorshell Harpoon
+Akhelian Morrsarr Guard (320)
+• Reinforced
+Akhelian Morrsarr Guard (320)
+• Reinforced
+---
+Regiment 1
+Mathaela, Oracle of the Abyss (150)
+Akhelian Allopex (170)
+(ci`,
+  "gijs van muijden": `Gijs van Muijden
+-----
+Grand Alliance Chaos | Skaven | Claw-horde
+General's Handbook 2025-26
+Spell Lore - Lore of Ruin
+Prayer Lore - Noxious Prayers
+Manifestation Lore - Manifestations of Doom
+Battle Tactics Cards: Attuned to Ghyran and Scouting Force
+-----
+General's Regiment
+Krittok Foulblade (140)
+• General
+Stormvermin (220)
+• Reinforced
+Stormvermin (220)
+• Reinforced
+Stormvermin (220)
+• Reinforced
+---
+Regiment 1
+Scourge of Ghyran Grey Seer on Screaming Bell (330)
+• Warpstone Charm
+Acolyte Globadiers (90)
+Stormvermin (220)
+• Reinforced
+Warplock Jezzails (120)
+---
+Regiment 2
+Grey Seer (110)
+• Devious Underling
+Acolyte Globadiers (90)
+S`,
+  "pim roeske": `Pim Roeske
+-----
+Grand Alliance Order | Lumineth Realm-lords | Warhost of
+Duality
+General's Handbook 2025-26
+Spell Lore - Lore of Prismatic Resonance (10 Points)
+Manifestation Lore - Manifestations of Hysh
+Battle Tactics Cards: Intercept and Recover and Master The
+Paths
+-----
+General's Regiment
+Sevireth, Lord of the Seventh Wind (340) • General
+---
+Regiment 1
+Ellania and Ellathor, Eclipsian Warsages (290)
+The Light of Eltharion (300)
+---
+Regiment 2
+Lyrior Uthralle, Warden of Ymetrica (250)
+Vanari Lord Regent (110)
+• Phoenix Stone
+Ydrilan Riverblades (140)
+Ydrilan Riverblades (140)
+---
+Regiment 3
+Scinari Calligrave (130)
+• Acolyte of the Runes
+-----
+Regiments of Renown`,
+  "george goultidis": `George Goultidis
+-----
+Grand Alliance Chaos | Blades of Khorne | Tournament of
+Skulls
+General's Handbook 2025-26
+Prayer Lore - Blood Blesssings of Khorne
+Manifestation Lore - Judgements of Khorne
+Battle Tactics Cards: Attuned to Ghyran and Wrathful
+Cycles
+-----
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodletters (300)
+• Reinforced
+Bloodreavers (80)
+Claws of Karanak (100)
+Claws of Karanak (100)
+---
+Regiment 1
+Bloodmaster, Herald of Khorne (120)
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+-----
+Skull Altar
+----`,
+  "nico van den hoek": `Nico van den Hoek
+-----
+Grand Alliance Order | Idoneth Deepkin | Ethersea
+Predators (20 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of the Deeps
+Manifestation Lore - Lore of the Abyss
+Battle Tactics Cards: Scouting Force and Wrathful Cycles
+-----
+General's Regiment
+Eidolon of Mathlann, Aspect of the Sea (340)
+• General
+• Endless Sea-storm
+• Armour of the Cythai
+Akhelian Allopex (170)
+• 1 Razorshell Harpoon
+Akhelian Allopex (170)
+• 1 Retarius Net Launcher
+Akhelian Morrsarr Guard (320)
+• Reinforced
+Akhelian Morrsarr Guard (320)
+• Reinforced
+---
+Regiment 1
+Mathaela, Oracle of the Abyss (150)
+Akhelian Allopex (170)
+• 1 Razo`,
+  "nick frey": `Nick Frey
+-----
+Orruk Warclans | Ironjawz | Weirdfist
+General's Handbook 2025-26
+Spell Lore - Lore of the Weird
+Prayer Lore - Warbeats
+Manifestation Lore - Manifestations of Gorkamorka
+Battle Tactics Cards: Restless Energy and Scouting Force
+-----
+General's Regiment
+Ardboy Big Boss (100)
+• General
+• An Eye For Da Fight
+• Armour of Gork
+Ardboyz (320)
+• Reinforced
+Ardboyz (320)
+• Reinforced
+Brute Ragerz (100)
+Scourge of Ghyran Weirdbrute Wrekkaz (90)
+---
+Regiment 1
+Weirdnob Shaman (110)
+Brute Ragerz (100)
+Brutes (320)
+• Reinforced
+Brutes (320)
+• Reinforced
+---
+Regiment 2
+Warchanter (110)
+---
+Regiment 3
+Warchanter (110)
+-----
+Bossrokk Towe`,
+  "morgan serier": `Morgan Serier
+-----
+Grand Alliance Order | Sylvaneth | Wargrove of the
+Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactics Cards: Master The Paths and Restless Energy
+-----
+General's Regiment
+Alarielle the Everqueen (600)
+• General
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+Spiterider Lancers (440)
+• Reinforced
+---
+Regiment 1
+Belthanos, First Thorn of Kurnoth (290)
+Gossamid Archers (120)
+---
+Regiment 2
+Warsong Revenant (150)
+• Seed of Rebirth
+• Realmroot Guide
+-----
+Awakened Wyldwood
+-----`,
+  "darryl peacock": `Darryl Peacock
+-----
+Grand Alliance Order | Daughters of Khaine | Coven of
+Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khinerai Lifetakers (100)
+The Shadow Queen
+---
+Regiment 1
+Krethusa the Croneseer (220)
+Khainite Shadowstalkers (130)
+Sisters of Slaughter (110)
+---
+Regiment 2
+Slaughter Queen (130)
+• Witchbrew
+• Shadow-Blooded
+-----
+Shrine of Dark Tribute (20)
+----`,
+  "hugo rikken": `Hugo Rikken
+-----
+Grand Alliance Destruction | Ogor Mawtribes | Mawpath
+Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Twilit Sorceries
+Battle Tactics Cards: Intercept and Recover and Master The
+Paths
+-----
+General's Regiment
+Butcher (150)
+• General
+• Mage-swallower
+• Gruesome Trophies
+• Great Gutlord
+Ironguts (420)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Ogor Gluttons (220)
+Ogor Gluttons (220)
+---
+Regiment 1
+Slaughtermaster (150)
+Gnoblars (130)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+-----
+Mawpit
+-----`,
+  "lance martin tan": `Khorgol
+Khorne Mk VIII
+Blades of Khorne
+Khornate Legion
+Blood Blessings of Khorne
+Judgements of Khorne
+Restless Energy
+Wrathful Cycles
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodcrushers (260)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Claws of Karanak (100)
+Slaughterpriest (130)
+Bloodreavers (80)
+Bloodreavers (80)
+Skullreapers (340)
+• Reinforced
+Skull Altar
+1990/2000 points
+2 drops`,
+  "stefan mandic": `Stef
+Disciples of Tzeentch
+Mutants and Mad Things
+Master the Paths
+Scouting Force
+Lore of Change
+Manifestations of Tzeentch
+Lord of Change (380)
+• General
+• Kairic Tome
+Blue Horrors and Brimstone Horrors (240)
+• Reinforced
+Blue Horrors and Brimstone Horrors (240)
+• Reinforced
+Pink Horrors (170)
+Tzaangor Enlightened (400)
+• Reinforced
+Gaunt Summoner (180)
+• Grand Illusionist
+Blue Horrors and Brimstone Horrors (240)
+• Reinforced
+Chaos Spawn of Tzeentch (60)
+Chaos Spawn of Tzeentch (60)
+Argent Shard
+1970/2000 pts
+2 drops`,
+  "shaun bates": `Notorious Shaun
+Maggotkin of Nurgle
+Tallyband of Nurgle
+Lore of Malignance
+Benedictions of Sickness
+Twilit Sorceries
+Wrathful Cycles
+Master The Paths
+Rotigus (420)
+• General
+Pox-Wretches (100)
+Pox-Wretches (100)
+Pox-Wretches (100)
+Lord of Plagues (100)
+• Gift of Febrile Frenzy
+• Rustfang
+Rotswords (400)
+• Reinforced
+Rotswords (400)
+• Reinforced
+Belga the Cystwitch (130)
+Harbinger of Decay (140)
+Rotbringer Sorcerer (100)
+Feculent Gnarlmaw
+1990/2000 points
+5 drops
+`,
+  "bo paterson": `Bones Malone
+Lumineth Realm-lords
+Warhost of Duality
+Lore of the Awakened Realms
+Manifestations of Hysh
+Master the Paths
+Intercept and Recover
+Ellania and Ellathor, Eclipsian Warsages (290)
+• General
+Ydrilan Riverblades (140)
+Ydrilan Riverblades (140)
+Sevireth, Lord of the Seventh Wind (340)
+Lyrior Uthralle, Warden of Ymetrica (250)
+Vanari Dawnriders (360)
+• Reinforced
+Scinari Enlightener (180)
+• Silver Wand
+• Acolyte of the Runes
+The Light of Eltharion (300)
+Shrine Luminor
+2000/2000 points
+5 drops`,
+  "callum brown": `Gingabytes
+Ironjawz
+Weirdfist
+Lore of the Weird
+Warbeats
+Manifestations of Gorkamorka
+Attuned to Ghyran
+Wrathful Cycles
+Warchanter (110)
+• General
+Brutes (320)
+• Reinforced
+Brutes (320)
+• Reinforced
+Weirdnob Shaman (110)
+• An Eye For Da Fight
+• Trophy Skulls
+Ardboyz (320)
+• Reinforced
+Ardboyz (320)
+• Reinforced
+Zoggrok Anvilsmasha (160)
+• 1x Grunta-tongs
+Scourge of Ghyran Gore-gruntas (170)
+Scourge of Ghyran Gore-gruntas (170)
+Bossrokk Tower
+2000/2000 pts
+3 drops`,
+  "ryan lynn-watts": `Chop
+Ogor Mawtribes
+Mawpath Menaces (10)
+Lore of Maw-magic
+Primal Energy (10)
+Restless Energy
+Intercept and Recover
+Butcher (150)
+• General
+• Great Gutlord
+• Mage-Swallower
+Ogor Gluttons (220)
+Ironguts (420)
+• Reinforced
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Ogor Gluttons (220)
+Butcher (150)
+• Gruesome Trophies
+Ironblaster (Scourge of Ghyran) (160)
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Ironguts (420)
+• Reinforced
+Mawpit
+2000/2000 points
+2 drops`,
+  "alexander sinclair": `Alex
+Sylvaneth
+Wargrove of the Burgeoning
+Lore of the Deepwood
+Lore of the Spirit-Song
+Manifestations of the Deepwood
+Restless Energy
+Scouting Force
+Alarielle the Everqueen (600)
+• General
+Spiterider Lancers (440)
+• Reinforced
+Dryads (90)
+Spite-Revenants (80)
+Spite-Revenants (80)
+Belthanos, First Thorn of Kurnoth (290)
+Drycha Hamadreth (250)
+Warsong Revenant (150)
+• Seed of Rebirth
+• Spirit Of The Dark Forest
+Awakened Wyldwood
+1980/2000 pts
+4 drops
+`,
+  "james struthers": `MacAttack
+nnnnn
+Daughters of Khaine
+Coven of Blood
+Scouting Force
+Intercept and Recover
+Lore of Shadows
+Prayers of the Khainite Cult
+Manifestations of Khaine
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+The Shadow Queen (0)
+Krethusa the Croneseer (220)
+High Gladiatrix (120)
+• Hand of Khaine
+• Witchbrew
+Khainite Shadowstalkers (130)
+Sisters of Slaughter (110)
+Shrine of Dark Tribute (20 Points)
+1990/2000 pts
+2 drops`,
+  "chris archibald": `Worlds 1970/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Master The Paths, Intercept and
+Recover
+General's Regiment
+Ellania and Ellathor, Eclipsian Warsages (290)
+• General
+The Light of Eltharion (300)
+Ydrilan Riverblades (140)
+Ydrilan Riverblades (140)
+Regiment 1
+Scinari Cathallar (130)
+Regiment 2
+Lyrior Uthralle, Warden of Ymetrica (250)
+Hurakan Spirit of the Wind (270)
+Hurakan Spirit of the Wind (270)
+Regiment 3
+Scinari Enlightener (180)
+• Silver Wand
+• Acolyte of the Runes
+Shrine Luminor
+Created with Warhammer Age of Sigmar: The `,
+  "stephen mitchell": `Soggy branches 1990/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Restless Energy, Master The Paths
+General's Regiment
+Alarielle the Everqueen (600)
+• General
+Spite-Revenants (80)
+Spite-Revenants (80)
+Spiterider Lancers (440)
+• Reinforced
+The Twistweald (120)
+Regiment 1
+Warsong Revenant (150)
+• Seed of Rebirth
+• Realmroot Guide
+Regiment 2
+Grove Guardian (220)
+Regiment 3
+Scourge of Ghyran Drycha Hamadreth (300)
+Awakened Wyldwood
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data`,
+  "tom blaxall": `Tom Blaxall 1960/2000 pts
+Idoneth Deepkin
+Ethersea Predators (20 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of the Deeps
+Manifestation Lore - Lore of the Abyss
+Battle Tactic Cards: Master The Paths, Scouting Force
+General's Regiment
+Eidolon of Mathlann, Aspect of the Sea (360)
+• General
+• Form of the Fangmora - (20) Points
+• Armour of the Cythai
+Akhelian Allopex (170)
+• 1x Razorshell Harpoon
+Akhelian Allopex (170)
+• 1x Razorshell Harpoon
+Akhelian Leviadon (450)
+Akhelian Morrsarr Guard (320)
+• Reinforced
+Regiment 1
+Ikon of the Storm (130)
+Akhelian Allopex (170)
+• 1x Razorshell Harpoon
+Akhelian Allopex (170)
+• 1x Razorsh`,
+  "ethan waring": `Legion Of The First Prince(s) 1990/2000 pts
+-----
+Grand Alliance Chaos | Slaves to Darkness | Champions of
+Chaos (40 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of the Damned
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactics Cards: Intercept and Recover and Wrathful
+Cycles
+-----
+General's Regiment
+Be'lakor, the Dark Master (450)
+• General
+Chaos Warriors (180)
+• The Dread Banner
+Exalted Hero of Chaos (90)
+• Head of the Unworthy
+---
+Regiment 1
+Daemon Prince (250)
+• Pledged to Nurgle
+• Trophy Rack
+• Deathmonger
+Exalted Hero of Chaos (90)
+---
+Regiment 2
+Daemon Prince (250)
+• Pledged to Nurgle
+• Trophy Rack
+Minds`,
+  "pete brizio": `Worlds 2000/2000 pts
+-----
+Orruk Warclans | Ironjawz | Weirdfist
+General's Handbook 2025-26
+Spell Lore - Lore of the Weird
+Prayer Lore - Warbeats
+Manifestation Lore - Manifestations of Gorkamorka
+Battle Tactics Cards: Restless Energy and Scouting Force
+-----
+General's Regiment
+Warchanter (110)
+• General
+• Trophy Skulls
+Ardboyz (320)
+• Reinforced
+Brute Ragerz (200)
+• Reinforced
+Brutes (320)
+• Reinforced
+• 2 Gore-choppa
+Brutes (320)
+• Reinforced
+• 2 Gore-choppa
+---
+Regiment 1
+Ardboy Big Boss (100)
+• An Eye For Da Fight
+Ardboyz (160)
+Ardboyz (160)
+---
+Regiment 2
+Weirdnob Shaman (110)
+Scourge of Ghyran Weirdbrute Wrekkaz (90`,
+  "martin clarke": `Guess who’s back, back again, Brodd’s Back …. stompin’
+again! 1990/2000 pts
+-----
+Sons of Behemat | King Brodd's Stomp
+Army of Renown
+General's Handbook 2025-26
+Prayer Lore - King Brodd's Stomp Prayer Lore
+Battle Tactics Cards: Intercept and Recover and Wrathful
+Cycles
+-----
+General's Regiment
+King Brodd (520)
+• General
+Gatebreaker Mega-Gargant (490)
+---
+Regiment 1
+Gatebreaker Mega-Gargant (490)
+• I Can Do That Better
+• Lucky Shiny Hat
+Gatebreaker Mega-Gargant (490)
+-----`,
+  "colin cochrane": `Funclaw 1990/2000 pts
+Seraphon
+Sunclaw Starhost
+General's Handbook 2025-26
+Spell Lore - Lore of Celestial Manipulation (20 Points)
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactic Cards: Wrathful Cycles, Attuned to Ghyran
+General's Regiment
+Slann Starmaster (260)
+• General
+• Child of the Stars
+Kroxigor (400)
+• Reinforced
+Kroxigor (200)
+Kroxigor (400)
+• Reinforced
+Saurus Astrolith Bearer (120)
+Regiment 1
+Sunblood Pack (150)
+• Bloodrage Pendant
+Saurus Warriors (140)
+Saurus Warriors (140)
+Saurus Warriors (140)
+Realmshaper Engine
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422
+`,
+  "solomon morrow": `Welcome to Swipy Swapy 2000/2000 pts
+Disciples of Tzeentch
+Mutants and Mad Things
+General's Handbook 2025-26
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Scouting Force, Restless Energy
+General's Regiment
+Lord of Change (380)
+• General
+• Kairic Tome
+Exalted Flamer of Tzeentch (110)
+Flamers of Tzeentch (130)
+Flamers of Tzeentch (130)
+Tzaangor Enlightened (400)
+• Reinforced
+Regiment 1
+Changecaster, Herald of Tzeentch (130)
+Pink Horrors (170)
+Pink Horrors (170)
+Pink Horrors (170)
+Regiment 2
+Curseling, Eye of Tzeentch (150)
+• Devolving Aura
+Chaos Spawn of Tzeentch (60)
+Argent Shard
+Created with Warhammer Age of S`,
+  "lasse kalberg": `Final Version Worlds 2026 2000/2000 pts
+-----
+Grand Alliance Order | Kharadron Overlords | Endrineers
+Guild Expeditionary Force (20 Points)
+General's Handbook 2025-26
+Manifestation Lore - Twilit Sorceries
+Battle Tactics Cards: Master The Paths and Restless Energy
+-----
+General's Regiment
+Arkanaut Admiral (140)
+• General
+• Celestium Burst Grenade
+Arkanaut Company (160)
+• Reinforced
+• 2 Skypike
+• 4 Privateer Heavy Weapon
+Arkanaut Ironclad (450)
+Null-Khemist (120)
+• Bold As Brass
+Vongrim Harpoon Crew (120)
+---
+Regiment 1
+Endrinmaster with Endrinharness (150)
+Arkanaut Frigate (300)
+• Zonbarcorp 'Dealbreaker' Battle Ram
+Skywardens (260)
+(cid`,
+  "tom kenneth solli": `Worlds kenneth 2000/2000 pts
+Maggotkin of Nurgle
+Tallyband of Nurgle
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactic Cards: Attuned to Ghyran, Wrathful Cycles
+General's Regiment
+Rotigus (420)
+• General
+Plague Drones (150)
+Rotswords (400)
+• Reinforced
+Rotswords (400)
+• Reinforced
+Regiment 1
+Belga the Cystwitch (130)
+Lord of Plagues (100)
+• Gift of Febrile Frenzy
+• The Carrion Dirge
+Regiments of Renown
+The Curse-Steel Battery (380)
+Daemonsmith
+Deathshrieker Rocket Battery
+Tormentor Bombard
+Feculent Gnarlmaw
+Created with Warhammer Age of Sigmar:`,
+  "knut vedeld": `Syl Kurnoth 3drop 2000/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Master The Paths, Scouting Force
+General's Regiment
+Drycha Hamadreth (250)
+• General
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+Spiterider Lancers (440)
+• Reinforced
+The Twistweald (120)
+Regiment 1
+Warsong Revenant (150)
+• Seed of Rebirth
+Spite-Revenants (80)
+Spite-Revenants (80)
+Regiment 2
+Branchwych (100)
+• Spellsinger
+Awakened Wyldwood
+Created `,
+  "geir vedeld": `BoK Murderhost 2000/2000 pts
+Blades of Khorne
+Murderhost
+General's Handbook 2025-26
+Prayer Lore - Blood Blesssings of Khorne
+Manifestation Lore - Judgements of Khorne
+Battle Tactic Cards: Scouting Force, Wrathful Cycles
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodletters (300)
+• Reinforced
+Bloodreavers (80)
+Claws of Karanak (100)
+Claws of Karanak (100)
+Regiment 1
+Bloodmaster, Herald of Khorne (120)
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Skull Altar
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.`,
+  "benjamin flodda": `LrL Vanari 1950/2000 pts
+-----
+Grand Alliance Order | Lumineth Realm-lords | Warhost of
+Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Sevireth, Lord of the Seventh Wind (340)
+• General
+The Light of Eltharion (300)
+Vanari Auralan Sentinels (280)
+• Reinforced
+Vanari Auralan Wardens (240)
+• Reinforced
+Vanari Dawnriders (360)
+• Reinforced
+---
+Regiment 1
+Scinari Enlightener (180)
+• Silver Wand
+• Acolyte of the Runes
+---
+Regiment 2
+Lyrior Uthralle, Warden of Ymetrica (250)
+-----
+Shrine Lumi`,
+  "martin andre rohme": `Die Geburt der Tragödie 1990/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactic Cards: Master The Paths, Intercept and
+Recover
+General's Regiment
+Butcher (150)
+• General
+• Mage-swallower
+• Gruesome Trophies
+• Great Gutlord
+Ironguts (420)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Ogor Gluttons (220)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Regiment 1
+Slaughtermaster (150)
+Ogor Gluttons (220)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+Mawpit
+Created with`,
+  "danny elvestad": `1 Brutes are fairly priced 1980/2000 pts
+-----
+Orruk Warclans | Ironjawz | Ironjawz Brawl
+General's Handbook 2025-26
+Spell Lore - Lore of the Weird
+Prayer Lore - Warbeats
+Manifestation Lore - Manifestations of Gorkamorka
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Kragnos, the End of Empires (580)
+• General
+Brute Ragerz (200)
+• Reinforced
+Brute Ragerz (200)
+• Reinforced
+Brutes (320)
+• Reinforced
+• 2 Gore-choppa
+Zoggrok Anvilsmasha (160)
+• 1 Grunta-tongs
+---
+Regiment 1
+Weirdnob Shaman (110)
+• An Eye For Da Fight
+• Trophy Skulls
+Brutes (320)
+• Reinforced
+• 2 Gore-choppa
+`,
+  "ole vatland": `Dok 2000/2000 pts
+Daughters of Khaine
+Fervent Ritualists
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Scouting Force, Attuned to Ghyran
+General's Regiment
+Scourge of Ghyran Bloodwrack Shrine (250)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (100)
+Regiment 1
+Hag Queen on Cauldron of Blood (280)
+Khainite Shadowstalkers (130)
+Regiment 2
+Slaughter Queen on Cauldron of Blood (280)
+• Witchbrew
+• Shadow-Blooded
+Blood Hags (280)
+• Reinforced
+Shrine of Dar`,
+  "mikolaj erchard": `Team Poland 1990/2000 pts
+Maggotkin of Nurgle
+Tallyband of Nurgle
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactic Cards: Attuned to Ghyran, Wrathful Cycles
+General's Regiment
+The Glottkin (470)
+• General
+Lord of Plagues (100)
+• Unctuous Preacher
+Rotswords (400)
+• Reinforced
+Rotswords (400)
+• Reinforced
+Sloven Knights (180)
+Regiment 1
+Rotbringer Sorcerer (100)
+Lord of Plagues (100)
+• Rustfang
+Pox-Wretches (100)
+Regiment 2
+Horticulous Slimux (140)
+Feculent Gnarlmaw`,
+  "artur rietz": `Team Poland 1990/2000 pts
+Soulblight Gravelords
+Bacchanal of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Manifestations of the Grave
+Battle Tactic Cards: Scouting Force, Wrathful Cycles
+General's Regiment
+Mannfred von Carstein, Mortarch of Night (430)
+• General
+Barrow Guard (260)
+• Reinforced
+Barrow Guard (260)
+• Reinforced
+Barrow Knights (400)
+• Reinforced
+Wight Lord on Skeletal Steed (110)
+Regiment 1
+Necromancer (140)
+• Lash of the Sire - (20) Points
+• Amulet of Graves
+Deathrattle Skeletons (180)
+• Reinforced
+Deathrattle Skeletons (90)
+Vargheists (120)
+Cursed Sepulchre`,
+  "adam sulkowski": `Team Poland 2000/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Twilit Sorceries
+Battle Tactic Cards: Restless Energy, Master The Paths
+General's Regiment
+Slaughtermaster (150)
+• General
+Ironguts (420)
+• Reinforced
+Ogor Gluttons (440)
+• Reinforced
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+Regiment 1
+Butcher (150)
+• Mage-swallower
+• Gruesome Trophies
+• Booming Roar
+Ironguts (210)
+Ogor Gluttons (220)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Mawpit
+`,
+  "damian grzybek": `Team Poland 2000/2000 pts
+Blades of Khorne
+Tournament of Skulls
+General's Handbook 2025-26
+Prayer Lore - Gifts of the Blood God
+Manifestation Lore - Judgements of Khorne
+Battle Tactic Cards: Wrathful Cycles, Restless Energy
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Regiment 1
+Bloodstoker (100)
+Skullreapers (340)
+• Reinforced
+Wrathmongers (130)
+Wrathmongers (130)
+Skull Altar`,
+  "michal pisarski": `Team Poland 2000/2000 pts
+Stormcast Eternals
+Thunderhead Host
+General's Handbook 2025-26
+Spell Lore - Lore of the Storm
+Prayer Lore - Prayers of the Stormhosts
+Manifestation Lore - Manifestations of the Storm
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Lord-Vigilant on Gryph-Stalker (140)
+• General
+Annihilators (260)
+• Reinforced
+Annihilators with Meteoric Grandhammers (360)
+• Reinforced
+Annihilators with Meteoric Grandhammers (360)
+• Reinforced
+Lord-Imperatant (110)
+• Shock and Awe
+Regiment 1
+Lord-Veritant (110)
+• Beacon of Azyr
+Gardus Steel Soul (160)
+Prosecutors (300)
+• Reinforced
+Vanquishers (180)
+`,
+  "oskar jeszke": `Team Poland 2000/2000 pts
+Daughters of Khaine
+Coven of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Intercept and Recover, Scouting Force
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khinerai Lifetakers (100)
+The Shadow Queen (0)
+Regiment 1
+Krethusa the Croneseer (220)
+Khainite Shadowstalkers (130)
+Regiment 2
+Bloodwrack Medusa (140)
+• Witchbrew
+• Shadow-Blooded
+Khinerai Heartrenders (100)
+Shrine of Dark Tribute (20 Points)`,
+  "kuba kostrubiec": `Team Poland 2000/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of Prismatic Resonance (10 Points)
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Intercept and Recover, Master The
+Paths
+General's Regiment
+Sevireth, Lord of the Seventh Wind (340)
+• General
+Regiment 1
+Ellania and Ellathor, Eclipsian Warsages (290)
+The Light of Eltharion (300)
+Regiment 2
+Lyrior Uthralle, Warden of Ymetrica (250)
+Vanari Lord Regent (110)
+• Phoenix Stone
+Ydrilan Riverblades (140)
+Ydrilan Riverblades (140)
+Regiment 3
+Scinari Calligrave (130)
+• Acolyte of the Runes
+Regiments of Renown
+Saviours of Cinderfall (290)
+Callis and Tol`,
+  "tomasz mucha": `Team Poland 2000/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Master The Paths, Scouting Force
+General's Regiment
+Branchwych (100)
+• General
+• Spellsinger
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+Spite-Revenants (80)
+The Twistweald (120)
+Regiment 1
+Drycha Hamadreth (250)
+Regiment 2
+Warsong Revenant (150)
+• Seed of Rebirth
+Regiment 3
+Warsong Revenant (150)
+Regiment 4
+Belthanos, First Thorn of Kurnoth (290)
+Spite-Revenant`,
+  "joao henriques": `Khorne 2000/2000 pts
+-----
+Grand Alliance Chaos | Blades of Khorne | Murderhost
+General's Handbook 2025-26
+Prayer Lore - Blood Blesssings of Khorne
+Manifestation Lore - Judgements of Khorne
+Battle Tactics Cards: Attuned to Ghyran and Wrathful
+Cycles
+-----
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+•n nGeneral
+•n nFrenzied
+Taskmaster
+•n nAr'gath,
+The King of Blades
+Bloodletters (300)
+•n nReinforced
+Bloodletters (300)
+•n nReinforced
+Bloodletters (300)
+•n nReinforced
+Skulltaker (120)
+---
+Regiment 1
+Bloodmaster, Herald of Khorne (120)
+Bloodcrushers (130)
+Bloodcrushers (130)
+-----
+Regiments of Renown
+Brand's Oathbound (200)
+Gunnar Brand
+`,
+  "tiago abril": `Sing with me 
+1960/2000 pts
+Stormcast Eternals
+Thunderhead Host
+General's Handbook 2025-26
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Lord-Commander Bastian Carthalos (190)
+• General
+Annihilators with Meteoric Grandhammers (360)
+• Reinforced
+Gardus Steel Soul (160)
+Stormstrike Palladors (180)
+Vanguard-Raptors with Longstrike Crossbows (400)
+• Reinforced
+Regiment 1
+Lord-Imperatant (110)
+• Sigil of Morrda
+• Shock and Awe
+Annihilators with Meteoric Grandhammers (360)
+• Reinforced
+Stormstrike Palladors (180)
+Stormreach Portal (20 Points)
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422`,
+  "mark palinski": `"Yo, Devin, What's up?" "Nothing just, watching the game,
+having a bud" "true...blades, true...blades""yo Terry pick
+up the phone!" WHAZZUP!!" WHAZZUP!!!!" WHAZZUP!!!!!!!"
+"What you doin'?" "Watchin the game, have a bud." "True...
+Blades True... blades"
+ 2000/2000
+pts
+Soulblight Gravelords
+Bacchanal of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactic Cards: Scouting Force, Master The Paths
+General's Regiment
+Prince Vhordrai (470)
+• General
+Askurgan Trueblades (140)
+Askurgan Trueblades (140)
+Askurgan Trueblades (140)
+Regiment 1
+Vengorian Lord (220)
+• Shard of Night
+• Immortal Ego
+Askurgan Truebla`,
+  "ivo capelo": `SK - Age of the Eshin but i cant believe i cant reinforce
+them wtf gw... wtf... Also please fix gnawholes coming at
+start of battleround you fixed the trees!- So i broke my
+window again its like a sliding door, its the second time
+i break it in this building and its the second house i
+break it in, my gf hates the summer and is suffering...
+Also still looking for people to play in Lpool 2000/2000
+pts
+Skaven
+Fleshmeld Menagerie
+General's Handbook 2025-26
+Spell Lore - Lore of Ruin
+Prayer Lore - Noxious Prayers
+Manifestation Lore - Manifestations of Doom
+Battle Tactic Cards: Restless Energy, Scouting Force
+General's Regiment
+Master Moulder (80)
+• General
+Rat Ogors (280)
+• Reinfor`,
+  "dylan therriault": `Gun 2000/2000 pts
+Cities of Sigmar
+Fearless Exemplars
+General's Handbook 2025-26
+Wounds: 164
+Spell Lore - Spells of the Collegiate Arcane
+Prayer Lore - Scriptures of Sigmar
+Manifestation Lore - Forbidden Power (20)
+Battle Tactic Cards: Wrathful Cycles, Attuned to Ghyran
+General's Regiment
+Pontifex Zenestra, Matriarch of the Great Wheel (160)
+• General
+Regiment 1
+Freeguild Cavalier-Marshal (110)
+Freeguild Cavaliers (Scourge of Ghyran) (300)
+• Reinforced
+Freeguild Cavaliers (Scourge of Ghyran) (300)
+• Reinforced
+Regiment 2
+Alchemite Warforger (120)
+Freeguild Fusiliers (200)
+• Reinforced
+Freeguild Fusiliers (200)
+• Reinforced
+Regiment 3
+Tahlia Vedra, Lion`,
+  "david costa": `The Light at the end of the Tunnel 2000/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Restless Energy, Master The Paths
+General's Regiment
+Ellania and Ellathor, Eclipsian Warsages (290)
+• General
+Hurakan Windchargers (160)
+Vanari Auralan Wardens (240)
+• Reinforced
+Ydrilan Riverblades (140)
+Regiment 1
+Scinari Enlightener (180)
+• Silver Wand
+• Acolyte of the Runes
+Regiment 2
+Sevireth, Lord of the Seventh Wind (340)
+Regiment 3
+The Light of Eltharion (300)
+Regiments of Renown
+Sky-Port Profiteers (350)
+Codewright
+Grundstok Thundere`,
+  "cian doherty": `The Moonlit Forest 1990/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Master the Paths, Scouting Force
+General's Regiment
+Warsong Revenant (150)
+• General
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Spite-Revenants (80)
+Spiterider Lancers (440)
+• Reinforced
+Regiment 1
+Spirit of Durthu (320)
+• Glamourweave
+Dryads (90)
+Dryads (90)
+Dryads (90)
+Regiment 2
+Drycha Hamadreth (250)
+Regiment 3
+Branchwych (100)
+• Spellsinger
+Awakened Wyldwood
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422
+`,
+  "alexandre sousa": `No, actually, monster-trucks aren't back... They never
+left. 2000/2000 pts
+Ogor Mawtribes
+Beast Handlers
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Primal Energy (10 Points)
+Battle Tactic Cards: Wrathful Cycles, Intercept and
+Recover
+General's Regiment
+Frostlord on Stonehorn (340)
+• General
+• Mage-swallower
+• Touched by the Everwinter - (20) Points
+Gorger Mawpack (240)
+Huskard on Stonehorn (290)
+• 1x Chaintrap
+Stonehorn Beastriders (260)
+• 1x Chaintrap
+Stonehorn Beastriders (260)
+• 1x Chaintrap
+Regiment 1
+Huskard on Stonehorn (290)
+• The Fang of Ghur
+• 1x Chain`,
+  "josh bunning": `Josh Bunning 2000/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Prayer Lore - None
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Master the Paths and Intercept and
+Recover
+General's Regiment
+Ellania and Ellathor, Eclipsian Warsages (290)
+• General
+The Light of Eltharion (300)
+Vanari Auralan Wardens (120)
+Ydrilan Riverblades (140)
+Ydrilan Riverblades (140)
+Regiment 1
+Sevireth, Lord of the Seventh Wind (340)
+Regiment 2
+Lyrior Uthralle, Warden of Ymetrica (250)
+Regiment 3
+Scinari Cathallar (130)
+• Silver Wand
+• Acolyte of the Runes
+Regiments of Renown
+Saviours of Cinderfall (290)
+Ca`,
+  "callum campbell": `Callum Campbell 1980/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Scouting Force and Wrathful Cycles
+General's Regiment
+Alarielle the Everqueen (600)
+• General
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Spiterider Lancers (440)
+• Reinforced
+Regiment 1
+Warsong Revenant (150)
+• Seed of Rebirth
+• Realmroot Guide
+Spite-Revenants (80)
+Spite-Revenants (80)
+Regiment 2
+Drycha Hamadreth (250)
+Awakened Wyldwood
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422`,
+  "david jack": `David Jack 2000/2000 pts
+Maggotkin of Nurgle
+Tallyband of Nurgle
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Primal Energy (10 Points)
+Battle Tactic Cards: Wrathful Cycles and Restless Energy
+General's Regiment
+Harbinger of Decay (140)
+• General
+• Rustfang
+Lord of Plagues (100)
+Rotswords (400)
+• Reinforced
+Rotswords (400)
+• Reinforced
+Rotswords (400)
+• Reinforced
+Regiment 1
+Poxbringer, Herald of Nurgle (90)
+• Unctuous Preacher
+Nurglings (100)
+Nurglings (100)
+Plaguebearers (260)
+• Reinforced
+Feculent Gnarlmaw
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.`,
+  "phil mcguinness": `Phil McGuinness 1990/2000 pts
+-----
+Grand Alliance Chaos | Blades of Khorne | Tournament of
+Skulls
+General's Handbook 2025-26
+Prayer Lore - Blood Blesssings of Khorne
+Spell Lore - None
+Manifestation Lore - Judgements of Khorne
+Battle Tactics Cards: Master The Paths and Wrathful Cycles
+-----
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+* General
+* Frenzied Taskmaster
+* Ar'gath, The King of Blades
+Bloodletters (300)
+* Reinforced
+Bloodletters (300)
+* Reinforced
+Bloodletters (300)
+* Reinforced
+Bloodletters (300)
+* Reinforced
+---
+Regiment 1
+Slaughterpriest (130)
+Blood Warriors (180)
+Bloodreavers (80)
+-----
+Skull Altar
+-----
+Created with Warhammer Age of Sigmar: The App
+App: v1.31.0 (1) `,
+  "ross sherrie": `Ross Sherrie 1980/2000 pts
+-----
+Grand Alliance Death | Ossiarch Bonereapers | Remorseless
+Conquerors
+General's Handbook 2025-26
+Spell Lore - Lore of Necrotheurgy
+Prayer Lore - None
+Manifestation Lore - Horrors of the Necropolis
+Battle Tactics Cards: Attuned to Ghyran and Scouting Force
+-----
+General's Regiment
+Arch-Kavalos Zandtos (220)
+• General
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Teratic Cohort (90)
+---
+Regiment 1
+Liege-Kavalos (180)
+• Amulet of Gnosis
+• Imperious Will
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+---
+Regiment 2
+Mortisan Ossifector (110)
+Mortek Crawler (250)
+Mortis Reapers (9`,
+  "nathan watson": `Nathan Watson 2000/2000 pts
+-----
+Grand Alliance Order | Daughters of Khaine | Coven of
+Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactics Cards: Intercept and Recover and Scouting
+Force
+-----
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khinerai Lifetakers (100)
+The Shadow Queen
+---
+Regiment 1
+Scourge of Ghyran Bloodwrack Shrine (250)
+• Shadow-Blooded
+Khinerai Heartrenders (100)
+---
+Regiment 2
+Hag Queen (110)
+• Witchbrew
+Khainite Shadowstalkers (130)
+-----
+Shrine of Da`,
+  "sam pace": `Sam Pace 1990/2000 pts
+-----
+Grand Alliance Destruction | Ogor Mawtribes | Mawpath
+Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - None
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Slaughtermaster (150)
+• General
+• Mage-swallower
+Ironguts (420)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+---
+Regiment 1
+Butcher (150)
+• Gruesome Trophies
+• Booming Roar
+Ogor Gluttons (440)
+• Reinforced
+Scourge of Ghyran Gnoblar Scraplauncher (120`,
+  "jp ganis": `Jp Ganis (Captain) 1990/2000 pts
+Orruk Warclans | Ironjawz | Ironjawz Brawl
+General's Handbook 2025-26
+Spell Lore - Lore of the Weird
+Prayer Lore - None
+Manifestation Lore - Manifestations of Gorkamorka
+Battle Tactics Cards: Master The Paths and Restless Energy
+General's Regiment
+Kragnos, the End of Empires (580)
+• General
+Brute Ragerz (200)
+• Reinforced
+Brutes (320)
+• Reinforced
+• 2x Gore-Choppa
+Maw-grunta Gougers (200)
+Scourge of Ghyran Gore-gruntas (170)
+Regiment 1
+Zoggrok Anvilsmasha (160)
+• 1 Grunta-tongs
+Regiment 2
+Weirdnob Shaman (110)
+Regiment 3
+Tuskboss on Maw-grunta (250)
+• An Eye For Da Fight
+• Fast 'Un
+• Trophy Skull`,
+  "nikola jankovic": `For all the Tree Huggers
+-----
+Sylvaneth | Glade Defenders
+Battle Tactics: Scouting Force / Intercept and Recover
+Spell Lore: Lore of the Deepwood
+Prayer Lore: Lore of the Spirit-song
+Manifestation Lore: Manifestations of the Deepwood
+-----
+General's Regiment
+Alarielle the Everqueen (600)
+• General
+6x Spiterider Lancers (440)
+• Reinforced
+---
+Regiment 1
+Drycha Hamadreth (250)
+5x Spite-Revenants (80)
+5x Spite-Revenants (80)
+---
+Regiment 2
+Warsong Revenant (150)
+- Seed of Rebirth
+- Realmroot Guide
+6x Kurnoth Hunters with Kurnoth Greatswords (400)
+• Reinforced
+Created with War Nexus 1.1.4 on ageofspoon.com/warnexus |
+Game Version: 4.1.10`,
+  "lazar djurovic": `LazerAoS - PowerVhord Death
+-----
+Soulblight Gravelords | Bacchanal of Blood
+Battle Tactics: Scouting Force / Wrathful Cycles
+Spell Lore: Lore of Undeath
+Manifestation Lore: Krondspine Incarnate
+-----
+General's Regiment
+Prince Vhordrai (470)
+• General
+8x Askurgan Trueblades (140)
+8x Askurgan Trueblades (140)
+5x Blood Knights (220)
+---
+Regiment 1
+Radukar the Beast (250)
+20x Barrow Guard (260)
+• Reinforced
+10x Deathrattle Skeletons (90)
+Kritza, the Rat Prince (70)
+---
+Regiment 2
+Vengorian Lord (220)
+• Immortal Ego
+• Amulet of Graves
+3x Vargheists (120)`,
+  "andrej bunjac": `Customer Service 1990/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Intercept and Recover, Restless
+Energy
+General's Regiment
+Lyrior Uthralle, Warden of Ymetrica (250)
+• General
+The Light of Eltharion (300)
+Vanari Auralan Sentinels (280)
+• Reinforced
+Vanari Dawnriders (360)
+• Reinforced
+Vanari Dawnriders (360)
+• Reinforced
+Regiment 1
+Hurakan Windmage (140)
+• Silver Wand
+• Acolyte of the Runes
+Hurakan Windchargers (160)
+Ydrilan Riverblades (140)
+Shrine Luminor
+Created with Warhammer Age of Sigmar: The App
+App: 1`,
+  "brent evans": `Letters from Hel 2000/2000 pts
+Blades of Khorne
+Murderhost
+General's Handbook 2025-26
+Prayer Lore - Blood Blesssings of Khorne
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactic Cards: Intercept and Recover, Wrathful
+Cycles
+General's Regiment
+Bloodmaster, Herald of Khorne (120)
+• General
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Regiment 1
+Wrath of Khorne Bloodthirster (400)
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodreavers (80)
+Claws of Karanak (100)
+Regiments of Renown
+The Curse-Steel Battery (380)
+Daemonsmith
+Deathshrieker Rocket Battery
+Tormentor Bombard
+Skull `,
+  "benji askelaad": `WTC 2026 Serbia BenjiAskelaad 2000/2000 pts`,
+  "natasa belic": `I may not be good as Jordi but I can steal his list
+2000/2000 pts
+Daughters of Khaine
+Fervent Ritualists
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Wrathful Cycles, Master The Paths
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (200)
+• Reinforced
+The Shadow Queen (0)
+Regiment 1
+Slaughter Queen on Cauldron of Blood (280)
+• Shadow-Blooded
+Sisters of Slaughter (110)
+Regiment 2
+Hag Queen on Cauldron of Blood (280)
+• Witchbrew
+Shrine of Dark Tribute (20`,
+  "ronya andersson": `New dems 2000/2000 pts
+Disciples of Tzeentch
+Mutants and Mad Things
+General's Handbook 2025-26
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Restless Energy, Attuned to Ghyran
+General's Regiment
+Changecaster, Herald of Tzeentch (130)
+• General
+• Silver Summoner
+Blue Horrors and Brimstone Horrors (240)
+• Reinforced
+Blue Horrors and Brimstone Horrors (240)
+• Reinforced
+Exalted Flamer of Tzeentch (110)
+Pink Horrors (170)
+Regiment 1
+Lord of Change (380)
+• Kairic Tome
+Chaos Spawn of Tzeentch (60)
+Chaos Spawn of Tzeentch (60)
+Chaos Spawn of Tzeentch (60)
+Regiment 2
+Curseling, Eye of Tzeentch (150)
+Tzaangor E`,
+  "boggy b": `#Gnawtorious R.A.T. 2000/2000 pts
+Skaven
+Gathering of the Clans
+General's Handbook 2025-26
+Spell Lore - Lore of Ruin
+Prayer Lore - Noxious Prayers
+Manifestation Lore - Manifestations of Doom
+Battle Tactic Cards: Scouting Force, Master The Paths
+General's Regiment
+Scourge of Ghyran Grey Seer on Screaming Bell (330)
+• General
+• Devious Underling
+Stormvermin (220)
+• Reinforced
+Stormvermin (220)
+• Reinforced
+Stormvermin (110)
+Warpvolt Scourgers (340)
+• Reinforced
+Regiment 1
+Plague Priest on Plague Furnace (350)
+• Warpstone Charm
+Clanrats (150)
+Regiment 2
+Deathmaster Crixxit (150)
+Night Runners (130)
+Gnawhole
+Created with Warhammer Age of Sigmar: Th`,
+  "enes humic": `Team Slovenia
+Enes Humic
+F
+Knights (1990 points) - General's Handbook 2025-26
+Soulblight Gravelords
+Bacchanal of Blood
+Auxiliaries: 0
+Battle Tactic Cards - Master the Paths
+• Restless Energy
+Manifestation Lore - Manifestations of the Grave
+Spell Lore - Lore of Undeath
+General's Regiment
+Vampire Lord on Nightmare Steed (210)
+• General
+• Amulet of Graves
+• Lash of the Sire (20)
+Deathrattle Skeletons (90)
+• 1x Champion
+• 1x Standard Bearer
+Deathrattle Skeletons (90)
+• 1x Champion
+• 1x Standard Bearer
+Blood Knights (440)
+• Reinforced
+• 1x Champion
+• 2x Standard Bearer
+Blood Knights (440)
+• Reinforced
+`,
+  "ryan newman": `Team Slovenia
+Ryan Newman
+Worlds 2000/2000 pts
+-----
+Grand Alliance Order | Kharadron Overlords | Endrineers
+Guild Expeditionary Force (20 Points)
+General's Handbook 2025-26
+Battle Tactics Cards: Scouting Force and Wrathful Cycles
+-----
+General's Regiment
+Arkanaut Admiral (130)
+• General
+Arkanaut Company (160)
+• Reinforced
+• 2 Skypike
+• 2 Privateer Heavy Weapon
+Arkanaut Ironclad (450)
+Vongrim Harpoon Crew (120)
+Vongrim Harpoon Crew (120)
+---
+Regiment 1
+Endrinmaster with Endrinharness (160)
+• Shrewd Opportunist
+• Voidstone Orb
+Arkanaut Frigate (300)
+• Zonbarcorp 'Dealbreaker' Battle Ram
+Skywardens (260)
+• Reinforced
+Skywardens (2`,
+  "leonardo vertus": `Team Slovenia
+Leonardo Vertuš
+1 My blue chiks got the moves 1990/2000 pts
+Disciples of Tzeentch
+Fated Blades
+General's Handbook 2025-26
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Kairos Fateweaver (400)
+• General
+Chaos Spawn of Tzeentch (60)
+Curseling, Eye of Tzeentch (150)
+• Silver Summoner
+• Kairic Tome
+Tzaangor Enlightened (400)
+• Reinforced
+Regiment 1
+Scourge of Ghyran Ogroid Thaumaturge (140)
+Tzaangor Skyfires (160)
+Tzaangors (340)
+• Reinforced
+Tzaangors (340)
+• Reinforced
+Argent Shard
+Created with Warhammer Age of Sigmar: The Ap`,
+  "blaz ravnikar": `Team Slovenia
+Blaž Ravnikar
+Sylvaneth | Wargrove of the Burgeoning
+Battle Tactics: Wrathful Cycles / Scouting Force
+Spell Lore: Lore of the Deepwood
+Prayer Lore: Lore of the Spirit-song
+Manifestation Lore: Manifestations of the Deepwood
+-----
+General's Regiment
+Branchwych (100)
+* General
+* Spellsinger
+6x Kurnoth Hunters with Kurnoth Greatswords (400)
+* Reinforced
+6x Kurnoth Hunters with Kurnoth Scythes (380)
+* Reinforced
+5x Spite-Revenants (80)
+8x The Twistweald (120)
+---
+Regiment 1
+Drycha Hamadreth (250)
+5x Spite-Revenants (80)
+---
+Regiment 2
+Warsong Revenant (150)
+* Seed of Rebirth
+---
+Regiment 3
+Warsong Revenant (150)
+---
+Regiment 4
+Belthanos, First Thorn of Kurnoth (290)`,
+  "tilen kuhar zajec": `Team Slovenia
+Tilen Kuhar Zajec
+'''
+nurgle 2000/2000 pts
+Maggotkin of Nurgle
+Tallyband of Nurgle
+General's Handbook 2025-26
+Wounds: 177
+Spell Lore - Lore of Malignance
+Prayer Lore - Benedictions of Sickness
+Manifestation Lore - Primal Energy (10)
+Battle Tactic Cards: Wrathful Cycles, Attuned to Ghyran
+General's Regiment
+Rotigus (420)
+• General
+Plaguebearers (260)
+• Reinforced
+Poxbringer, Herald of Nurgle (90)
+• Rustfang
+Plague Drones (150)
+Pox-Wretches (100)
+Regiment 1
+Belga the Cystwitch (130)
+Pox-Wretches (100)
+Rotswords (400)
+• Reinforced
+Lord of Plagues (100)
+Regiment 2
+Harbinger of Decay (140)
+• Gift of Febrile Frenzy
+Regiment 3
+Rotbringer Sorcere`,
+  "sebastian pogacnik": `Team Slovenia
+Pogannik
+Sebastian
+Useless 2000/2000 pts
+-----
+Grand Alliance Death | Nighthaunt | Death Stalkers
+General's Handbook 2025-26
+Spell Lore - Lore of the Underworlds
+Manifestation Lore - Infernal Sorceries
+Battle Tactics Cards: Master The Paths and Scouting Force
+-----
+General's Regiment
+Kurdoss Valentian, the Craven King (160)
+• General
+Craventhrone Guard (200)
+• Reinforced
+Myrmourn Banshees (200)
+• Reinforced
+Pyregheists (180)
+Pyregheists (180)
+---
+Regiment 1
+Reikenor the Grimhailer (200)
+Hexwraiths (150)
+---
+Regiment 2
+Krulghast Cruciator (170)
+• Ruler of the Spectral Hosts
+• Amulet of Waking Nightmares
+Chainrasps (100)
+Chainrasps (100)
+--`,
+  "denis osterman": `Team Slovenia
+Denis Osterman
+Blood Sisters, blood sisters what are you doing to them?
+2000/2000 pts
+Daughters of Khaine
+Coven of Blood
+General's Handbook 2025-26
+Wounds: 127
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Morathi-Khaine (730)
+• General
+The Shadow Queen
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khainite Shadowstalkers (130)
+Regiment 1
+Bloodwrack Shrine (Scourge of Ghyran) (250)
+• Witchbrew
+• Hand of Khaine
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (100)
+Regimen`,
+  "tevz delak": `Team Slovenia
+Tevž Delak
+Svetloba, Lisici in coprnice… 2000/2000 pts
+-----
+Grand Alliance Order | Lumineth Realm-lords | Warhost of
+Duality
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactics Cards: Intercept and Recover and Master The
+Paths
+-----
+General's Regiment
+Ellania and Ellathor, Eclipsian Warsages (290)
+• General
+Vanari Lord Regent (110)
+---
+Regiment 1
+Sevireth, Lord of the Seventh Wind (340)
+Hurakan Spirit of the Wind (270)
+The Light of Eltharion (300)
+---
+Regiment 2
+Scinari Enlightener (180)
+• Silver Wand
+• Acolyte of the Runes
+---
+Regiment 3
+Scinari Cathallar (130)
+Vanari Auralan Wa`,
+  "adrian perez canoura": `POX 2000/2000 pts
+Maggotkin of Nurgle
+Tallyband of Nurgle
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Krondspine Incarnate
+Battle Tactic Cards: Attuned to Ghyran, Wrathful Cycles
+General's Regiment
+Scourge of Ghyran Rotigus (430)
+• General
+Plague Drones (150)
+Rotswords (400)
+• Reinforced
+Rotswords (400)
+• Reinforced
+Sloven Knights (180)
+Regiment 1
+Belga the Cystwitch (130)
+Lord of Plagues (100)
+• Gift of Febrile Frenzy
+• The Witherstave
+Pox-Wretches (100)
+Rotmire Creed (110)
+Feculent Gnarlmaw
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422`,
+  "josiito 98": `Literally i am down 1990/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10)
+General's Handbook 2025-26
+Wounds: 154
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Twilit Sorceries
+Battle Tactic Cards: Master the Paths, Intercept and
+Recover
+General's Regiment
+Butcher (150)
+• General
+• Gruesome Trophies
+• Booming Roar
+• Mage-Swallower
+Ironguts (420)
+• Reinforced
+Ironguts (420)
+• Reinforced
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Ironblaster (Scourge of Ghyran) (160)
+Regiment 1
+Slaughtermaster (150)
+Ogor Gluttons (440)
+• Reinforced
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Mawpit`,
+  "jesus de la pena": `Lumineth Realm-lords | Warhost of Duality
+Battle Tactics: Intercept and Recover / Restless Energy
+Spell Lore: Lore of the Awakened Realms
+Manifestation Lore: Manifestations of Hysh
+-----
+General's Regiment
+Sevireth, Lord of the Seventh Wind (340)
+• General
+The Light of Eltharion (300)
+Hurakan Spirit of the Wind (270)
+---
+Regiment 1
+Ellania and Ellathor, Eclipsian Warsages (290)
+Vanari Lord Regent (110)
+---
+Regiment 2
+Scinari Cathallar (130)
+20x Vanari Auralan Wardens (240)
+• Reinforced
+10x Ydrilan Riverblades (140)
+---
+Regiment 3
+Scinari Enlightener (180)
+• Acolyte of the Runes
+• Silver Wand
+`,
+  "marc pi": `n
+For those who Khorne after 1990/2000 pts
+Blades of Khorne
+Tournament of Skulls
+General's Handbook 2025-26
+Prayer Lore - Gifts of the Blood God
+Manifestation Lore - Judgements of Khorne
+Battle Tactic Cards: Intercept and Recover, Master the
+Paths
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Regiment 1
+Slaughterpriest (130)
+Bloodreavers (80)
+Bloodreavers (80)
+Claws of Karanak (100)
+Skull Altar`,
+  "alvaro barbuelas": `Snakes on a plane, the plane is called Morathi and the
+Shadow Queen 2000/2000 pts
+Daughters of Khaine
+Coven of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Restless Energy, Scouting Force
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (100)
+The Shadow Queen (0)
+Regiment 1
+Hag Queen (110)
+• Hand of Khaine
+Regiment 2
+Slaughter Queen (130)
+• Witchbrew
+Blood Hags (280)
+• Reinforced
+High Gladiatrix (120)
+Khainite Shadowstalkers (130)
+Shrine of Dark T`,
+  "javi fernandez": `Cucumber fest
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Restless Energy, Scouting Force
+General's Regiment
+Branchwych (100)
+• General
+• Spellsinger
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+Regiment 1
+Belthanos, First Thorn of Kurnoth (290)
+Regiment 2
+Warsong Revenant (150)
+• Seed of Rebirth
+Spite-Revenants (80)
+Spite-Revenants (80)
+Regiment 3
+Drycha Hamadreth (250)
+Dryads (90)
+Dryads (90)
+Dryads (90)
+Awakened Wyldwood`,
+  "eduard puig": `Renoir did nothing wrong 2000/2000 pts
+Helsmiths of Hashut | Taar's Grand Forgehost
+Army of Renown
+General's Handbook 2025-26
+Spell Lore - Taar's Grand Forgehost Spell Lore
+Prayer Lore - Taar's Grand Forgehost Prayer Lore
+Manifestation Lore - Primal Energy (10 Points)
+Battle Tactic Cards: Attuned to Ghyran, Master The Paths
+General's Regiment
+Urak Taar, the First Daemonsmith (340)
+• General
+Infernal Cohort with Hashutite Blades (90)
+Infernal Cohort with Hashutite Blades (90)
+Infernal Cohort with Hashutite Spears (200)
+• Reinforced
+Infernal Cohort with Hashutite Spears (200)
+• Reinforced
+Regiment 1
+Ashen Elder (120)
+Dominator Engine with Bane Maces (160)
+Dominator Engi`,
+  "pedromancer lechado": `Best worst List 1990/2000 pts
+Soulblight Gravelords
+Bacchanal of Blood
+General's Handbook 2025-26
+Spell Lore - Lore of Undeath
+Manifestation Lore - Manifestations of the Grave
+Battle Tactic Cards: Scouting Force, Wrathful Cycles
+General's Regiment
+Mannfred von Carstein, Mortarch of Night (430)
+• General
+Barrow Guard (260)
+• Reinforced
+Barrow Guard (260)
+• Reinforced
+Barrow Knights (400)
+• Reinforced
+Wight Lord on Skeletal Steed (110)
+Regiment 1
+Necromancer (140)
+• Lash of the Sire - (20) Points
+• Amulet of Graves
+Deathrattle Skeletons (180)
+• Reinforced
+Deathrattle Skeletons (90)
+Vargheists (120)
+Cursed Sepulchre`,
+  "ulf erling": `Ulf Erling Team Sweden 1990/2000 pts
+-----
+Grand Alliance Chaos | Blades of Khorne | Tournament of
+Skulls
+General's Handbook 2025-26
+Spell Lore - nothing
+Prayer Lore - Blood Blesssings of Khorne
+Manifestation Lore - Judgements of Khorne
+Battle Tactics Cards: Attuned to Ghyran and Scouting Force
+-----
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Ar'gath, The King of Blades
+Bloodletters (300)
+• Reinforced (1 Champion, 1 Standard Bearer, 1 Musician)
+Bloodletters (300)
+• Reinforced (1 Champion, 1 Standard Bearer, 1 Musician)
+Bloodletters (150)
+Mighty Skullcrushers (200)
+---
+Regiment 1
+Bloodstoker (100)
+• Frenzied Taskmaster
+Mighty Sku`,
+  "alexander korling": `Alexander Korling Team Sweden 2000/2000 pts
+-----
+Grand Alliance Order | Sylvaneth | Glade Defenders
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactics Cards: Intercept and Recover and Scouting
+Force
+-----
+General's Regiment
+Warsong Revenant (150)
+• General
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+The Twistweald (120)
+• 1x Warden's Bow
+---
+Regiment 1
+Warsong Revenant (150)
+• Ranu's Lamentiri
+Spite-Revenants (80)
+Spite-Revenants (80)
+---
+Regiment 2
+Branchwych (100)
+• Sp`,
+  "rasmus hellkvist": `Rasmus Hellkvist, Team Sweden - Runnin’ Wild 1990/2000 pts
+-----
+Grand Alliance Chaos | Slaves to Darkness | Darkoath Horde
+General's Handbook 2025-26
+Spell Lore - Lore of the Damned
+Prayer Lore - nothing
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactics Cards: Wrathful Cycles and Attuned to
+Ghyran
+-----
+General's Regiment
+Be'lakor, the Dark Master (450)
+• General
+Chaos Warriors (360)
+• Reinforced (1 Champion, 1 Standard Bearer, 1 Musician)
+• The Eroding Icon
+Chaos Warriors (360)
+• Reinforced (1 Champion, 1 Standard Bearer, 1 Musician)
+Darkoath Wilderfiend (130)
+Eternus, Blade of the First Prince (180)
+---
+Regiment 1
+Darkoath Warqueen (100)
+(cid:`,
+  "hans rofors": `Hans Rofors, Team Sweden - Dropzone 1990/2000 pts
+-----
+Grand Alliance Order | Stormcast Eternals | Thunderhead
+Host
+General's Handbook 2025-26
+Spell Lore - Lore of the Storm
+Prayer Lore - Prayers of the Stormhosts
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactics Cards: Master The Paths and Restless Energy
+-----
+General's Regiment
+Lord-Veritant (110)
+• General
+• Beacon of Azyr
+Lord-Imperatant (110)
+• Shock and Awe
+Prosecutors (300)
+• Reinforced
+Stormcoven (210)
+---
+Regiment 1
+Gardus Steel Soul (160)
+Annihilators with Meteoric Grandhammers (360)
+• Reinforced
+Annihilators with Meteoric Grandhammers (360)
+• Reinforced
+Annihilators wit`,
+  "erik hilborn": `Erik Hilborn team Sweden
+2000/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Spell Lore - Lore of Prismatic Resonance (10 Points)
+Prayer Lore - nothing
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Intercept and Recover, Master The
+Paths
+General's Regiment
+Scinari Loreseeker (140)
+• General
+• Silver Wand
+• Acolyte of the Runes
+Regiment 1
+Lyrior Uthralle, Warden of Ymetrica (250)
+Regiment 2
+Sevireth, Lord of the Seventh Wind (340)
+Regiment 3
+Ellania and Ellathor, Eclipsian Warsages (290)
+The Light of Eltharion (300)
+Vanari Auralan Wardens (240)
+• Reinforced
+Ydrilan Riverblades (140)
+Regiments of Renown
+Saviours of`,
+  "eddie torngren": `Eddie Törngren Team Sweden
+2000/2000 pts
+-----
+Grand Alliance Destruction | Ogor Mawtribes | Mawpath
+Menaces (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Twilit Sorceries
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Tyrant (150)
+• General
+• Mage-swallower
+• Gruesome Trophies
+• Touched by the Everwinter
+Ironguts (420)
+• Reinforced
+Ironguts (210)
+Scourge of Ghyran Gnoblar Scraplauncher (120)
+Scourge of Ghyran Ironblaster (160)
+---
+Regiment 1
+Butcher (150)
+Ogor Gluttons (440)
+• Reinforced
+Ogor Gluttons (220)
+Scourge of Ghyran `,
+  "agaton enskar": `Agaton Enskär Team Sweden 1990/2000 pts
+----
+Kharadron Overlords
+Pioneers and Scavengers (10 Points)
+General's Handbook 2025-26
+Spell Lore - nothing
+Prayer Lore - nothing
+Manifestation Lore - nothing
+Battle Tactic Cards: Attuned to Ghyran, Master The Paths
+----
+General's Regiment
+Brokk Grungsson, Lord-Magnate of Barak-Nar (260)
+• General
+Arkanaut Frigate (300)
+• Zonbarcorp 'Dealbreaker' Battle Ram
+Skywardens (260)
+• Reinforced
+Vongrim Harpoon Crew (120)
+Vongrim Salvagers (240)
+• Reinforced
+----
+Regiment 1
+Endrinmaster with Endrinharness (170)
+• Shrewd Opportunist - (10) Points
+• Celestium Burst Grenade - (10) Points
+Arkanaut Company (160)
+(cid:`,
+  "fredrik levau": `Fredrik Levau Team Sweden 2000/2000 pts
+Daughters of Khaine
+Fervent Ritualists
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Wrathful Cycles, Restless Energy
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Khinerai Lifetakers (100)
+The Shadow Queen (0)
+Regiment 1
+Slaughter Queen (130)
+• Witchbrew
+• Shadow-Blooded
+Sisters of Slaughter (110)
+Sisters of Slaughter (110)
+Witch Aelves (240)
+• Reinforced (1 Champion, 1 Standard Bearer, 1 Musician)
+Shrine of Dark Trib`,
+  "noel paroz": `Noel Paroz
+Team Switzerland
+With tattered wings like overcooked lasagna sheets,
+exposed tendons like tagliatelle, looking out bones like
+in an ossobuco, bellies as plump as ravioli, and smelly
+like an old pizza frutti di mare, Usharon and his radiant
+retinue descend upon you to feast on Italian specialties
+2000/2000 pts
+Flesh-eater Courts
+Royal Menagerie
+General's Handbook 2025-26
+Wounds: 108
+Spell Lore - Lore of Madness
+Prayer Lore - Rites of Delusion
+Manifestation Lore - Manifested Insanity
+Battle Tactic Cards: Master the Paths, Restless Energy
+General's Regiment
+Ushoran, Mortarch of Delusion (450)
+• General
+Royal Beastflayers (110)
+Royal Beastflayers (110)
+Royal Zombie Dragon (250`,
+  "tobias koschitz": `Tobias Koschitz
+Team Switzerland
+Maw Approved Warcrimes
+2000/2000 pts
+Ogor Mawtribes
+Mawpath Menaces (10)
+General's Handbook 2025-26
+Wounds: 147
+Spell Lore - Lore of Maw-magic
+Prayer Lore - Everwinter Prayers
+Manifestation Lore - Aetherwrought Machineries
+Battle Tactic Cards: Master the Paths, Restless Energy
+General's Regiment
+Frostlord on Stonehorn (320)
+• General
+• Gruesome Trophies
+• Touched by the Everwinter (20)
+• Mage-Swallower
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Gnoblar Scraplauncher (Scourge of Ghyran) (120)
+Regiment 1
+Butcher (150)
+Ironguts (42`,
+  "qasim lottenbach": `Qasim Lottenbach
+Team Switzerland
+Baumstreichler
+1990/2000 pts
+Sylvaneth
+Wargrove of the Burgeoning
+General's Handbook 2025-26
+Wounds: 123
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Wrathful Cycles, Scouting Force
+General's Regiment
+Alarielle the Everqueen (600)
+• General
+Revenant Seekers (Scourge of Ghyran) (480)
+• Reinforced
+Spite-Revenants (80)
+Spiterider Lancers (440)
+• Reinforced
+Regiment 1
+Warsong Revenant (150)
+• Seed of Rebirth
+• Realmroot Guide
+Spite-Revenants (80)
+Spite-Revenants (80)
+Spite-Revenants (80)
+`,
+  "thomas fuchs": `Thomas Fuchs
+Team Switzerland
+I have no Idea what I'm doing
+2000/2000 pts
+Disciples of Tzeentch
+Mutants and Mad Things
+General's Handbook 2025-26
+Wounds: 158
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Scouting Force, Wrathful Cycles
+General's Regiment
+Kairos Fateweaver (400)
+• General
+Chaos Spawn of Tzeentch (60)
+Chaos Spawn of Tzeentch (60)
+Kairic Acolytes (90)
+Tzaangor Skyfires (160)
+Regiment 1
+Curseling, Eye of Tzeentch (150)
+• Kairic Tome
+• Silver Summoner
+Tzaangor Enlightened (400)
+• Reinforced
+Tzaangors (340)
+• Reinforced
+Tzaangors (340)
+• Reinforced
+Argent Shard`,
+  "stefan gmur": `Mortis Reapers 1990/2000 pts
+Ossiarch Bonereapers
+Remorseless Conquerors
+General's Handbook 2025-26
+Wounds: 169
+Spell Lore - Lore of Necrotheurgy
+Manifestation Lore - Horrors of the Necropolis
+Battle Tactic Cards: Attuned to Ghyran, Scouting Force
+General's Regiment
+Arch-Kavalos Zandtos (220)
+* General
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Teratic Cohort (90)
+Regiment 1
+Liege-Kavalos (180)
+* Amulet of Gnosis
+* Imperious Will
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Regiment 2
+Mortisan Soulmason (150)
+Mortis Reapers (180)
+* Reinforced
+Mortis Reapers (180)
+* Reinforced
+Mortis Reapers (90)
+Bone-tithe Nexus`,
+  "jonas hirsiger": `Jonas Hirsiger
+Team Switzerland
+The Vizzik and the beast (s)
+2000/2000 pts
+Skaven
+Fleshmeld Menagerie
+General's Handbook 2025-26
+Wounds: 144
+Spell Lore - Lore of Ruin
+Prayer Lore - Noxious Prayers
+Manifestation Lore - Manifestations of Doom
+Battle Tactic Cards: Wrathful Cycles, Intercept and
+Recover
+General's Regiment
+Vizzik Skour, Prophet of the Horned Rat (340)
+• General
+Plague Monks (140)
+Rat Ogors (280)
+• Reinforced
+Stormvermin (110)
+Regiment 1
+Grey Seer on Screaming Bell (Scourge of Ghyran) (330)
+• Foulhide
+• Fleshmeddler
+Rat Ogors (280)
+• Reinforced
+Rat Ogors (280)
+• Reinforced
+Brood Terror (Scourge of Ghyran) (240)
+Gnawhole`,
+  "anthony gaillard": `Anthony Gaillard
+Team Switzerland
+1 DOK worlds
+2000/2000 pts
+Daughters of Khaine
+Coven of Blood
+General's Handbook 2025-26
+Wounds: 121
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Morathi-Khaine (730)
+• General
+Blood Sisters (280)
+• Reinforced
+Khinerai Heartrenders (100)
+Khinerai Lifetakers (100)
+The Shadow Queen
+Regiment 1
+Slaughter Queen (130)
+• Witchbrew
+• Shadow-Blooded
+Blood Hags (280)
+• Reinforced
+High Gladiatrix (120)
+Witch Aelves (240)
+• Reinforced
+Shrine of Dark Tribute (20)
+`,
+  "anthony bomtempo": `Anthony Bomtempo
+Team Switzerland
+Pwet pwet
+1990/2000 pts
+Lumineth Realm-lords
+Warhost of Duality
+General's Handbook 2025-26
+Wounds: 99
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactic Cards: Master the Paths, Intercept and
+Recover
+General's Regiment
+Lyrior Uthralle, Warden of Ymetrica (250)
+• General
+Vanari Auralan Wardens (120)
+Vanari Bladelords (300)
+• Reinforced
+Vanari Dawnriders (360)
+• Reinforced
+Ydrilan Riverblades (140)
+Regiment 1
+Scinari Enlightener (180)
+• Silver Wand
+• Acolyte of the Runes
+Regiment 2
+The Light of Eltharion (300)
+Regiment 3
+Sevireth, Lord of the Seventh Wind (340)
+Shrine Lumin`,
+  "baudouin callebaut": `Stuck between a ward save and an objective
+2000/2000 pts
+Maggotkin of Nurgle
+Plague Cyst
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Twilit Sorceries
+Battle Tactics Cards: Attuned to Ghyran and Wrathful
+Cycles
+-----
+General's Regiment
+Harbinger of Decay (140)
+* General
+* The Carrion Dirge
+Lord of Plagues (100)
+* Gift of Febrile Frenzy
+Rotswords (400)
+* Reinforced
+Rotswords (400)
+* Reinforced
+Sloven Knights (180)
+Regiment 1
+Belga the Cystwitch (130)
+Pox-Wretches (100)
+Pox-Wretches (100)
+Pox-Wretches (100)
+Regiment 2
+Poxbringer, Herald of Nurgle (90)
+Plaguebearers (260)
+* Reinforced
+Feculent Gnarlmaw`,
+  "neil montgomery": `St Patrick missed some snakes in Ireland 1990/2000 pts
+Daughters of Khaine
+Frenzied Devotees
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactics Cards: Intercept and Recover and Scouting
+Force
+General's Regiment
+Morathi-Khaine (730)
+* General
+Blood Sisters (280)
+* Reinforced
+Blood Sisters (280)
+* Reinforced
+Sisters of Slaughter (110)
+The Shadow Queen
+Regiment 1
+Krethusa the Croneseer (220)
+Regiment 2
+Scourge of Ghyran Bloodwrack Shrine (250)
+* Witchbrew
+* Shadow-Blooded
+Khinerai Heartrenders (100)
+Shrine of Dark Tribute (20)`,
+  "calvin smith": `60 bloodletters and a dream
+2000/2000 pts
+Blades of Khorne
+Tournament of Skulls
+General's Handbook 2025-26
+Prayer Lore - Blood Blesssings of Khorne
+Manifestation Lore - Judgements of Khorne
+Battle Tactic Cards: Restless Energy, Intercept and
+Recover
+General's Regiment
+Wrath of Khorne Bloodthirster (400)
+• General
+• Frenzied Taskmaster
+• Ar'gath, The King of Blades
+Blood Warriors (360)
+• Reinforced
+Claws of Karanak (100)
+Skulltaker (120)
+Regiment 1
+Bloodmaster, Herald of Khorne (120)
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Bloodletters (300)
+• Reinforced
+Skull Altar
+`,
+  "luca cerfeda": `Harem of Sultan Suleiman the Mustacheficent
+1990/2000
+Flesh-eater Courts
+Royal Menagerie
+General's Handbook 2025-26
+Spell Lore - Lore of Madness
+Prayer Lore - Rites of Delusion
+Manifestation Lore - Manifested Insanity
+Battle Tactic Cards: Master The Paths, Restless Energy
+General's Regiment
+Abhorrant Ghoul King on Royal Terrorgheist (420)
+• General
+• Stronger in Madness - (10) Points
+• Charnel Vestments - (30) Points
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Royal Terrorgheist (230)
+Regiment 1
+Abhorrant Ghoul King on Royal Zombie Dragon (390)
+• Revered Monstrosity - (10) Points
+Royal Zombie Dragon (250)
+Charnel Throne (10 Point`,
+  "oryan ogutgen": `1st Forged Pew Pew
+1960/2000 pts
+Stormcast Eternals
+Heroes of the First-Forged Army of Renown
+General's Handbook 2025-26
+Spell Lore - Heroes of the First-Forged Spell Lore
+Prayer Lore - Heroes of the First-Forged Prayer Lore
+Manifestation Lore - Heroes of the First-Forged
+Manifestation Lore
+Battle Tactics Cards: Master The Paths and Wrathful Cycles
+-----
+General's Regiment
+Lord-Commander Bastian Carthalos (190)
+* General
+Annihilators (130)
+Annihilators (130)
+Annihilators (260)
+* Reinforced
+Knight-Judicator with Gryph-hounds (130)
+* Shield of Skjordamar
+Regiment 1
+Celestant-Prime, Hammer of Sigmar (250)
+Annihilators with Meteoric Grandhammers (360)
+* Reinforced
+Annihilators with Meteoric Gran`,
+  "evren mihlar": `Fast & Furious, might be Drunk & Idiotic too!
+2000/2000 pts
+Orruk Warclans
+Krazogg’s Grunta Stampede
+Army of Renown
+General's Handbook 2025-26
+Battle Tactics Cards: Restless Energy and Wrathful Cycles
+General's Regiment
+Tuskboss on Maw-grunta (250)
+* General
+* Trophy Hunta
+* Da Boom Skull
+Gore-gruntas (170)
+Gore-gruntas (170)
+Maw-grunta Gougers (200)
+Regiment 1
+Tuskboss on Maw-grunta (250)
+Gore-gruntas (170)
+Gore-gruntas (170)
+Regiment 2
+Tuskboss on Maw-grunta (250)
+Gore-gruntas (170)
+Maw-grunta Gougers (200)
+Bossrokk Tower`,
+  "wil potter": `Teclis & The Stache of Hysh
+2000/2000 pts
+Lumineth Realm-lords
+Aelementor Guardians (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactics Cards: Intercept and Recover and Master The
+Paths
+General's Regiment
+Archmage Teclis and Celennar, Spirit of Hysh (640)
+* General
+Vanari Auralan Wardens (240)
+* Reinforced
+Regiment 1
+Scinari Enlightener (180)
+* Silver Wand
+* Acolyte of the Runes
+Regiment 2
+Sevireth, Lord of the Seventh Wind (340)
+Regiment 3
+The Light of Eltharion (300)
+Regiments of Renown
+Saviours of Cinderfall (290)
+Callis and Toll
+Toll's Companions
+Shrine Luminor
+`,
+  "cahit teoman": `Warp-mousetache of DOOM
+2000/2000 pts
+Skaven
+Fleshmeld Menagerie
+General's Handbook 2025-26
+Spell Lore - Lore of Ruin
+Prayer Lore - Noxious Prayers
+Manifestation Lore - Manifestations of Doom
+Battle Tactic Cards: Scouting Force, Attuned to Ghyran
+General's Regiment
+Scourge of Ghyran Grey Seer on Screaming Bell (330)
+• General
+• Warpstone Charm
+Rat Ogors (280)
+• Reinforced
+Rat Ogors (280)
+• Reinforced
+Scourge of Ghyran Brood Terror (240)
+Stormfiends (240)
+• 1x Doomflayer Gauntlets
+• 1x Grinderfists
+• 1x Clubbing Blows and Warpfire Projectors
+Regiment 1
+Plague Priest on Plague Furnace (350)
+• Fleshmeddler
+Plague Monks (140)
+Plague`,
+  "jeremy veysseire": `[Insert witty long string that makes people want to gouge
+out their eyes]
+1960/2000 pts
+-----
+Grand Alliance Order | Daughters of Khaine | Fervent
+Ritualists
+General's Handbook 2025-26
+Spell Lore - Lore of Shadows
+Prayer Lore - Prayers of the Khainite Cult
+Manifestation Lore - Manifestations of Khaine
+Battle Tactics Cards: Master The Paths and Wrathful Cycles
+-----
+General's Regiment
+Bloodwrack Medusa (140)
+• General
+Blood Sisters (280)
+• Reinforced
+Blood Sisters (280)
+• Reinforced
+Blood Stalkers (150)
+Khinerai Lifetakers (100)
+---
+Regiment 1
+Slaughter Queen on Cauldron of Blood (280)
+• Witchbrew
+• Shadow-Blooded
+Blood Hags (280)
+• Reinforced
+D`,
+  "michael rausch": `Tzeentch is the Once-ler causeing problems and commiting
+crimes how long will we let this stand?At least the
+once-ler killed some Sylvaneth while he was at it Tzeentch
+only prolongs my suffering 2000/2000 pts
+Ossiarch Bonereapers
+Remorseless Conquerors
+General's Handbook 2025-26
+Spell Lore - Lore of Necrotheurgy
+Manifestation Lore - Horrors of the Necropolis
+Battle Tactic Cards: Attuned to Ghyran, Scouting Force
+General's Regiment
+Liege-Kavalos (180)
+• General
+• Amulet of Gnosis
+• Imperious Will
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Kavalos Deathriders (150)
+Regiment 1
+Vokmortian, Master of the Bone-tithe (140)
+Kavalos Deathride`,
+  "gavin grigar": `28 Years Later 2000/2000 pts
+Maggotkin of Nurgle
+Tallyband of Nurgle
+General's Handbook 2025-26
+Spell Lore - Lore of Malignance
+Prayer Lore - Bendictions of Sickness
+Manifestation Lore - Morbid Conjuration (20 Points)
+Battle Tactic Cards: Attuned to Ghyran, Intercept and
+Recover
+General's Regiment
+Gelgus Pust (220)
+• General
+Nurglings (100)
+Plaguebearers (260)
+• Reinforced
+Poxbringer, Herald of Nurgle (90)
+Regiment 1
+Belga the Cystwitch (130)
+Pox-Wretches (100)
+Pox-Wretches (100)
+Pox-Wretches (100)
+Regiment 2
+Harbinger of Decay (140)
+Pox-Wretches (100)
+Pox-Wretches (100)
+Sloven Knights (180)
+Regiment 3
+Rotbringer Sorcerer (100)
+Regiments of Renown
+Godmarked Ascendant (260)
+Da`,
+  "leo rautonen": `California Meta 2000/2000 pts
+Stormcast Eternals
+Thunderhead Host
+General's Handbook 2025-26
+Prayer Lore - Prayers of the Stormhosts
+Manifestation Lore - Krondspine Incarnate
+Battle Tactic Cards: Intercept and Recover, Restless
+Energy
+General's Regiment
+Knight-Relictor (120)
+• General
+• Beacon of Azyr
+• Legendary Tenacity
+Stormstrike Palladors (360)
+• Reinforced
+Stormstrike Palladors (360)
+• Reinforced
+Stormstrike Palladors (180)
+Stormstrike Palladors (180)
+Regiment 1
+Neave Blacktalon (280)
+Lorai, Child of the Abyss (0)
+Neave's Companions (0)
+Vanguard-Palladors with Starstrike Javelins (500)
+• Reinforced
+Stormreach Portal (20 Points)
+Created wi`,
+  "walter brock": `Once and Future King 1990/2000 pts
+Flesh-eater Courts
+Impassioned Serfs
+General's Handbook 2025-26
+Spell Lore - Lore of Madness
+Prayer Lore - Rites of Delusion
+Manifestation Lore - Manifested Insanity
+Battle Tactic Cards: Restless Energy, Scouting Force
+General's Regiment
+Ushoran, Mortarch of Delusion (450)
+• General
+Crypt Horrors (320)
+• Reinforced
+Cryptguard (240)
+• Reinforced
+Royal Decapitator (130)
+• Charnel Vestments - (30) Points
+• Cruel Taskmaster
+Royal Zombie Dragon (250)
+• Horribly Resilient
+Regiment 1
+Abhorrant Cardinal (130)
+Cryptguard (240)
+• Reinforced
+Royal Beastflayers (110)
+Royal Beastflayers (110)
+Charnel Throne (10 Poi`,
+  "frederick schmidt": `The Once-ler Will Answer For His Crimes
+2000/2000 pts
+-----
+Grand Alliance Order | Sylvaneth | Glade Defenders
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactics Cards: Master The Paths and Scouting Force
+-----
+General's Regiment
+Drycha Hamadreth (250)
+• General
+Spite-Revenants (80)
+---
+Regiment 1
+Branchwych (100)
+• Spellsinger
+---
+Regiment 2
+Grove Guardian (220)
+• Ranu's Lamentiri
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+Tree-Revenants (220)
+• Reinforced
+Tree-Revenants (220)
+• Reinforced
+---
+Regiment 3
+Warsong Revenant `,
+  "thomas guan": `Lol 2000/2000 pretty
+-----
+Grand Alliance Order | Lumineth Realm-lords | Aelementor
+Guardians (10 Points)
+No command Trait No artifact
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactics Cards: Attuned to Ghyran and Intercept and
+Recover
+-----
+General's Regiment
+Sevireth, Lord of the Seventh Wind (340)
+• General
+Hurakan Windchargers (320)
+• Reinforced
+Hurakan Windchargers (320)
+• Reinforced
+---
+Regiment 1
+Lyrior Uthralle, Warden of Ymetrica (250)
+---
+Regiment 2
+Ellania and Ellathor, Eclipsian Warsages (290)
+---
+Regiment 3
+The Light of Eltharion (300)
+-----
+Regiments of Renown
+Mask of the Deceiv`,
+  "matt beasley": `Worlds 2026 2000/2000 pts
+-----
+Grand Alliance Chaos | Disciples of Tzeentch | Fated
+Blades
+General's Handbook 2025-26
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactics Cards: Restless Energy and Wrathful Cycles
+-----
+General's Regiment
+Curseling, Eye of Tzeentch (150)
+• General
+• Kairic Tome
+Chaos Spawn of Tzeentch (60)
+Tzaangor Enlightened (400)
+• Reinforced
+Tzaangors (340)
+• Reinforced
+Tzaangors (340)
+• Reinforced
+---
+Regiment 1
+Fatemaster (150)
+• Silver Summoner
+Chaos Spawn of Tzeentch (60)
+---
+Regiment 2
+Scourge of Ghyran Ogroid Thaumaturge (140)
+Scourge of Ghyran Kairic Acolytes (220)
+• Rei`,
+  "rinat khasanov": `Grand Alliance: Order`,
+  "ilia titarenko": `Grand Alliance: Chaos
+Faction: The Baleful Lords
+Battle Formation:
+Battle Tactics Cards: Restless Energy and Master The Paths
+-----
+Regiment 1
+General's regiment
+1 x Skarbrand (410 points)
+----
+Regiment 2
+1 x Bloodthirster of Insensate Rage (410 points)
+[Artefact]: Crown of the Slaughterborn
+----
+Regiment 3
+1 x Bloodthirster of Unfettered Fury (390 points)
+----
+Regiment 4
+1 x Bloodthirster of Unfettered Fury (390 points)
+----
+Regiment 5
+1 x Wrath of Khorne Bloodthirster (400 points)
+[Heroic Trait]: Unrivalled Battlelust
+----
+Wounds: 80
+2000/2000 Pts`,
+  "georgy strelnikov": `V I B E 2000/2000 pts
+-----
+Grand Alliance Order | Sylvaneth | Wargrove of the
+Burgeoning
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactics Cards: Intercept and Recover and Restless
+Energy
+-----
+General's Regiment
+Belthanos, First Thorn of Kurnoth (290)
+• General
+---
+Regiment 1
+Drycha Hamadreth (250)
+---
+Regiment 2
+Branchwych (100)
+Spite-Revenants (80)
+Spite-Revenants (80)
+The Twistweald (120)
+• 1 Warden’s Bow
+---
+Regiment 3
+Warsong Revenant (150)
+• Seed of Rebirth
+• Realmroot Guide
+Kurnoth Hunters with Greatswords (400)
+• Reinforced
+---
+`,
+  "vladimir udalov": `Dzedzek 2000/2000 pts
+-----
+Grand Alliance Order | Lumineth Realm-lords | Aelementor
+Guardians (10 Points)
+General's Handbook 2025-26
+Spell Lore - Lore of the Awakened Realms
+Manifestation Lore - Manifestations of Hysh
+Battle Tactics Cards: Intercept and Recover and Wrathful
+Cycles
+-----
+General's Regiment
+Archmage Teclis and Celennar, Spirit of Hysh (640)
+• General
+The Light of Eltharion (300)
+Vanari Dawnriders (180)
+---
+Regiment 1
+Vanari Lord Regent (110)
+• Phoenix Stone
+• Flawless Commander(+2 to move infantry)
+Vanari Auralan Sentinels (280)
+• Reinforced
+Vanari Auralan Wardens (240)
+• Reinforced
+Vanari Auralan Wardens (240)
+• Reinforced
+----`,
+  "philipp kartaev": `Bitter Wind
+Grand Alliance: Order`,
+  "sergei davydov": `Grand Alliance: Chaos`,
+  "mikhail usoltsev": `Grand Alliance: Chaos`,
+  "vladislav turusov": `Grand Alliance: Order`,
+  "georgi sariev": `Somehow Alarielle returned 1980/2000 pts
+Sylvaneth
+Wargrove of Everdusk
+General's Handbook 2025-26
+Spell Lore - Lore of the Deepwood
+Prayer Lore - Lore of the Spirit-Song
+Manifestation Lore - Manifestations of the Deepwood
+Battle Tactic Cards: Master The Paths, Intercept and
+Recover
+General's Regiment
+Alarielle the Everqueen (600)
+• General
+Spite-Revenants (80)
+Spiterider Lancers (440)
+• Reinforced
+Regiment 1
+Warsong Revenant (150)
+• Seed of Rebirth
+• Realmroot Guide
+Kurnoth Hunters with Greatscythes (380)
+• Reinforced
+Regiment 2
+Drycha Hamadreth (250)
+Spite-Revenants (80)
+Awakened Wyldwood
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Da`,
+  "daniel markov": `Top of One 2000/2000 pts
+Stormcast Eternals
+Vanguard Wing
+General's Handbook 2025-26
+Prayer Lore - Prayers of the Stormhosts
+Battle Tactic Cards: Intercept and Recover, Master The
+Paths
+General's Regiment
+Lord-Aquilor (140)
+• General
+Aetherwings (80)
+Vanguard-Palladors with Starstrike Javelins (500)
+• Reinforced
+Vanguard-Palladors with Starstrike Javelins (500)
+• Reinforced
+Vanguard-Raptors with Longstrike Crossbows (400)
+• Reinforced
+Regiment 1
+Lord-Veritant (110)
+• Beacon of Azyr
+• Legendary Tenacity
+Knight-Judicator with Gryph-hounds (130)
+Vigilors (140)
+`,
+  "ruslan skomorohov": `Ruslan Skomorohov
+TMNT, Krang, Shredder, Splinter, the Foot Clan, and the
+Technodrome 1980/2000 pts
+Seraphon
+Thunderquake Starhost
+General's Handbook 2025-26
+Spell Lore - Lore of Primal Jungles
+Manifestation Lore - Morbid Conjuration (20 Points)
+Battle Tactic Cards: Wrathful Cycles, Attuned to Ghyran
+General's Regiment
+Lord Kroak (440)
+• General
+Bastiladon with Ark of Sotek (230)
+Bastiladon with Ark of Sotek (230)
+Bastiladon with Solar Engine (200)
+Skink Starpriest (90)
+Regiment 1
+Scourge of Ghyran Saurus Oldblood on Carnosaur (320)
+• Incandescent Rectrices
+• Ancient Defender
+• Being of the Stars
+Hunters of Huanchi with Dartpipes (80)
+Hunters of Huanchi with S`,
+  "metodi shopov": `Fight in the shade 1970/2000 pts
+Slaves to Darkness
+Godswrath Warband
+General's Handbook 2025-26
+Spell Lore - Lore of the Damned
+Manifestation Lore - Forbidden Power (20 Points)
+Battle Tactic Cards: Intercept and Recover, Restless
+Energy
+General's Regiment
+Be'lakor, the Dark Master (450)
+• General
+Chaos Chosen (540)
+• Reinforced
+• The Dread Banner
+Chaos Lord (120)
+• Head of the Unworthy
+• Radiance of Dark Glory - (20) Points
+Regiment 1
+Chaos Lord on Daemonic Mount (140)
+Chaos Knights (250)
+Darkoath Fellriders (140)
+• 1x Marauder Javelin
+Varanguard (310)
+Nexus Chaotica
+`,
+  "vasil baltadzhiev": `Mortal power 1990/2000 pts
+Blades of Khorne
+The Goretide
+General's Handbook 2025-26
+Prayer Lore - Blood Blesssings of Khorne
+Manifestation Lore - Judgements of Khorne
+Battle Tactic Cards: Scouting Force, Attuned to Ghyran
+General's Regiment
+Bloodstoker (100)
+• General
+• Frenzied Taskmaster
+Blood Warriors (360)
+• Reinforced
+Blood Warriors (360)
+• Reinforced
+Blood Warriors (360)
+• Reinforced
+Bloodreavers (160)
+• Reinforced
+Regiment 1
+Realmgore Ritualist (120)
+Bloodreavers (80)
+Claws of Karanak (100)
+Wrathmongers (130)
+Regiment 2
+Bloodsecrator (120)
+• Collar of Contempt
+Claws of Karanak (100)
+Skull Altar`,
+  "martin ninov": `Kragnos’ Reamcrushers 1980/2000 pts
+Sons of Behemat
+Breaker Tribe
+General's Handbook 2025-26
+Manifestation Lore - Twilit Sorceries
+Battle Tactic Cards: Restless Energy, Wrathful Cycles
+General's Regiment
+Kragnos, the End of Empires (590)
+• General
+Warstomper Mega-Gargant (450)
+• Amberbone Totem
+Regiment 1
+Beast-smasher Mega-Gargant (470)
+• Rabble Rouser
+Beast-smasher Mega-Gargant (470)
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.0 | Data: 422`,
+  "teodor nikolov": `Soulblight Gravelords
+Bacchanal of Blood
+Battle Tactic Cards - Master the Paths
+• Scouting Force
+Manifestation Lore - Manifestations of the Grave
+Spell Lore - Lore of Undeath
+General's Regiment
+Prince Vhordrai (470)
+• General
+Deathrattle Skeletons (90)
+• 1x Champion
+• 1x Standard Bearer
+Deathrattle Skeletons (90)
+• 1x Champion
+• 1x Standard Bearer
+Vargheists (120)
+• 1x Champion
+Vargheists (120)
+• 1x Champion
+Regiment 1
+Vampire Lord on Nightmare Steed (210)
+• Terminus Clock
+• Lash of the Sire (20)
+Vargheists (240)
+• Reinforced
+• 1x Champion
+Blood Knights (440)
+• Reinforced
+• 1x Cham`,
+  "peycho ivanov": `Ciganski Nomera 1990/2000 pts
+Disciples of Tzeentch
+Mutants and Mad Things
+General's Handbook 2025-26
+Spell Lore - Lore of Change
+Manifestation Lore - Manifestations of Tzeentch
+Battle Tactic Cards: Restless Energy, Wrathful Cycles
+General's Regiment
+Lord of Change (380)
+• General
+• Silver Summoner
+• Kairic Tome
+Burning Chariot of Tzeentch (120)
+Chaos Spawn of Tzeentch (60)
+Kairic Acolytes (90)
+Regiment 1
+Curseling, Eye of Tzeentch (150)
+Chaos Spawn of Tzeentch (60)
+Tzaangor Enlightened (400)
+• Reinforced
+Tzaangors (340)
+• Reinforced
+Regiments of Renown
+The Exiled One (390)
+Skarbrand
+Argent Shard
+Created with Warhammer Age of Sigmar: The App
+App: 1.31.`
+};
+
+const BG=[{name:"Georgi Sariev",army:"Sylvaneth"},{name:"Daniel Markov",army:"Stormcast Eternals"},{name:"Ruslan Skomorohov",army:"Seraphon"},{name:"Metodi Shopov",army:"Slaves to Darkness"},{name:"Vasil Baltadzhiev",army:"Blades of Khorne"},{name:"Martin Ninov",army:"Sons of Behemat"},{name:"Teodor Nikolov",army:"Soulblight Gravelords"},{name:"Peycho Ivanov",army:"Disciples of Tzeentch"}];
+
+const ROUNDS=[{r:1,maps:["Linked Ley Lines","Cyclic Shifts","The Liferoots","Creeping Corruption"]},{r:2,maps:["Bountiful Equinox","Roiling Roots","Surge of Slaughter","Noxious Nexus"]},{r:3,maps:["Passing Seasons","Paths of the Fey","Lifecycle","Grasp of Thorns"]},{r:4,maps:["Noxious Nexus","Linked Ley Lines","Lifecycle","Surge of Slaughter"]},{r:5,maps:["Creeping Corruption","Passing Seasons","Paths of the Fey","Roiling Roots"]},{r:6,maps:["Grasp of Thorns","Cyclic Shifts","Bountiful Equinox","The Liferoots"]}];
+
+const NATIONS=[{name:"Australia",players:[{name:"Mitch Bugg",army:"Ogor Mawtribes"},{name:"Jacob Strachan",army:"Slaves to Darkness"},{name:"Jasper Rowley",army:"Lumineth Realm-lords"},{name:"Tom Rands",army:"Soulblight Gravelords"},{name:"Zak Rockman",army:"Sylvaneth"},{name:"James Panek",army:"Blades of Khorne"},{name:"Stuart Mccowan",army:"Gloomspite Gitz"},{name:"Jordan Rees",army:"Daughters of Khaine"}]},{name:"Austria",players:[{name:"Vincent Postel",army:"Soulblight Gravelords"},{name:"Bernhard Horner",army:"Sylvaneth"},{name:"Lars Wychodil",army:"Ossiarch Bonereapers"},{name:"Benjamin Salomon",army:"Lumineth Realm-lords"},{name:"Manuel Schoppler",army:"Daughters of Khaine"},{name:"Dominik Hirsch",army:"Maggotkin of Nurgle"},{name:"Alexander Sluka",army:"Ogor Mawtribes"},{name:"Benedict Rich",army:"Stormcast Eternals"}]},{name:"Belgium",players:[{name:"Spyros Kemekenidis",army:"Daughters of Khaine"},{name:"Sev Kemekenidis",army:"Stormcast Eternals"},{name:"Maiky Bon",army:"Blades of Khorne"},{name:"Maxence Blondiau",army:"Maggotkin of Nurgle"},{name:"Robin Van wetering",army:"Sylvaneth"},{name:"Thibault Rigolet",army:"Ogor Mawtribes"},{name:"Paul Dam",army:"Lumineth Realm-lords"},{name:"Antoine Dumont",army:"Disciples of Tzeentch"}]},{name:"Canada",players:[{name:"Michael Sabetti",army:"Flesh-eater Courts"},{name:"Matthias Krushel",army:"Lumineth Realm-lords"},{name:"Justin Lapointe",army:"Sylvaneth"},{name:"John Zoshak",army:"Maggotkin of Nurgle"},{name:"Fabien Barbusse",army:"Disciples of Tzeentch"},{name:"Devin Courtman",army:"Soulblight Gravelords"},{name:"Connor Mitchell",army:"Ossiarch Bonereapers"},{name:"Carson Whitlock",army:"Ogor Mawtribes"}]},{name:"China",players:[{name:"Yuwei",army:"Disciples of Tzeentch"},{name:"Phi-Alix Nguyen",army:"Stormcast Eternals"},{name:"Martin Bergson Lemire",army:"Cities of Sigmar"},{name:"Yanxue Pang",army:"Blades of Khorne"},{name:"Louis Dussoullier",army:"Lumineth Realm-lords"},{name:"Lewis Bayman",army:"Slaves to Darkness"},{name:"James Jiang",army:"Ossiarch Bonereapers"},{name:"Matt Thomas",army:"Ironjawz"}]},{name:"Denmark",players:[{name:"Marc Knudsen",army:"Daughters of Khaine"},{name:"Alexander Hansen",army:"Kruleboyz"},{name:"Rasmus Albech Nielsen",army:"Ironjawz"},{name:"Rasmus Olsen",army:"Ogor Mawtribes"},{name:"Martin M",army:"Sylvaneth"},{name:"Christoffer Karlsmose",army:"Ossiarch Bonereapers"},{name:"Rune Holse",army:"Lumineth Realm-lords"},{name:"Casper Torres Karlsmose",army:"Stormcast Eternals"}]},{name:"England",players:[{name:"Stephen Follows",army:"Soulblight Gravelords"},{name:"Alex Bruce",army:"Lumineth Realm-lords"},{name:"Tom Marshall",army:"Flesh-eater Courts"},{name:"Max Barton",army:"Maggotkin of Nurgle"},{name:"Freddie Leggett",army:"Seraphon"},{name:"Ritchie Mcalley",army:"Sylvaneth"},{name:"Dan Bradshaw",army:"Daughters of Khaine"},{name:"Benjamin Savva",army:"Stormcast Eternals"}]},{name:"Finland",players:[{name:"Tuomas Ivakko",army:"Slaves to Darkness"},{name:"Ted Ekegren",army:"Ogor Mawtribes"},{name:"Pietari Jukarainen",army:"Sylvaneth"},{name:"Ben Murphy",army:"Soulblight Gravelords"},{name:"Aasa Timonen",army:"Idoneth Deepkin"},{name:"Hanna Leppanen",army:"Disciples of Tzeentch"},{name:"Janne Tiihonen",army:"Maggotkin of Nurgle"},{name:"Anttu",army:"Lumineth Realm-lords"}]},{name:"France",players:[{name:"Gregoire Elinck",army:"Disciples of Tzeentch"},{name:"Antoine Picart",army:"Soulblight Gravelords"},{name:"Clement Miscopein",army:"Sylvaneth"},{name:"Jorin Kamper",army:"Daughters of Khaine"},{name:"Martin Feingold",army:"Ironjawz"},{name:"Hugo Jonquiere",army:"Ogor Mawtribes"},{name:"Thomas Floquet",army:"Kharadron Overlords"},{name:"Nicolas Tassone",army:"Lumineth Realm-lords"}]},{name:"Germany",players:[{name:"David Demmel",army:"Ogor Mawtribes"},{name:"Tobias Schwarz",army:"Disciples of Tzeentch"},{name:"Pascal Weimar",army:"Sylvaneth"},{name:"Tristan Paffenholz",army:"Stormcast Eternals"},{name:"Daniel Pommer",army:"Lumineth Realm-lords"},{name:"Alexander Sporl",army:"Skaven"},{name:"Timo Wiebel",army:"Hedonites of Slaanesh"},{name:"Max Baumann",army:"Daughters of Khaine"}]},{name:"Greece",players:[{name:"Lukas Kaluza",army:"Ogor Mawtribes"},{name:"Dominik Ceyhun",army:"Daughters of Khaine"},{name:"Stylianos Mamagkakis",army:"Stormcast Eternals"},{name:"Dimitrios Tzineris",army:"Slaves to Darkness"},{name:"Robert Bock",army:"Blades of Khorne"},{name:"Vasileios Poriotis",army:"Cities of Sigmar"},{name:"Demetre Petouris",army:"Sylvaneth"},{name:"Spyridon Michail",army:"Flesh-eater Courts"}]},{name:"Italy",players:[{name:"Lorenzo Baccifava",army:"Soulblight Gravelords"},{name:"Pier Giorgio Miceli",army:"Flesh-eater Courts"},{name:"Simone Sassi",army:"Nighthaunt"},{name:"Lorenzo Tosi",army:"Skaven"},{name:"Guglielmo Famiani",army:"Blades of Khorne"},{name:"Alessio Reinotti",army:"Slaves to Darkness"},{name:"Alessandro Hagi",army:"Sons of Behemat"},{name:"Francesco Xella",army:"Idoneth Deepkin"}]},{name:"Netherlands",players:[{name:"Gijs van Muijden",army:"Skaven"},{name:"Pim Roeske",army:"Lumineth Realm-lords"},{name:"George Goultidis",army:"Blades of Khorne"},{name:"Nico van den Hoek",army:"Idoneth Deepkin"},{name:"Nick Frey",army:"Ironjawz"},{name:"Morgan Serier",army:"Sylvaneth"},{name:"Darryl Peacock",army:"Daughters of Khaine"},{name:"Hugo Rikken",army:"Ogor Mawtribes"}]},{name:"New Zealand",players:[{name:"Lance Martin Tan",army:"Blades of Khorne"},{name:"Stefan Mandic",army:"Disciples of Tzeentch"},{name:"Shaun Bates",army:"Maggotkin of Nurgle"},{name:"Bo Paterson",army:"Lumineth Realm-lords"},{name:"Callum Brown",army:"Ironjawz"},{name:"Ryan Lynn-Watts",army:"Ogor Mawtribes"},{name:"Alexander Sinclair",army:"Sylvaneth"},{name:"James Struthers",army:"Daughters of Khaine"}]},{name:"Northern Ireland",players:[{name:"Chris Archibald",army:"Lumineth Realm-lords"},{name:"Stephen Mitchell",army:"Sylvaneth"},{name:"Tom Blaxall",army:"Idoneth Deepkin"},{name:"Ethan Waring",army:"Slaves to Darkness"},{name:"Pete Brizio",army:"Ironjawz"},{name:"Martin Clarke",army:"Sons of Behemat"},{name:"Colin Cochrane",army:"Seraphon"},{name:"Solomon Morrow",army:"Disciples of Tzeentch"}]},{name:"Norway",players:[{name:"Lasse Kalberg",army:"Kharadron Overlords"},{name:"Tom Kenneth Solli",army:"Maggotkin of Nurgle"},{name:"Knut Vedeld",army:"Sylvaneth"},{name:"Geir Vedeld",army:"Blades of Khorne"},{name:"Benjamin Flodda",army:"Lumineth Realm-lords"},{name:"Martin Andre Rohme",army:"Ogor Mawtribes"},{name:"Danny Elvestad",army:"Ironjawz"},{name:"Ole Vatland",army:"Daughters of Khaine"}]},{name:"Poland",players:[{name:"Mikolaj Erchard",army:"Maggotkin of Nurgle"},{name:"Artur Rietz",army:"Soulblight Gravelords"},{name:"Adam Sulkowski",army:"Ogor Mawtribes"},{name:"Damian Grzybek",army:"Blades of Khorne"},{name:"Michal Pisarski",army:"Stormcast Eternals"},{name:"Oskar Jeszke",army:"Daughters of Khaine"},{name:"Kuba Kostrubiec",army:"Lumineth Realm-lords"},{name:"Tomasz Mucha",army:"Sylvaneth"}]},{name:"Portugal",players:[{name:"Joao Henriques",army:"Blades of Khorne"},{name:"Tiago Abril",army:"Stormcast Eternals"},{name:"Mark Palinski",army:"Soulblight Gravelords"},{name:"Ivo Capelo",army:"Skaven"},{name:"Dylan Therriault",army:"Cities of Sigmar"},{name:"David Costa",army:"Lumineth Realm-lords"},{name:"Cian Doherty",army:"Sylvaneth"},{name:"Alexandre Sousa",army:"Ogor Mawtribes"}]},{name:"Scotland",players:[{name:"Josh Bunning",army:"Lumineth Realm-lords"},{name:"Callum Campbell",army:"Sylvaneth"},{name:"David Jack",army:"Maggotkin of Nurgle"},{name:"Phil McGuinness",army:"Blades of Khorne"},{name:"Ross Sherrie",army:"Ossiarch Bonereapers"},{name:"Nathan Watson",army:"Daughters of Khaine"},{name:"Sam Pace",army:"Ogor Mawtribes"},{name:"Jp Ganis",army:"Ironjawz"}]},{name:"Serbia",players:[{name:"Nikola Jankovic",army:"Sylvaneth"},{name:"Lazar Djurovic",army:"Soulblight Gravelords"},{name:"Andrej Bunjac",army:"Lumineth Realm-lords"},{name:"Brent Evans",army:"Blades of Khorne"},{name:"Benji Askelaad",army:"Ironjawz"},{name:"Natasa Belic",army:"Daughters of Khaine"},{name:"Ronya Andersson",army:"Disciples of Tzeentch"},{name:"Boggy B",army:"Skaven"}]},{name:"Slovenia",players:[{name:"Enes Humic",army:"Soulblight Gravelords"},{name:"Ryan Newman",army:"Kharadron Overlords"},{name:"Leonardo Vertus",army:"Disciples of Tzeentch"},{name:"Blaz Ravnikar",army:"Sylvaneth"},{name:"Tilen Kuhar Zajec",army:"Maggotkin of Nurgle"},{name:"Sebastian Pogacnik",army:"Nighthaunt"},{name:"Denis Osterman",army:"Daughters of Khaine"},{name:"Tevz Delak",army:"Lumineth Realm-lords"}]},{name:"Spain",players:[{name:"Adrian Perez Canoura",army:"Maggotkin of Nurgle"},{name:"Josiito 98",army:"Ogor Mawtribes"},{name:"Jesus De La Pena",army:"Lumineth Realm-lords"},{name:"Marc Pi",army:"Blades of Khorne"},{name:"Alvaro Barbuelas",army:"Daughters of Khaine"},{name:"Javi Fernandez",army:"Sylvaneth"},{name:"Eduard Puig",army:"Helsmiths of Hashut"},{name:"Pedromancer Lechado",army:"Soulblight Gravelords"}]},{name:"Sweden",players:[{name:"Ulf Erling",army:"Blades of Khorne"},{name:"Alexander Korling",army:"Sylvaneth"},{name:"Rasmus Hellkvist",army:"Slaves to Darkness"},{name:"Hans Rofors",army:"Stormcast Eternals"},{name:"Erik Hilborn",army:"Lumineth Realm-lords"},{name:"Eddie Torngren",army:"Ogor Mawtribes"},{name:"Agaton Enskar",army:"Kharadron Overlords"},{name:"Fredrik Levau",army:"Daughters of Khaine"}]},{name:"Switzerland",players:[{name:"Noel Paroz",army:"Flesh-eater Courts"},{name:"Tobias Koschitz",army:"Ogor Mawtribes"},{name:"Qasim Lottenbach",army:"Sylvaneth"},{name:"Thomas Fuchs",army:"Disciples of Tzeentch"},{name:"Stefan Gmur",army:"Ossiarch Bonereapers"},{name:"Jonas Hirsiger",army:"Skaven"},{name:"Anthony Gaillard",army:"Daughters of Khaine"},{name:"Anthony Bomtempo",army:"Lumineth Realm-lords"}]},{name:"Turkey",players:[{name:"Baudouin Callebaut",army:"Maggotkin of Nurgle"},{name:"Neil Montgomery",army:"Daughters of Khaine"},{name:"Calvin Smith",army:"Blades of Khorne"},{name:"Luca Cerfeda",army:"Flesh-eater Courts"},{name:"Oryan Ogutgen",army:"Stormcast Eternals"},{name:"Evren Mihlar",army:"Ironjawz"},{name:"Wil Potter",army:"Lumineth Realm-lords"},{name:"Cahit Teoman",army:"Skaven"}]},{name:"USA",players:[{name:"Jeremy Veysseire",army:"Daughters of Khaine"},{name:"Michael Rausch",army:"Ossiarch Bonereapers"},{name:"Gavin Grigar",army:"Maggotkin of Nurgle"},{name:"Leo Rautonen",army:"Stormcast Eternals"},{name:"Walter Brock",army:"Flesh-eater Courts"},{name:"Frederick Schmidt",army:"Sylvaneth"},{name:"Thomas Guan",army:"Lumineth Realm-lords"},{name:"Matt Beasley",army:"Disciples of Tzeentch"}]},{name:"WPFR",players:[{name:"Rinat Khasanov",army:"Idoneth Deepkin"},{name:"Ilia Titarenko",army:"Blades of Khorne"},{name:"Georgy Strelnikov",army:"Sylvaneth"},{name:"Vladimir Udalov",army:"Lumineth Realm-lords"},{name:"Philipp Kartaev",army:"Cities of Sigmar"},{name:"Sergei Davydov",army:"Maggotkin of Nurgle"},{name:"Mikhail Usoltsev",army:"Disciples of Tzeentch"},{name:"Vladislav Turusov",army:"Daughters of Khaine"}]}];
+
+const CY=[null,'BW','SW','D','SL','BL','R'];
+const SC={BW:2,SW:1,D:0,SL:-1,BL:-2,R:0.5};
+const as=a=>a.replace('Lumineth Realm-lords','LRL').replace('Lumineth Realm-Lords','LRL').replace('Stormcast Eternals','SCE').replace('Soulblight Gravelords','SBG').replace('Disciples of Tzeentch','DoT').replace('Daughters of Khaine','DoK').replace('Blades of Khorne','BoK').replace('Slaves to Darkness','StD').replace('Maggotkin of Nurgle','MoN').replace('Ogor Mawtribes','Ogors').replace('Flesh-eater Courts','FEC').replace('Ossiarch Bonereapers','OBR').replace('Hedonites of Slaanesh','HoS').replace('Sons of Behemat','SoB').replace('Cities of Sigmar','CoS').replace('Kharadron Overlords','KO').replace('Helsmiths of Hashut','HoH').replace('Gloomspite Gitz','GGitz').replace('Idoneth Deepkin','IDK').replace('Ironjawz','IJ').replace('Kruleboyz','KB').replace('Nighthaunt','NH');
+
+let preds={}, drawn=new Set(), activeR=1;
+
+function load(){try{const d=localStorage.getItem('bgaos_p');if(d)preds=JSON.parse(d);const dr=localStorage.getItem('bgaos_d');if(dr)drawn=new Set(JSON.parse(dr));}catch(e){}}
+function save(){try{localStorage.setItem('bgaos_p',JSON.stringify(preds));localStorage.setItem('bgaos_d',JSON.stringify([...drawn]));}catch(e){}}
+function pk(n,b,o){return n+'|'+b+'|'+o}
+function gp(n,b,o){return preds[pk(n,b,o)]||null}
+function cy(n,b,o){const c=gp(n,b,o),i=CY.indexOf(c),nx=CY[(i+1)%CY.length];if(nx===null)delete preds[pk(n,b,o)];else preds[pk(n,b,o)]=nx;save();renderMatrix();renderSums();renderSum();}
+
+function initPills(){document.getElementById('rpills').innerHTML='<span style="font-size:11px;color:#6b6860;margin-right:4px;align-self:center">Round:</span>'+ROUNDS.map(rd=>`<button class="rbtn${activeR===rd.r?' on':''}" onclick="setR(${rd.r})">R${rd.r}</button>`).join('');}
+function setR(r){activeR=r;initPills();renderMaps();renderMatrix();}
+const MN={"Linked Ley Lines": "Objectives link diagonally — control pairs", "Cyclic Shifts": "Objectives rotate each round — adapt fast", "The Liferoots": "Central cluster + far corners — split attention", "Creeping Corruption": "Corrupted zones expand — move or lose", "Bountiful Equinox": "Scoring varies by season — plan ahead", "Roiling Roots": "Roots emerge blocking movement — position early", "Surge of Slaughter": "Bonus pts for kills — aggressive plays rewarded", "Noxious Nexus": "Central objective radiates — dangerous to hold", "Passing Seasons": "Objectives shift seasonally — track the cycle", "Paths of the Fey": "Teleport paths between objectives — fast armies shine", "Lifecycle": "Objectives bloom and die — timing is everything", "Grasp of Thorns": "Terrain grabs models — stay mobile"};
+function renderMaps(){const m=ROUNDS[activeR-1].maps;document.getElementById('mapbar').innerHTML='<label>Maps R'+activeR+':</label>'+m.map(x=>`<span class="mchip" title="${MN[x]||''}">${x}${MN[x]?'<span style="font-size:9px;color:#9e9b94;display:block;margin-top:1px">'+MN[x]+'</span>':''}</span>`).join('');}
+
+function initSel(){const s=document.getElementById('npick');NATIONS.forEach(n=>{const o=document.createElement('option');o.value=n.name;o.textContent=n.name+(drawn.has(n.name)?' ★':'');s.appendChild(o);});}
+function refSel(){const s=document.getElementById('npick'),c=s.value;s.innerHTML='';NATIONS.forEach(n=>{const o=document.createElement('option');o.value=n.name;o.textContent=n.name+(drawn.has(n.name)?' ★':'');s.appendChild(o);});if(c)s.value=c;}
+
+function toggleDraw(){const n=document.getElementById('npick').value;if(!n)return;if(drawn.has(n))drawn.delete(n);else{if(drawn.size>=6){alert('Max 6 nations');return;}drawn.add(n);}save();const b=document.getElementById('dbtn');b.textContent=drawn.has(n)?'★ In draw':'+ Add to draw';b.className='dbtn'+(drawn.has(n)?' on':'');refSel();renderDG('');renderSums();renderSum();}
+
+function renderMatrix(){
+  const nn=document.getElementById('npick').value;
+  const nat=NATIONS.find(n=>n.name===nn);
+  const b=document.getElementById('dbtn');b.textContent=drawn.has(nn)?'★ In draw':'+ Add to draw';b.className='dbtn'+(drawn.has(nn)?' on':'');
+  if(!nat){document.getElementById('mwrap').innerHTML='';return;}
+  let h=`<table><thead><tr><th class="corner">Bulgaria / ${nn}</th>`;
+  nat.players.forEach(p=>{const c=ac(p.army);h+=`<th class="oh" onclick="openP('${p.name.replace(/'/g,"\'")}','${p.army.replace(/'/g,"\'")}','${nn}')"><div class="abar" style="background:${c}"></div><span class="on1">${p.name.split(' ')[0]}</span><span class="on2">${as(p.army)}</span></th>`;});
+  h+=`</tr></thead><tbody>`;
+  BG.forEach((bg,bi)=>{const bc=ac(bg.army);h+=`<tr><td class="bgr"><div class="bn">${bg.name}</div><div class="ba"><span class="dot" style="background:${bc}"></span>${as(bg.army)}</div></td>`;nat.players.forEach((_,oi)=>{const v=gp(nn,bi,oi),cls=v||'';h+=`<td><button class="cb ${cls}" onclick="cy('${nn}',${bi},${oi})">${v||'–'}</button></td>`;});h+=`</tr>`;});
+  h+=`</tbody></table>`;
+  document.getElementById('mwrap').innerHTML=h;
+}
+
+function openP(pname,army,nation){
+  const info=AI[army]||AI[army.replace('Lumineth Realm-Lords','Lumineth Realm-lords')];
+  const c=ac(army);
+  const lst=PL[pname.toLowerCase()];
+  document.getElementById('pname').textContent=pname;
+  document.getElementById('psub').innerHTML=`<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${c};margin-right:5px;vertical-align:middle"></span>${army} · ${nation}`;
+  let body='';
+  // Side-by-side layout: army info left, list right
+  if(info){
+    body+=`<div style="display:flex;gap:16px;flex-wrap:wrap">`;
+    body+=`<div style="flex:1;min-width:220px">`;
+    body+=`<div class="ptag">Army overview</div><div class="pdesc">${info.s}</div>`;
+    body+=`<div class="ptag">Key units</div>`;
+    info.k.forEach(k=>{const p=k.split('—');body+=`<div class="pu"><strong>${p[0].trim()}</strong>${p[1]?' — '+p[1].trim():''}</div>`;});
+    body+=`<a class="wl" href="${info.u}" target="_blank">Full rules on Wahapedia ↗</a>`;
+    body+=`</div>`;
+    body+=`<div style="flex:1;min-width:220px">`;
+    body+=`<div class="ptag">Tournament list</div>`;
+    if(lst){body+=`<div class="lb">${lst.replace(/\\n/g,'\n')}</div>`;}
+    else{body+=`<p style="font-size:12px;color:#9e9b94;margin-top:8px">List not extracted.</p>`;}
+    body+=`</div>`;
+    body+=`</div>`;
+  } else {
+    body+=`<div class="ptag">Tournament list</div>`;
+    if(lst){body+=`<div class="lb">${lst.replace(/\\n/g,'\n')}</div>`;}
+    else{body+=`<p style="font-size:12px;color:#9e9b94">List not extracted — check the Worlds PDF.</p>`;}
+  }
+  document.getElementById('pbody').innerHTML=body;
+  document.getElementById('pnl').classList.add('open');
+}
+function closePnl(){document.getElementById('pnl').classList.remove('open');}
+
+function showTab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));const m={matrix:0,draw:1,summary:2};document.querySelectorAll('.tab')[m[t]].classList.add('on');document.getElementById('sec-'+t).classList.add('on');if(t==='draw')renderDG('');if(t==='summary')renderSum();}
+
+function renderDG(f=''){
+  let h='';
+  NATIONS.filter(n=>!f||n.name.toLowerCase().includes(f.toLowerCase())).forEach(n=>{
+    const d=drawn.has(n.name);
+    const aa=[...new Set(n.players.map(p=>p.army))];
+    h+=`<div class="nc${d?' drn':''}" onclick="toggleDN('${n.name}')"><div class="ncn">${n.name}${d?'<span class="nbg">drawn</span>':''}</div><div class="ncs">${aa.slice(0,3).map(a=>`<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${ac(a)};margin-right:2px;vertical-align:middle"></span>${as(a)}`).join('  ')}</div></div>`;
+  });
+  document.getElementById('dgrid').innerHTML=h;
+  renderSums();
+}
+function toggleDN(name){if(drawn.has(name))drawn.delete(name);else{if(drawn.size>=6){alert('Max 6 nations');return;}drawn.add(name);}save();refSel();renderDG('');renderSum();const c=document.getElementById('npick').value;if(c)renderMatrix();}
+
+function renderSums(){
+  const c=document.getElementById('dsums');
+  if(!drawn.size){c.innerHTML='';return;}
+  let h=`<div style="font-size:14px;font-weight:600;color:#1a1916;margin-bottom:10px">Drawn nations</div><div class="dcards">`;
+  drawn.forEach(nn=>{
+    const nat=NATIONS.find(n=>n.name===nn);let tot=0,fil=0;
+    const chips=BG.map((bg,bi)=>{let bv=-99,best=null;nat.players.forEach((_,oi)=>{const v=gp(nn,bi,oi);if(v&&SC[v]>bv){bv=SC[v];best=v;}});if(best){tot+=SC[best];fil++;}return{bg,best};});
+    const sc=tot>0?'pos':tot<0?'neg':'neu';
+    h+=`<div class="dcard"><div class="dch"><div class="dcn">${nn}</div><div class="dsc ${sc}">${tot>0?'+':''}${tot.toFixed(1)}</div></div><div style="font-size:11px;color:#9e9b94">${fil}/8 predictions</div><div class="chips">`;
+    chips.forEach(ch=>{h+=`<span class="chip${ch.best?' '+ch.best:''}">${ch.bg.name.split(' ')[0]}: ${ch.best||'–'}</span>`;});
+    h+=`</div><button class="dlink" onclick="document.getElementById('npick').value='${nn}';renderMatrix();showTab('matrix')">→ Open full matrix</button></div>`;
+  });
+  h+=`</div>`;c.innerHTML=h;
+}
+
+function renderSum(){
+  const c=document.getElementById('sinner');
+  if(!drawn.size){c.innerHTML=`<div class="empty">Add nations in the Draw tab first.</div>`;return;}
+  let grand=0,h=`<div class="sgrid">`;
+  drawn.forEach(nn=>{
+    const nat=NATIONS.find(n=>n.name===nn);let tot=0,fil=0;
+    BG.forEach((_,bi)=>nat.players.forEach((_,oi)=>{const v=gp(nn,bi,oi);if(v){fil++;tot+=SC[v];}}));
+    grand+=tot;const sc=tot>0?'pos':tot<0?'neg':'neu';
+    h+=`<div class="scard"><div class="sn">${nn}</div><div class="ss ${sc}">${tot>0?'+':''}${tot.toFixed(1)}</div><div class="ssb">${fil}/64 cells</div></div>`;
+  });
+  const gsc=grand>0?'pos':grand<0?'neg':'neu';
+  h+=`<div class="grand"><div class="gl">TEAM TOTAL · ${drawn.size} nations</div><div class="gs ${gsc}">${grand>0?'+':''}${grand.toFixed(1)}</div></div></div>`;
+  h+=`<p class="scale">BW = +2 &nbsp; SW = +1 &nbsp; D = 0 &nbsp; SL = -1 &nbsp; BL = -2 &nbsp; R = +0.5</p>`;
+  c.innerHTML=h;
+}
+
+load();initPills();renderMaps();initSel();renderMatrix();
+</script>
+</body>
+</html>
